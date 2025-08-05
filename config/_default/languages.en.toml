@@ -1,0 +1,23 @@
+languageCode = "en"
+languageName = "English"
+languageDirection = "ltr"
+weight = 1
+
+title = "vitaliykovalev.com"
+copyright = "© Vitaliy Kovalev, 2025"
+
+[params]
+  dateFormat = "2 January 2006"
+   mainSections = ["posts", "projects"]
+   description = "Hi, I’m Vitaliy 👋"
+
+[params.author]
+   name = "Vitaliy Kovalev"
+   image = "img/avatar.jpeg"
+   headline = "BI Developer | Team Leader"
+   bio = "BI Developer | Team Leader"
+   links = [
+     { linkedin = "https://linkedin.com/in/vitaliy-kovalev/" },
+     { email = "mailto:vitaliy.kovalev.36@gmail.com" },
+     { github = "https://github.com/vitaliy-kovalev" }
+   ]

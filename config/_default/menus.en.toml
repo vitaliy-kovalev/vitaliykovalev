@@ -1,0 +1,105 @@
+#[[main]]
+#  name = "Home"
+#  pageRef = "/"
+#  weight = 1
+#  [main.params]
+#    icon = "circle-info"
+#    showName = false
+#    target = "_self"
+
+[[main]]
+  identifier = "search"
+  weight = 1
+  [main.params]
+    action = "search"
+    icon = "search"
+
+[[main]]
+  name = "Blog & Projects"
+  pageRef = "posts"
+  weight = 2
+
+[[main]]
+  name = "CV"
+  pageRef = "cv"
+  weight = 3
+
+[[main]]
+  name = "Tableau Public ↗"
+  weight = 4
+  url = "https://public.tableau.com/app/profile/vitaliy.kovalev"
+#  [main.params]
+#    icon = "globe"
+#    showName = true
+#    target = "_blank"
+
+[[main]]
+  name = "Linkedin"
+  weight = 5
+  url = "https://linkedin.com/in/vitaliy-kovalev/"
+  [main.params]
+    icon = "linkedin"
+    showName = false
+    target = "_blank"
+
+[[main]]
+  name = "GitHub"
+  weight = 5
+  url = "https://github.com/vitaliy-kovalev"
+  [main.params]
+    icon = "github"
+    showName = false
+    target = "_blank"
+
+[[main]]
+  name = "Email"
+  weight = 5
+  url = "mailto:vitaliy.kovalev.36@gmail.com"
+  [main.params]
+    icon = "email"
+    showName = false
+    target = "_blank"
+
+[[main]]
+  identifier = "appearance"
+  weight = 8
+  [main.params]
+    action = "appearance"
+
+
+# -- Footer Menu --
+# The footer menu is displayed at the bottom of the page, just before
+# the copyright notice. Configure as per the main menu above.
+
+[[footer]]
+  name = "Home"
+  pageRef = "/"
+  weight = 10
+
+[[footer]]
+  name = "Tags"
+  pageRef = "tags"
+  weight = 20
+
+[[footer]]
+  name = "Blog & Projects"
+  pageRef = "posts"
+  weight = 30
+
+[[footer]]
+  name = "CV"
+  pageRef = "cv"
+  weight = 40
+
+[[footer]]
+  name = "Tableau Public ↗"
+  url = "https://public.tableau.com/app/profile/vitaliy.kovalev"
+  weight = 50
+
+[[footer]]
+  name = "RSS"
+  url = "/posts/index.xml"
+  weight = 55
+  [footer.params]
+    icon = "rss"
+    showName = false
