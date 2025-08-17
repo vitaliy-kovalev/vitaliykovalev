@@ -1,0 +1,1842 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>vitaliykovalev.com</title><link>http://localhost:1313/</link><description>Recent content on vitaliykovalev.com</description><generator>Hugo</generator><language>en</language><copyright>© Vitaliy Kovalev, 2025</copyright><lastBuildDate>Thu, 12 Jun 2025 00:00:00 +0000</lastBuildDate><atom:link href="http://localhost:1313/index.xml" rel="self" type="application/rss+xml"/><item><title>How to apply RAG and LLM to search BI reports faster</title><link>http://localhost:1313/posts/how-to-apply-rag-and-llm-to-search-bi-reports-faster/</link><pubDate>Thu, 12 Jun 2025 00:00:00 +0000</pubDate><guid>http://localhost:1313/posts/how-to-apply-rag-and-llm-to-search-bi-reports-faster/</guid><description>A tool that takes report searching for business users to another level</description><content>&lt;div class="flex rounded-md bg-primary-100 px-4 py-3 dark:bg-primary-900">
+ &lt;span class="pe-3 text-primary-400">
+ &lt;span class="icon relative inline-block px-1 align-text-bottom">&lt;svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">&lt;path fill="currentColor" d="M506.3 417l-213.3-364c-16.33-28-57.54-28-73.98 0l-213.2 364C-10.59 444.9 9.849 480 42.74 480h426.6C502.1 480 522.6 445 506.3 417zM232 168c0-13.25 10.75-24 24-24S280 154.8 280 168v128c0 13.25-10.75 24-23.1 24S232 309.3 232 296V168zM256 416c-17.36 0-31.44-14.08-31.44-31.44c0-17.36 14.07-31.44 31.44-31.44s31.44 14.08 31.44 31.44C287.4 401.9 273.4 416 256 416z"/>&lt;/svg>
+&lt;/span>
+ &lt;/span>
+ &lt;span class="dark:text-neutral-300">Disclaimer: Models and their limits evolve, but the core approach in this article should remain relevant. Always double-check the current model landscape before implementing.&lt;/span>
+&lt;/div>
+
+&lt;p>🎥 Here’s a video of me trying to explain all this at the last Serbian Tableau User Group.&lt;/p>
+&lt;div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;">
+ &lt;iframe allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share; fullscreen" loading="eager" referrerpolicy="strict-origin-when-cross-origin" src="https://www.youtube-nocookie.com/embed/J0vrLBbfHsc?autoplay=0&amp;amp;controls=1&amp;amp;end=0&amp;amp;loop=0&amp;amp;mute=0&amp;amp;start=0" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border:0;" title="YouTube video">&lt;/iframe>
+ &lt;/div>
+
+&lt;hr>
+&lt;h2 id="what-are-the-prerequisites-for-using-this-approach" class="relative group">What are the prerequisites for using this approach? &lt;span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100">&lt;a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#what-are-the-prerequisites-for-using-this-approach" aria-label="Anchor">#&lt;/a>&lt;/span>&lt;/h2>&lt;ul>
+&lt;li>The company’s BI tool has hundreds of reports and continues to grow&lt;/li>
+&lt;li>The company is growing fast, with new employees and new dashboards being added&lt;/li>
+&lt;li>There is a lack of business intelligence culture among dashboard creators, as many reports lack descriptions, tags, and keywords&lt;/li>
+&lt;li>The process of dashboard creation is both rapid and decentralized, allowing for faster development but also introducing challenges in maintaining consistency&lt;/li>
+&lt;li>Documentation exists in-place, meaning small texts near charts or elements next to dashboard filters that explain metrics&lt;/li>
+&lt;/ul>
+&lt;h2 id="what-is-the-problem" class="relative group">What is the problem? &lt;span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100">&lt;a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#what-is-the-problem" aria-label="Anchor">#&lt;/a>&lt;/span>&lt;/h2>&lt;p>End users struggle to find useful information quickly. This typically happens because of BI tool limitations:&lt;/p>
+&lt;ul>
+&lt;li>Poor search experience, with no “search by meaning” functionality&lt;/li>
+&lt;li>Vendors often sell search improvements as add-ons instead of improving them for free, leading to significant additional costs for extended licenses&lt;/li>
+&lt;li>A bias toward English in BI tool search functionality&lt;/li>
+&lt;/ul>
+&lt;p>All of this leads to new ad-hoc tasks for analysts and worsens data literacy across the company. Archiving outdated dashboards may help, but it’s often not enough.&lt;/p>
+&lt;h2 id="what-is-rag" class="relative group">What is RAG? &lt;span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100">&lt;a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#what-is-rag" aria-label="Anchor">#&lt;/a>&lt;/span>&lt;/h2>&lt;p>&lt;strong>RAG (Retrieval-Augmented Generation)&lt;/strong> is an approach that helps an LLM reduce hallucinations by retrieving information from document storage instead of relying solely on its internal knowledge.&lt;/p>
+&lt;blockquote>
+&lt;p>RAG &lt;strong>mitigates hallucinations&lt;/strong> but &lt;strong>doesn’t eliminate&lt;/strong> them completely: always validate outputs&lt;/p>&lt;/blockquote>
+&lt;p>
+
+
+
+
+
+&lt;figure>
+ 
+ 
+
+
+
+
+
+
+
+
+ 
+ &lt;picture
+ class="mx-auto my-0 rounded-md"
+ 
+ >
+ 
+ 
+ 
+ 
+ &lt;source
+ 
+ srcset="http://localhost:1313/posts/how-to-apply-rag-and-llm-to-search-bi-reports-faster/basic-rag_hu_50c0c24299cef224.webp 330w,http://localhost:1313/posts/how-to-apply-rag-and-llm-to-search-bi-reports-faster/basic-rag_hu_c16c5db33021678c.webp 660w
+ 
+ ,http://localhost:1313/posts/how-to-apply-rag-and-llm-to-search-bi-reports-faster/basic-rag_hu_d356f50df754c762.webp 1024w
+ 
+ 
+ 
+ ,http://localhost:1313/posts/how-to-apply-rag-and-llm-to-search-bi-reports-faster/basic-rag_hu_1fd39e2f14c8f66c.webp 1090w
+ 
+ "
+ 
+ sizes="100vw"
+ type="image/webp"
+ />
+ 
+ &lt;img
+ width="1090"
+ height="420"
+ class="mx-auto my-0 rounded-md"
+ alt="basic-rag.png"
+ loading="lazy" decoding="async"
+ 
+ src="http://localhost:1313/posts/how-to-apply-rag-and-llm-to-search-bi-reports-faster/basic-rag_hu_7cc6b831a9f7abd9.png" srcset="http://localhost:1313/posts/how-to-apply-rag-and-llm-to-search-bi-reports-faster/basic-rag_hu_bd88a78a3611199a.png 330w,http://localhost:1313/posts/how-to-apply-rag-and-llm-to-search-bi-reports-faster/basic-rag_hu_7cc6b831a9f7abd9.png 660w
+ 
+ ,http://localhost:1313/posts/how-to-apply-rag-and-llm-to-search-bi-reports-faster/basic-rag_hu_485bb1050686e48f.png 1024w
+ 
+ 
+ ,http://localhost:1313/posts/how-to-apply-rag-and-llm-to-search-bi-reports-faster/basic-rag.png 1090w
+ "
+ sizes="100vw"
+ 
+ />
+ &lt;/picture>
+ 
+
+&lt;figcaption class="text-center">Basic RAG&lt;/figcaption>
+&lt;/figure>
+&lt;/p>
+&lt;p>There is basically 2 steps to implement RAG:&lt;/p>
+&lt;ol>
+&lt;li>&lt;strong>Retrival.&lt;/strong> &lt;strong>Question&lt;/strong> and &lt;strong>documents&lt;/strong> will be converted into a &lt;strong>vectors (embeddings)&lt;/strong> and then &lt;strong>similarity search&lt;/strong> will be excecuted. Basic search algorithm is &lt;strong>cosine similarity&lt;/strong> — a metric that measures how closely two vectors “point” in the same direction. The closer the directions, the more similar the meanings.&lt;/li>
+&lt;li>&lt;strong>Generation.&lt;/strong> The &lt;strong>k&lt;/strong> most relevant documents and the initial question are passed to the model for answer &lt;strong>generation&lt;/strong> (along with a custom &lt;strong>prompt&lt;/strong>).&lt;/li>
+&lt;/ol>
+&lt;h2 id="why-llm-is-better-than-basic-bi-search" class="relative group">Why LLM is better than basic BI search? &lt;span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100">&lt;a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#why-llm-is-better-than-basic-bi-search" aria-label="Anchor">#&lt;/a>&lt;/span>&lt;/h2>&lt;p>Most BI tools I’ve seen in production use a simple search that matches only keywords. In some cases, there are no search capabilities at all.&lt;/p>
+&lt;p>LLM, on the other hand, understands meaning — even with typos, missing tags, or vague questions — making it far more reliable for the complexity and unpredictability of BI environments.&lt;/p>
+&lt;h2 id="what-data-and-prompt-do-you-need" class="relative group">What data and prompt do you need? &lt;span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100">&lt;a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#what-data-and-prompt-do-you-need" aria-label="Anchor">#&lt;/a>&lt;/span>&lt;/h2>&lt;h3 id="1-reports-metadata" class="relative group">1. Reports metadata &lt;span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100">&lt;a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#1-reports-metadata" aria-label="Anchor">#&lt;/a>&lt;/span>&lt;/h3>&lt;p>A simple text or markdown document that contains the report page content and some metadata, which will be useful later when splitting it into pieces.&lt;/p>
+&lt;p>DataLens, my main BI system, provides an API that I use to gather information about dashboards, tabs, and charts on those tabs.&lt;/p>
+&lt;p>
+
+
+
+
+
+&lt;figure>
+ 
+ 
+
+
+
+
+
+
+
+
+ 
+ &lt;picture
+ class="mx-auto my-0 rounded-md"
+ 
+ >
+ 
+ 
+ 
+ 
+ &lt;source
+ 
+ srcset="http://localhost:1313/posts/how-to-apply-rag-and-llm-to-search-bi-reports-faster/doc-template_hu_8477e5b7c2689504.webp 330w,http://localhost:1313/posts/how-to-apply-rag-and-llm-to-search-bi-reports-faster/doc-template_hu_8f90a430cf941efb.webp 660w
+ 
+ ,http://localhost:1313/posts/how-to-apply-rag-and-llm-to-search-bi-reports-faster/doc-template_hu_9e53ace0d9f01a6a.webp 1024w
+ 
+ 
+ 
+ ,http://localhost:1313/posts/how-to-apply-rag-and-llm-to-search-bi-reports-faster/doc-template_hu_dd2ca2c474636f85.webp 1090w
+ 
+ "
+ 
+ sizes="100vw"
+ type="image/webp"
+ />
+ 
+ &lt;img
+ width="1090"
+ height="1084"
+ class="mx-auto my-0 rounded-md"
+ alt="doc-template.png"
+ loading="lazy" decoding="async"
+ 
+ src="http://localhost:1313/posts/how-to-apply-rag-and-llm-to-search-bi-reports-faster/doc-template_hu_226f4cba03cc3a35.png" srcset="http://localhost:1313/posts/how-to-apply-rag-and-llm-to-search-bi-reports-faster/doc-template_hu_3edb05d2986d7735.png 330w,http://localhost:1313/posts/how-to-apply-rag-and-llm-to-search-bi-reports-faster/doc-template_hu_226f4cba03cc3a35.png 660w
+ 
+ ,http://localhost:1313/posts/how-to-apply-rag-and-llm-to-search-bi-reports-faster/doc-template_hu_5f7cd431de8c834d.png 1024w
+ 
+ 
+ ,http://localhost:1313/posts/how-to-apply-rag-and-llm-to-search-bi-reports-faster/doc-template.png 1090w
+ "
+ sizes="100vw"
+ 
+ />
+ &lt;/picture>
+ 
+
+&lt;figcaption class="text-center">Simple document template&lt;/figcaption>
+&lt;/figure>
+&lt;/p>
+&lt;p>Metadata for this document:&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-json" data-lang="json">&lt;span class="line">&lt;span class="cl">&lt;span class="s2">&amp;#34;meta&amp;#34;&lt;/span>&lt;span class="err">:&lt;/span> &lt;span class="p">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nt">&amp;#34;domain&amp;#34;&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="s2">&amp;#34;01 Sales&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nt">&amp;#34;tab_name&amp;#34;&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="s2">&amp;#34;Some Overview / Main&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nt">&amp;#34;url&amp;#34;&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="s2">&amp;#34;https://datalens.yandex.cloud/&amp;lt;dash_id&amp;gt;?tab=&amp;lt;tab_id&amp;gt;&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nt">&amp;#34;number_of_views&amp;#34;&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="mi">100&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="p">}&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h3 id="2-any-llm-api" class="relative group">2. Any LLM API &lt;span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100">&lt;a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#2-any-llm-api" aria-label="Anchor">#&lt;/a>&lt;/span>&lt;/h3>&lt;p>Open-source models can be very effective. In my production I use an internally hosted &lt;a href="https://github.com/deepseek-ai/DeepSeek-V3" target="_blank" rel="noreferrer">DeepSeek V3&lt;/a> API, but you might prefer &lt;strong>Mistral&lt;/strong> or the &lt;strong>OpenAI API&lt;/strong> if your dashboard metadata is not protected by an NDA.&lt;/p>
+&lt;h3 id="3-some-general-business-overview" class="relative group">3. Some general business overview &lt;span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100">&lt;a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#3-some-general-business-overview" aria-label="Anchor">#&lt;/a>&lt;/span>&lt;/h3>&lt;p>Just a short text containing information about your business to provide additional context to the LLM. Keep it as brief as possible.&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-md" data-lang="md">&lt;span class="line">&lt;span class="cl">&lt;span class="gu">### Who are we?
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="gu">&lt;/span>Dunder Mifflin Paper Company, Inc. is a paper and office supplies 
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">wholesale company. There is 13 branches in the US (yet).
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="gu">### Key Products
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="gu">&lt;/span>&lt;span class="k">-&lt;/span> Paperclips: it&amp;#39;s the best one
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="k">-&lt;/span> Paper: A4, A2
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="k">-&lt;/span> Office Supplies: furniture of various brands
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="k">-&lt;/span> ...
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="gu">### Metrics / Abbriviations
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="gu">&lt;/span>&lt;span class="k">-&lt;/span> GMV: Gross Merchandise Value
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="k">-&lt;/span> MAU: Monthly Active Users
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="k">-&lt;/span> DHJ: Dwight Hates Jim
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="k">-&lt;/span> ...
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="gu">### Other Useful Information
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="gu">&lt;/span>&lt;span class="k">-&lt;/span> Scranton branch is the best on sales
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="k">-&lt;/span> ...
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h3 id="4-vector-database" class="relative group">4. Vector database &lt;span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100">&lt;a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#4-vector-database" aria-label="Anchor">#&lt;/a>&lt;/span>&lt;/h3>&lt;p>I use local files and &lt;a href="https://github.com/facebookresearch/faiss" target="_blank" rel="noreferrer">FAISS&lt;/a>, but for production environments with many users, you could use a variety of compatible &lt;a href="https://python.langchain.com/api_reference/community/vectorstores.html" target="_blank" rel="noreferrer">vector databases&lt;/a>.&lt;/p>
+&lt;h3 id="5-metadata-about-user--companys-intranet-api-optional" class="relative group">5. Metadata about user / company’s intranet API (optional) &lt;span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100">&lt;a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#5-metadata-about-user--companys-intranet-api-optional" aria-label="Anchor">#&lt;/a>&lt;/span>&lt;/h3>&lt;p>If you have intranet portal (such as SharePoint) that list users and the department hierarchy, this information can help improve context-based search and support final decision-making.&lt;/p>
+&lt;h3 id="6-any-interface-to-hand-over-results-to-the-end-users-optional" class="relative group">6. Any interface to hand over results to the end users (optional) &lt;span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100">&lt;a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#6-any-interface-to-hand-over-results-to-the-end-users-optional" aria-label="Anchor">#&lt;/a>&lt;/span>&lt;/h3>&lt;p>In my solution I use a Telegram bot (it’s widely used messenger within my company), but you can plug results into whatever tool your users prefer. In this article and GitHub repository I use examples of CLI-tools, but then you could easily adapt it to any other interface.&lt;/p>
+&lt;p>
+
+
+
+
+
+&lt;figure>
+ 
+ 
+
+
+
+
+
+
+
+
+ 
+ &lt;picture
+ class="mx-auto my-0 rounded-md"
+ 
+ >
+ 
+ 
+ 
+ 
+ &lt;source
+ 
+ srcset="http://localhost:1313/posts/how-to-apply-rag-and-llm-to-search-bi-reports-faster/bot-answer_hu_b9eb1fc47569a1e3.webp 330w,http://localhost:1313/posts/how-to-apply-rag-and-llm-to-search-bi-reports-faster/bot-answer_hu_c54963c923fdd894.webp 660w
+ 
+ 
+ ,http://localhost:1313/posts/how-to-apply-rag-and-llm-to-search-bi-reports-faster/bot-answer_hu_e104db772e629b02.webp 990w
+ 
+ 
+ 
+ 
+ ,http://localhost:1313/posts/how-to-apply-rag-and-llm-to-search-bi-reports-faster/bot-answer_hu_e104db772e629b02.webp 990w
+ 
+ "
+ 
+ sizes="100vw"
+ type="image/webp"
+ />
+ 
+ &lt;img
+ width="990"
+ height="752"
+ class="mx-auto my-0 rounded-md"
+ alt="bot-answer.png"
+ loading="lazy" decoding="async"
+ 
+ src="http://localhost:1313/posts/how-to-apply-rag-and-llm-to-search-bi-reports-faster/bot-answer_hu_ff79dffb4cc7de24.png" srcset="http://localhost:1313/posts/how-to-apply-rag-and-llm-to-search-bi-reports-faster/bot-answer_hu_428726215e182157.png 330w,http://localhost:1313/posts/how-to-apply-rag-and-llm-to-search-bi-reports-faster/bot-answer_hu_ff79dffb4cc7de24.png 660w
+ 
+ ,http://localhost:1313/posts/how-to-apply-rag-and-llm-to-search-bi-reports-faster/bot-answer.png 990w
+ 
+ 
+ ,http://localhost:1313/posts/how-to-apply-rag-and-llm-to-search-bi-reports-faster/bot-answer.png 990w
+ "
+ sizes="100vw"
+ 
+ />
+ &lt;/picture>
+ 
+
+&lt;figcaption class="text-center">My bot answer (you can ask question on any language!)&lt;/figcaption>
+&lt;/figure>
+&lt;/p>
+&lt;h2 id="creating-a-vectorstore" class="relative group">Creating a vectorstore &lt;span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100">&lt;a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#creating-a-vectorstore" aria-label="Anchor">#&lt;/a>&lt;/span>&lt;/h2>&lt;p>Now let’s put it all together!
+To build an MVP for search functionality, the first step is to create a &lt;strong>vector store&lt;/strong> using the &lt;strong>Reports Metadata&lt;/strong>. The goal of this step is to convert our metadata about dashboards into vectors, also known as embeddings.&lt;/p>
+&lt;p>There are many embedding models available, but a good starting point is &lt;a href="https://huggingface.co/intfloat/multilingual-e5-base" target="_blank" rel="noreferrer">intfloat/multilingual-e5-base&lt;/a> — it’s CPU-optimized, supports multiple languages, and handles up to &lt;strong>512&lt;/strong> tokens, making it a solid choice for processing longer text blocks.&lt;/p>
+&lt;p>However, if you look at the average metadata report document, it’s usually much larger than 512 tokens.&lt;/p>
+&lt;p>To address this, it is necessary to &lt;a href="https://python.langchain.com/docs/how_to/split_by_token/" target="_blank" rel="noreferrer">split documents&lt;/a> into smaller parts that fit within the token limit.&lt;/p>
+&lt;p>To avoid losing important information and to improve the quality of vector search, headers (&lt;code>## &lt;/code> and &lt;code>### &lt;/code>) can be used as natural split points.&lt;/p>
+&lt;p>Additionally, for every chunk text that does not start with a &lt;code>## About this tab: &lt;/code> (which marks the beginning of the document and contains general metadata), extra metadata prepared earlier during the first step of data preparation will be attached.&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-md" data-lang="md">&lt;span class="line">&lt;span class="cl">--- PART ---
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Domain: &lt;span class="p">&amp;lt;&lt;/span>&lt;span class="nt">Domain&lt;/span> &lt;span class="na">of&lt;/span> &lt;span class="na">the&lt;/span> &lt;span class="na">original&lt;/span> &lt;span class="na">Document&lt;/span>&lt;span class="p">&amp;gt;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Tab Name: &lt;span class="p">&amp;lt;&lt;/span>&lt;span class="nt">Tab&lt;/span> &lt;span class="na">Name&lt;/span> &lt;span class="na">of&lt;/span> &lt;span class="na">the&lt;/span> &lt;span class="na">original&lt;/span> &lt;span class="na">Document&lt;/span>&lt;span class="p">&amp;gt;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">URL: &lt;span class="p">&amp;lt;&lt;/span>&lt;span class="nt">URL&lt;/span> &lt;span class="na">of&lt;/span> &lt;span class="na">the&lt;/span> &lt;span class="na">original&lt;/span> &lt;span class="na">Document&lt;/span>&lt;span class="p">&amp;gt;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Number of views: &lt;span class="p">&amp;lt;&lt;/span>&lt;span class="nt">Number&lt;/span> &lt;span class="na">of&lt;/span> &lt;span class="na">views&lt;/span> &lt;span class="na">of&lt;/span> &lt;span class="na">the&lt;/span> &lt;span class="na">original&lt;/span> &lt;span class="na">Document&lt;/span>&lt;span class="p">&amp;gt;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">---
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="p">&amp;lt;&lt;/span>&lt;span class="nt">chunk&lt;/span> &lt;span class="na">content&lt;/span>&lt;span class="p">&amp;gt;&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>Here is a simple example of the document (you could have thousands of them):&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-json" data-lang="json">&lt;span class="line">&lt;span class="cl">&lt;span class="p">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nt">&amp;#34;meta&amp;#34;&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="p">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nt">&amp;#34;domain&amp;#34;&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="s2">&amp;#34;01 Sales&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nt">&amp;#34;tab_name&amp;#34;&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="s2">&amp;#34;Regional Dynamics&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nt">&amp;#34;url&amp;#34;&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="s2">&amp;#34;https://dl.ya.cloud/abc?tab=100&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nt">&amp;#34;number_of_views&amp;#34;&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="mi">278&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">},&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nt">&amp;#34;md&amp;#34;&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="s2">&amp;#34;## About this tab:\nDomain: 01 Sales\nTab Name: Regional Dynamics...&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="p">}&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>Here is what the creation of the local vector storage looks like:&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt"> 1
+&lt;/span>&lt;span class="lnt"> 2
+&lt;/span>&lt;span class="lnt"> 3
+&lt;/span>&lt;span class="lnt"> 4
+&lt;/span>&lt;span class="lnt"> 5
+&lt;/span>&lt;span class="lnt"> 6
+&lt;/span>&lt;span class="lnt"> 7
+&lt;/span>&lt;span class="lnt"> 8
+&lt;/span>&lt;span class="lnt"> 9
+&lt;/span>&lt;span class="lnt"> 10
+&lt;/span>&lt;span class="lnt"> 11
+&lt;/span>&lt;span class="lnt"> 12
+&lt;/span>&lt;span class="lnt"> 13
+&lt;/span>&lt;span class="lnt"> 14
+&lt;/span>&lt;span class="lnt"> 15
+&lt;/span>&lt;span class="lnt"> 16
+&lt;/span>&lt;span class="lnt"> 17
+&lt;/span>&lt;span class="lnt"> 18
+&lt;/span>&lt;span class="lnt"> 19
+&lt;/span>&lt;span class="lnt"> 20
+&lt;/span>&lt;span class="lnt"> 21
+&lt;/span>&lt;span class="lnt"> 22
+&lt;/span>&lt;span class="lnt"> 23
+&lt;/span>&lt;span class="lnt"> 24
+&lt;/span>&lt;span class="lnt"> 25
+&lt;/span>&lt;span class="lnt"> 26
+&lt;/span>&lt;span class="lnt"> 27
+&lt;/span>&lt;span class="lnt"> 28
+&lt;/span>&lt;span class="lnt"> 29
+&lt;/span>&lt;span class="lnt"> 30
+&lt;/span>&lt;span class="lnt"> 31
+&lt;/span>&lt;span class="lnt"> 32
+&lt;/span>&lt;span class="lnt"> 33
+&lt;/span>&lt;span class="lnt"> 34
+&lt;/span>&lt;span class="lnt"> 35
+&lt;/span>&lt;span class="lnt"> 36
+&lt;/span>&lt;span class="lnt"> 37
+&lt;/span>&lt;span class="lnt"> 38
+&lt;/span>&lt;span class="lnt"> 39
+&lt;/span>&lt;span class="lnt"> 40
+&lt;/span>&lt;span class="lnt"> 41
+&lt;/span>&lt;span class="lnt"> 42
+&lt;/span>&lt;span class="lnt"> 43
+&lt;/span>&lt;span class="lnt"> 44
+&lt;/span>&lt;span class="lnt"> 45
+&lt;/span>&lt;span class="lnt"> 46
+&lt;/span>&lt;span class="lnt"> 47
+&lt;/span>&lt;span class="lnt"> 48
+&lt;/span>&lt;span class="lnt"> 49
+&lt;/span>&lt;span class="lnt"> 50
+&lt;/span>&lt;span class="lnt"> 51
+&lt;/span>&lt;span class="lnt"> 52
+&lt;/span>&lt;span class="lnt"> 53
+&lt;/span>&lt;span class="lnt"> 54
+&lt;/span>&lt;span class="lnt"> 55
+&lt;/span>&lt;span class="lnt"> 56
+&lt;/span>&lt;span class="lnt"> 57
+&lt;/span>&lt;span class="lnt"> 58
+&lt;/span>&lt;span class="lnt"> 59
+&lt;/span>&lt;span class="lnt"> 60
+&lt;/span>&lt;span class="lnt"> 61
+&lt;/span>&lt;span class="lnt"> 62
+&lt;/span>&lt;span class="lnt"> 63
+&lt;/span>&lt;span class="lnt"> 64
+&lt;/span>&lt;span class="lnt"> 65
+&lt;/span>&lt;span class="lnt"> 66
+&lt;/span>&lt;span class="lnt"> 67
+&lt;/span>&lt;span class="lnt"> 68
+&lt;/span>&lt;span class="lnt"> 69
+&lt;/span>&lt;span class="lnt"> 70
+&lt;/span>&lt;span class="lnt"> 71
+&lt;/span>&lt;span class="lnt"> 72
+&lt;/span>&lt;span class="lnt"> 73
+&lt;/span>&lt;span class="hl">&lt;span class="lnt"> 74
+&lt;/span>&lt;/span>&lt;span class="hl">&lt;span class="lnt"> 75
+&lt;/span>&lt;/span>&lt;span class="hl">&lt;span class="lnt"> 76
+&lt;/span>&lt;/span>&lt;span class="hl">&lt;span class="lnt"> 77
+&lt;/span>&lt;/span>&lt;span class="hl">&lt;span class="lnt"> 78
+&lt;/span>&lt;/span>&lt;span class="hl">&lt;span class="lnt"> 79
+&lt;/span>&lt;/span>&lt;span class="hl">&lt;span class="lnt"> 80
+&lt;/span>&lt;/span>&lt;span class="hl">&lt;span class="lnt"> 81
+&lt;/span>&lt;/span>&lt;span class="hl">&lt;span class="lnt"> 82
+&lt;/span>&lt;/span>&lt;span class="hl">&lt;span class="lnt"> 83
+&lt;/span>&lt;/span>&lt;span class="hl">&lt;span class="lnt"> 84
+&lt;/span>&lt;/span>&lt;span class="hl">&lt;span class="lnt"> 85
+&lt;/span>&lt;/span>&lt;span class="hl">&lt;span class="lnt"> 86
+&lt;/span>&lt;/span>&lt;span class="hl">&lt;span class="lnt"> 87
+&lt;/span>&lt;/span>&lt;span class="hl">&lt;span class="lnt"> 88
+&lt;/span>&lt;/span>&lt;span class="hl">&lt;span class="lnt"> 89
+&lt;/span>&lt;/span>&lt;span class="hl">&lt;span class="lnt"> 90
+&lt;/span>&lt;/span>&lt;span class="hl">&lt;span class="lnt"> 91
+&lt;/span>&lt;/span>&lt;span class="hl">&lt;span class="lnt"> 92
+&lt;/span>&lt;/span>&lt;span class="hl">&lt;span class="lnt"> 93
+&lt;/span>&lt;/span>&lt;span class="hl">&lt;span class="lnt"> 94
+&lt;/span>&lt;/span>&lt;span class="hl">&lt;span class="lnt"> 95
+&lt;/span>&lt;/span>&lt;span class="hl">&lt;span class="lnt"> 96
+&lt;/span>&lt;/span>&lt;span class="hl">&lt;span class="lnt"> 97
+&lt;/span>&lt;/span>&lt;span class="hl">&lt;span class="lnt"> 98
+&lt;/span>&lt;/span>&lt;span class="lnt"> 99
+&lt;/span>&lt;span class="lnt">100
+&lt;/span>&lt;span class="lnt">101
+&lt;/span>&lt;span class="lnt">102
+&lt;/span>&lt;span class="lnt">103
+&lt;/span>&lt;span class="lnt">104
+&lt;/span>&lt;span class="lnt">105
+&lt;/span>&lt;span class="lnt">106
+&lt;/span>&lt;span class="lnt">107
+&lt;/span>&lt;span class="lnt">108
+&lt;/span>&lt;span class="lnt">109
+&lt;/span>&lt;span class="lnt">110
+&lt;/span>&lt;span class="lnt">111
+&lt;/span>&lt;span class="lnt">112
+&lt;/span>&lt;span class="lnt">113
+&lt;/span>&lt;span class="lnt">114
+&lt;/span>&lt;span class="lnt">115
+&lt;/span>&lt;span class="lnt">116
+&lt;/span>&lt;span class="lnt">117
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-python" data-lang="python">&lt;span class="line">&lt;span class="cl">&lt;span class="kn">import&lt;/span> &lt;span class="nn">json&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="kn">from&lt;/span> &lt;span class="nn">langchain.schema&lt;/span> &lt;span class="kn">import&lt;/span> &lt;span class="n">Document&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="kn">from&lt;/span> &lt;span class="nn">langchain.text_splitter&lt;/span> &lt;span class="kn">import&lt;/span> &lt;span class="n">RecursiveCharacterTextSplitter&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="kn">from&lt;/span> &lt;span class="nn">langchain_community.vectorstores&lt;/span> &lt;span class="kn">import&lt;/span> &lt;span class="n">FAISS&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="kn">from&lt;/span> &lt;span class="nn">langchain_huggingface&lt;/span> &lt;span class="kn">import&lt;/span> &lt;span class="n">HuggingFaceEmbeddings&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="kn">from&lt;/span> &lt;span class="nn">transformers&lt;/span> &lt;span class="kn">import&lt;/span> &lt;span class="n">AutoTokenizer&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="kn">import&lt;/span> &lt;span class="nn">hashlib&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="k">def&lt;/span> &lt;span class="nf">convert&lt;/span>&lt;span class="p">(&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">base&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="nb">list&lt;/span>&lt;span class="p">[&lt;/span>&lt;span class="nb">dict&lt;/span>&lt;span class="p">]&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="p">)&lt;/span> &lt;span class="o">-&amp;gt;&lt;/span> &lt;span class="nb">list&lt;/span>&lt;span class="p">[&lt;/span>&lt;span class="n">Document&lt;/span>&lt;span class="p">]:&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="s2">&amp;#34;&amp;#34;&amp;#34;
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="s2"> Basic function that converts text to langchain.Documents
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="s2"> &amp;#34;&amp;#34;&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">docs&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="p">[]&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">for&lt;/span> &lt;span class="n">row&lt;/span> &lt;span class="ow">in&lt;/span> &lt;span class="n">base&lt;/span>&lt;span class="p">:&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">text&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">row&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">get&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s1">&amp;#39;md&amp;#39;&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">metadata&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">row&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">get&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s1">&amp;#39;meta&amp;#39;&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">docs&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">append&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">Document&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">page_content&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="n">text&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">metadata&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="n">metadata&lt;/span>&lt;span class="p">))&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">return&lt;/span> &lt;span class="n">docs&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="k">def&lt;/span> &lt;span class="nf">enrich_with_metadata&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">doc&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="n">Document&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="o">-&amp;gt;&lt;/span> &lt;span class="n">Document&lt;/span>&lt;span class="p">:&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="s2">&amp;#34;&amp;#34;&amp;#34;
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="s2"> Function that add additional metadata to the document chunk
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="s2"> &amp;#34;&amp;#34;&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">meta&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">doc&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">metadata&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">if&lt;/span> &lt;span class="s2">&amp;#34;source&amp;#34;&lt;/span> &lt;span class="ow">in&lt;/span> &lt;span class="n">meta&lt;/span> &lt;span class="ow">and&lt;/span> &lt;span class="s2">&amp;#34;start_index&amp;#34;&lt;/span> &lt;span class="ow">in&lt;/span> &lt;span class="n">meta&lt;/span>&lt;span class="p">:&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">meta&lt;/span>&lt;span class="p">[&lt;/span>&lt;span class="s2">&amp;#34;uid&amp;#34;&lt;/span>&lt;span class="p">]&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="sa">f&lt;/span>&lt;span class="s2">&amp;#34;&lt;/span>&lt;span class="si">{&lt;/span>&lt;span class="n">meta&lt;/span>&lt;span class="p">[&lt;/span>&lt;span class="s1">&amp;#39;source&amp;#39;&lt;/span>&lt;span class="p">]&lt;/span>&lt;span class="si">}&lt;/span>&lt;span class="s2">:&lt;/span>&lt;span class="si">{&lt;/span>&lt;span class="n">meta&lt;/span>&lt;span class="p">[&lt;/span>&lt;span class="s1">&amp;#39;start_index&amp;#39;&lt;/span>&lt;span class="p">]&lt;/span>&lt;span class="si">}&lt;/span>&lt;span class="s2">&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">else&lt;/span>&lt;span class="p">:&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">meta&lt;/span>&lt;span class="p">[&lt;/span>&lt;span class="s2">&amp;#34;uid&amp;#34;&lt;/span>&lt;span class="p">]&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">hashlib&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">md5&lt;/span>&lt;span class="p">(&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">doc&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">page_content&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">encode&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s2">&amp;#34;utf-8&amp;#34;&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">)&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">hexdigest&lt;/span>&lt;span class="p">()&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">meta_text&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="s1">&amp;#39;&lt;/span>&lt;span class="se">\n&lt;/span>&lt;span class="s1">&amp;#39;&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">join&lt;/span>&lt;span class="p">([&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="s2">&amp;#34;--- PART ---&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="sa">f&lt;/span>&lt;span class="s2">&amp;#34;Domain: &lt;/span>&lt;span class="si">{&lt;/span>&lt;span class="n">doc&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">metadata&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">get&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s1">&amp;#39;domain&amp;#39;&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="s1">&amp;#39;&amp;#39;&lt;/span>&lt;span class="p">)&lt;/span>&lt;span class="si">}&lt;/span>&lt;span class="s2">&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="sa">f&lt;/span>&lt;span class="s2">&amp;#34;Tab Name: &lt;/span>&lt;span class="si">{&lt;/span>&lt;span class="n">doc&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">metadata&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">get&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s1">&amp;#39;tab_name&amp;#39;&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="s1">&amp;#39;-&amp;#39;&lt;/span>&lt;span class="p">)&lt;/span>&lt;span class="si">}&lt;/span>&lt;span class="s2">&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="sa">f&lt;/span>&lt;span class="s2">&amp;#34;URL: &lt;/span>&lt;span class="si">{&lt;/span>&lt;span class="n">doc&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">metadata&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">get&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s1">&amp;#39;url&amp;#39;&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="s1">&amp;#39;-&amp;#39;&lt;/span>&lt;span class="p">)&lt;/span>&lt;span class="si">}&lt;/span>&lt;span class="s2">&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="sa">f&lt;/span>&lt;span class="s2">&amp;#34;Number of views: &lt;/span>&lt;span class="si">{&lt;/span>&lt;span class="n">doc&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">metadata&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">get&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s1">&amp;#39;number_of_views&amp;#39;&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="mi">0&lt;/span>&lt;span class="p">)&lt;/span>&lt;span class="si">}&lt;/span>&lt;span class="s2">&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="s1">&amp;#39;---&amp;#39;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">])&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">strip&lt;/span>&lt;span class="p">()&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">if&lt;/span> &lt;span class="s1">&amp;#39;## About this tab:&amp;#39;&lt;/span> &lt;span class="ow">in&lt;/span> &lt;span class="n">doc&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">page_content&lt;/span>&lt;span class="p">:&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">concatenation&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">doc&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">page_content&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">else&lt;/span>&lt;span class="p">:&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">concatenation&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">meta_text&lt;/span> &lt;span class="o">+&lt;/span> &lt;span class="s2">&amp;#34;&lt;/span>&lt;span class="se">\n&lt;/span>&lt;span class="s2">&amp;#34;&lt;/span> &lt;span class="o">+&lt;/span> &lt;span class="n">doc&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">page_content&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">return&lt;/span> &lt;span class="n">Document&lt;/span>&lt;span class="p">(&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">page_content&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="n">concatenation&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">metadata&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="n">meta&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># Launch parameters&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="n">metadata_path&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="s1">&amp;#39;./docs&amp;#39;&lt;/span> &lt;span class="c1"># Path to the folder with test metadata&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="n">hf_embedding_name&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="s1">&amp;#39;intfloat/multilingual-e5-base&amp;#39;&lt;/span> &lt;span class="c1"># Model name&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="n">vectorstore_output&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="s2">&amp;#34;./rag # Where to save FAISS vector base&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="n">chunk_size&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="mi">512&lt;/span> &lt;span class="c1"># Embedding model limitation (depends on model)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="n">add_meta_size&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="mi">90&lt;/span> &lt;span class="c1"># Additional meta tokens cnt before the next chunk&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># Step 1: Getting base of documents and metadata&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="n">base&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="p">[]&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="k">for&lt;/span> &lt;span class="n">filename&lt;/span> &lt;span class="ow">in&lt;/span> &lt;span class="n">os&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">listdir&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">metadata_path&lt;/span>&lt;span class="p">):&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">if&lt;/span> &lt;span class="n">filename&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">endswith&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s2">&amp;#34;.json&amp;#34;&lt;/span>&lt;span class="p">):&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">file_path&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">os&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">path&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">join&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">metadata_path&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">filename&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">with&lt;/span> &lt;span class="nb">open&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">file_path&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="s2">&amp;#34;r&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">encoding&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="s2">&amp;#34;utf-8&amp;#34;&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="k">as&lt;/span> &lt;span class="n">f&lt;/span>&lt;span class="p">:&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">try&lt;/span>&lt;span class="p">:&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">base&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">append&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">json&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">load&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">f&lt;/span>&lt;span class="p">))&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">except&lt;/span> &lt;span class="n">json&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">JSONDecodeError&lt;/span> &lt;span class="k">as&lt;/span> &lt;span class="n">e&lt;/span>&lt;span class="p">:&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nb">print&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="sa">f&lt;/span>&lt;span class="s2">&amp;#34;Error in file &lt;/span>&lt;span class="si">{&lt;/span>&lt;span class="n">filename&lt;/span>&lt;span class="si">}&lt;/span>&lt;span class="s2">: &lt;/span>&lt;span class="si">{&lt;/span>&lt;span class="n">e&lt;/span>&lt;span class="si">}&lt;/span>&lt;span class="s2">&amp;#34;&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="n">docs&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">convert&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">base&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line hl">&lt;span class="cl">&lt;span class="c1"># Step 2: Splitting documents and enriching chunks with additional meta&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line hl">&lt;span class="cl">&lt;span class="nb">print&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="sa">f&lt;/span>&lt;span class="s2">&amp;#34;Got &lt;/span>&lt;span class="si">{&lt;/span>&lt;span class="nb">len&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">docs&lt;/span>&lt;span class="p">)&lt;/span>&lt;span class="si">}&lt;/span>&lt;span class="s2"> documents. Splitting...&amp;#34;&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line hl">&lt;span class="cl">&lt;span class="n">tokenizer&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">AutoTokenizer&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">from_pretrained&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">hf_embedding_name&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line hl">&lt;span class="cl">&lt;span class="n">splitter&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">RecursiveCharacterTextSplitter&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">from_huggingface_tokenizer&lt;/span>&lt;span class="p">(&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line hl">&lt;span class="cl"> &lt;span class="n">tokenizer&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line hl">&lt;span class="cl"> &lt;span class="n">chunk_size&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="nb">int&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">chunk_size&lt;/span> &lt;span class="o">-&lt;/span> &lt;span class="n">add_meta_size&lt;/span>&lt;span class="p">),&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line hl">&lt;span class="cl"> &lt;span class="n">chunk_overlap&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="mi">0&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line hl">&lt;span class="cl"> &lt;span class="n">separators&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="p">[&lt;/span>&lt;span class="s2">&amp;#34;&lt;/span>&lt;span class="se">\n&lt;/span>&lt;span class="s2">## &amp;#34;&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="s2">&amp;#34;&lt;/span>&lt;span class="se">\n&lt;/span>&lt;span class="s2">### &amp;#34;&lt;/span>&lt;span class="p">],&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line hl">&lt;span class="cl"> &lt;span class="n">strip_whitespace&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="kc">True&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line hl">&lt;span class="cl"> &lt;span class="n">add_start_index&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="kc">True&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line hl">&lt;span class="cl"> &lt;span class="n">keep_separator&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="s2">&amp;#34;start&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line hl">&lt;span class="cl">&lt;span class="p">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line hl">&lt;span class="cl">&lt;span class="n">chunks&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">splitter&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">split_documents&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">docs&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line hl">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line hl">&lt;span class="cl">&lt;span class="n">chunks&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="p">[&lt;/span>&lt;span class="n">enrich_with_metadata&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">chunk&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="k">for&lt;/span> &lt;span class="n">chunk&lt;/span> &lt;span class="ow">in&lt;/span> &lt;span class="n">chunks&lt;/span>&lt;span class="p">]&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line hl">&lt;span class="cl">&lt;span class="nb">print&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="sa">f&lt;/span>&lt;span class="s2">&amp;#34;🔪 Split into &lt;/span>&lt;span class="si">{&lt;/span>&lt;span class="nb">len&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">chunks&lt;/span>&lt;span class="p">)&lt;/span>&lt;span class="si">}&lt;/span>&lt;span class="s2"> chunks&amp;#34;&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line hl">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line hl">&lt;span class="cl">&lt;span class="n">too_big_details&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="p">[]&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line hl">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line hl">&lt;span class="cl">&lt;span class="k">for&lt;/span> &lt;span class="n">doc&lt;/span> &lt;span class="ow">in&lt;/span> &lt;span class="n">chunks&lt;/span>&lt;span class="p">:&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line hl">&lt;span class="cl"> &lt;span class="k">if&lt;/span> &lt;span class="nb">len&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">tokenizer&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">encode&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">doc&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">page_content&lt;/span>&lt;span class="p">))&lt;/span> &lt;span class="o">&amp;gt;&lt;/span> &lt;span class="n">chunk_size&lt;/span>&lt;span class="p">:&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line hl">&lt;span class="cl"> &lt;span class="n">too_big_details&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">append&lt;/span>&lt;span class="p">(&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line hl">&lt;span class="cl"> &lt;span class="sa">f&lt;/span>&lt;span class="s2">&amp;#34;&lt;/span>&lt;span class="si">{&lt;/span>&lt;span class="n">doc&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">metadata&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">get&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s1">&amp;#39;url&amp;#39;&lt;/span>&lt;span class="p">)&lt;/span>&lt;span class="si">}&lt;/span>&lt;span class="s2">: &lt;/span>&lt;span class="si">{&lt;/span>&lt;span class="nb">len&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">doc&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">page_content&lt;/span>&lt;span class="p">)&lt;/span>&lt;span class="si">}&lt;/span>&lt;span class="s2">&amp;#34;&lt;/span> 
+&lt;/span>&lt;/span>&lt;span class="line hl">&lt;span class="cl"> &lt;span class="sa">f&lt;/span>&lt;span class="s2">&amp;#34; / &lt;/span>&lt;span class="si">{&lt;/span>&lt;span class="n">chunk_size&lt;/span>&lt;span class="si">}&lt;/span>&lt;span class="s2">&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line hl">&lt;span class="cl"> &lt;span class="p">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="n">too_big_cnt&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="nb">len&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">too_big_details&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="k">if&lt;/span> &lt;span class="n">too_big_cnt&lt;/span> &lt;span class="o">&amp;gt;&lt;/span> &lt;span class="mi">0&lt;/span>&lt;span class="p">:&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nb">print&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="sa">f&lt;/span>&lt;span class="s2">&amp;#34;🔪 &lt;/span>&lt;span class="si">{&lt;/span>&lt;span class="nb">round&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="nb">float&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">too_big_cnt&lt;/span> &lt;span class="o">/&lt;/span> &lt;span class="nb">len&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">chunks&lt;/span>&lt;span class="p">))&lt;/span> &lt;span class="o">*&lt;/span> &lt;span class="mi">100&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="mi">2&lt;/span>&lt;span class="p">)&lt;/span>&lt;span class="si">}&lt;/span>&lt;span class="s2">% &amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="sa">f&lt;/span>&lt;span class="s2">&amp;#34;(&lt;/span>&lt;span class="si">{&lt;/span>&lt;span class="n">too_big_cnt&lt;/span>&lt;span class="si">}&lt;/span>&lt;span class="s2"> / &lt;/span>&lt;span class="si">{&lt;/span>&lt;span class="nb">len&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">chunks&lt;/span>&lt;span class="p">)&lt;/span>&lt;span class="si">}&lt;/span>&lt;span class="s2">) chunks is too big &amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="sa">f&lt;/span>&lt;span class="s2">&amp;#34;for context of &lt;/span>&lt;span class="si">{&lt;/span>&lt;span class="n">chunk_size&lt;/span>&lt;span class="si">}&lt;/span>&lt;span class="s2"> tokens!&amp;#34;&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nb">print&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s2">&amp;#34;🔪 Check those dashboard tabs: &amp;#34;&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nb">print&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s1">&amp;#39;&lt;/span>&lt;span class="se">\n&lt;/span>&lt;span class="s1">&amp;#39;&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">join&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="nb">list&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="nb">set&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">too_big_details&lt;/span>&lt;span class="p">))))&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># Step 3: Vectorstore creation&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="n">embedding_model&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">HuggingFaceEmbeddings&lt;/span>&lt;span class="p">(&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">model_name&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="n">hf_embedding_name&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">encode_kwargs&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="p">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="s2">&amp;#34;normalize_embeddings&amp;#34;&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="kc">True&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">}&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="p">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="n">vectorstore&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">FAISS&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">from_documents&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">chunks&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">embedding_model&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="n">vectorstore&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">save_local&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">vectorstore_output&lt;/span>&lt;span class="p">)&lt;/span>&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>
+&lt;p>Now take a closer look at &lt;strong>step 2&lt;/strong> in the code. As you can see, I used &lt;code>chunk_size&lt;/code> of &lt;code>512 - 90 = 422&lt;/code> tokens and a &lt;code>chunk_overlap&lt;/code> of &lt;code>0&lt;/code> tokens. Why?&lt;/p>
+&lt;p>
+
+
+
+
+
+&lt;figure>
+ 
+ 
+
+
+
+
+
+
+
+
+ 
+ &lt;picture
+ class="mx-auto my-0 rounded-md"
+ 
+ >
+ 
+ 
+ 
+ 
+ &lt;source
+ 
+ srcset="http://localhost:1313/posts/how-to-apply-rag-and-llm-to-search-bi-reports-faster/chunking_hu_6cbc0cd788726d89.webp 330w,http://localhost:1313/posts/how-to-apply-rag-and-llm-to-search-bi-reports-faster/chunking_hu_858ef7b3f2580834.webp 660w
+ 
+ ,http://localhost:1313/posts/how-to-apply-rag-and-llm-to-search-bi-reports-faster/chunking_hu_de081fe676f126c6.webp 1024w
+ 
+ 
+ ,http://localhost:1313/posts/how-to-apply-rag-and-llm-to-search-bi-reports-faster/chunking_hu_d42f7cdb28567892.webp 1320w
+ "
+ 
+ sizes="100vw"
+ type="image/webp"
+ />
+ 
+ &lt;img
+ width="1364"
+ height="930"
+ class="mx-auto my-0 rounded-md"
+ alt="chunking.png"
+ loading="lazy" decoding="async"
+ 
+ src="http://localhost:1313/posts/how-to-apply-rag-and-llm-to-search-bi-reports-faster/chunking_hu_ae663c0a01a667a1.png" srcset="http://localhost:1313/posts/how-to-apply-rag-and-llm-to-search-bi-reports-faster/chunking_hu_31db45387fc4d88.png 330w,http://localhost:1313/posts/how-to-apply-rag-and-llm-to-search-bi-reports-faster/chunking_hu_ae663c0a01a667a1.png 660w
+ 
+ ,http://localhost:1313/posts/how-to-apply-rag-and-llm-to-search-bi-reports-faster/chunking_hu_edda330ee9765de8.png 1024w
+ 
+ 
+ ,http://localhost:1313/posts/how-to-apply-rag-and-llm-to-search-bi-reports-faster/chunking_hu_7139a3caa30c6c2b.png 1320w
+ "
+ sizes="100vw"
+ 
+ />
+ &lt;/picture>
+ 
+
+
+&lt;/figure>
+&lt;/p>
+&lt;p>Since every extra metadata block adds about &lt;strong>90&lt;/strong> tokens (you can check this using &lt;code>transformers.AutoTokenizer&lt;/code>), I needed to reduce the size of every chunk starting from second chunk to stay within the limit for the main text content.&lt;/p>
+&lt;p>This setup should fit the embedding model’s limit of &lt;strong>512&lt;/strong> tokens. However, because metadata can sometimes be messy, in &lt;strong>step 4&lt;/strong>, I checked the quality of the split (the percentage of chunks that would be truncated due to the model’s limits). To reduce this number, you could use other separators and split long texts into parts. In my case, &lt;strong>1%&lt;/strong> of the chunks were larger than &lt;strong>512&lt;/strong> tokens. This means that in those chunks, the context was truncated.&lt;/p>
+&lt;h2 id="now-you-have-vector-storage-whats-next" class="relative group">Now you have vector storage. What’s next? &lt;span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100">&lt;a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#now-you-have-vector-storage-whats-next" aria-label="Anchor">#&lt;/a>&lt;/span>&lt;/h2>&lt;p>Let’s build an MVP of the reply engine. There are two more things needed: a good &lt;strong>prompt&lt;/strong> for generation part and the &lt;strong>vector store retriever&lt;/strong>.&lt;/p>
+&lt;p>Now let’s take a closer look at the &lt;strong>retriever&lt;/strong> code:
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt"> 1
+&lt;/span>&lt;span class="lnt"> 2
+&lt;/span>&lt;span class="lnt"> 3
+&lt;/span>&lt;span class="lnt"> 4
+&lt;/span>&lt;span class="lnt"> 5
+&lt;/span>&lt;span class="lnt"> 6
+&lt;/span>&lt;span class="lnt"> 7
+&lt;/span>&lt;span class="lnt"> 8
+&lt;/span>&lt;span class="lnt"> 9
+&lt;/span>&lt;span class="lnt">10
+&lt;/span>&lt;span class="lnt">11
+&lt;/span>&lt;span class="lnt">12
+&lt;/span>&lt;span class="lnt">13
+&lt;/span>&lt;span class="lnt">14
+&lt;/span>&lt;span class="lnt">15
+&lt;/span>&lt;span class="lnt">16
+&lt;/span>&lt;span class="lnt">17
+&lt;/span>&lt;span class="lnt">18
+&lt;/span>&lt;span class="lnt">19
+&lt;/span>&lt;span class="lnt">20
+&lt;/span>&lt;span class="lnt">21
+&lt;/span>&lt;span class="lnt">22
+&lt;/span>&lt;span class="lnt">23
+&lt;/span>&lt;span class="lnt">24
+&lt;/span>&lt;span class="lnt">25
+&lt;/span>&lt;span class="lnt">26
+&lt;/span>&lt;span class="lnt">27
+&lt;/span>&lt;span class="lnt">28
+&lt;/span>&lt;span class="lnt">29
+&lt;/span>&lt;span class="lnt">30
+&lt;/span>&lt;span class="lnt">31
+&lt;/span>&lt;span class="lnt">32
+&lt;/span>&lt;span class="lnt">33
+&lt;/span>&lt;span class="hl">&lt;span class="lnt">34
+&lt;/span>&lt;/span>&lt;span class="hl">&lt;span class="lnt">35
+&lt;/span>&lt;/span>&lt;span class="hl">&lt;span class="lnt">36
+&lt;/span>&lt;/span>&lt;span class="hl">&lt;span class="lnt">37
+&lt;/span>&lt;/span>&lt;span class="hl">&lt;span class="lnt">38
+&lt;/span>&lt;/span>&lt;span class="hl">&lt;span class="lnt">39
+&lt;/span>&lt;/span>&lt;span class="hl">&lt;span class="lnt">40
+&lt;/span>&lt;/span>&lt;span class="hl">&lt;span class="lnt">41
+&lt;/span>&lt;/span>&lt;span class="hl">&lt;span class="lnt">42
+&lt;/span>&lt;/span>&lt;span class="hl">&lt;span class="lnt">43
+&lt;/span>&lt;/span>&lt;span class="hl">&lt;span class="lnt">44
+&lt;/span>&lt;/span>&lt;span class="hl">&lt;span class="lnt">45
+&lt;/span>&lt;/span>&lt;span class="hl">&lt;span class="lnt">46
+&lt;/span>&lt;/span>&lt;span class="hl">&lt;span class="lnt">47
+&lt;/span>&lt;/span>&lt;span class="hl">&lt;span class="lnt">48
+&lt;/span>&lt;/span>&lt;span class="hl">&lt;span class="lnt">49
+&lt;/span>&lt;/span>&lt;span class="hl">&lt;span class="lnt">50
+&lt;/span>&lt;/span>&lt;span class="hl">&lt;span class="lnt">51
+&lt;/span>&lt;/span>&lt;span class="hl">&lt;span class="lnt">52
+&lt;/span>&lt;/span>&lt;span class="hl">&lt;span class="lnt">53
+&lt;/span>&lt;/span>&lt;span class="lnt">54
+&lt;/span>&lt;span class="lnt">55
+&lt;/span>&lt;span class="lnt">56
+&lt;/span>&lt;span class="lnt">57
+&lt;/span>&lt;span class="lnt">58
+&lt;/span>&lt;span class="lnt">59
+&lt;/span>&lt;span class="lnt">60
+&lt;/span>&lt;span class="lnt">61
+&lt;/span>&lt;span class="lnt">62
+&lt;/span>&lt;span class="lnt">63
+&lt;/span>&lt;span class="lnt">64
+&lt;/span>&lt;span class="lnt">65
+&lt;/span>&lt;span class="lnt">66
+&lt;/span>&lt;span class="lnt">67
+&lt;/span>&lt;span class="lnt">68
+&lt;/span>&lt;span class="lnt">69
+&lt;/span>&lt;span class="lnt">70
+&lt;/span>&lt;span class="lnt">71
+&lt;/span>&lt;span class="lnt">72
+&lt;/span>&lt;span class="lnt">73
+&lt;/span>&lt;span class="lnt">74
+&lt;/span>&lt;span class="lnt">75
+&lt;/span>&lt;span class="lnt">76
+&lt;/span>&lt;span class="lnt">77
+&lt;/span>&lt;span class="lnt">78
+&lt;/span>&lt;span class="lnt">79
+&lt;/span>&lt;span class="lnt">80
+&lt;/span>&lt;span class="lnt">81
+&lt;/span>&lt;span class="lnt">82
+&lt;/span>&lt;span class="lnt">83
+&lt;/span>&lt;span class="lnt">84
+&lt;/span>&lt;span class="lnt">85
+&lt;/span>&lt;span class="lnt">86
+&lt;/span>&lt;span class="lnt">87
+&lt;/span>&lt;span class="lnt">88
+&lt;/span>&lt;span class="lnt">89
+&lt;/span>&lt;span class="lnt">90
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-python" data-lang="python">&lt;span class="line">&lt;span class="cl">&lt;span class="kn">import&lt;/span> &lt;span class="nn">os&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="kn">from&lt;/span> &lt;span class="nn">jinja2&lt;/span> &lt;span class="kn">import&lt;/span> &lt;span class="n">Environment&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">FileSystemLoader&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="kn">from&lt;/span> &lt;span class="nn">langchain.chains.combine_documents&lt;/span> &lt;span class="kn">import&lt;/span> \
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">create_stuff_documents_chain&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="kn">from&lt;/span> &lt;span class="nn">langchain_openai&lt;/span> &lt;span class="kn">import&lt;/span> &lt;span class="n">ChatOpenAI&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="kn">from&lt;/span> &lt;span class="nn">langchain_community.vectorstores&lt;/span> &lt;span class="kn">import&lt;/span> &lt;span class="n">FAISS&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="kn">from&lt;/span> &lt;span class="nn">langchain_core.prompts&lt;/span> &lt;span class="kn">import&lt;/span> &lt;span class="n">PromptTemplate&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="kn">from&lt;/span> &lt;span class="nn">langchain_huggingface&lt;/span> &lt;span class="kn">import&lt;/span> &lt;span class="n">HuggingFaceEmbeddings&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="n">os&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">environ&lt;/span>&lt;span class="p">[&lt;/span>&lt;span class="s2">&amp;#34;TOKENIZERS_PARALLELISM&amp;#34;&lt;/span>&lt;span class="p">]&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="s2">&amp;#34;false&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="k">def&lt;/span> &lt;span class="nf">render_template&lt;/span>&lt;span class="p">(&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">env&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="n">Environment&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">template_name&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="nb">str&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="o">**&lt;/span>&lt;span class="n">kwargs&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="p">)&lt;/span> &lt;span class="o">-&amp;gt;&lt;/span> &lt;span class="nb">str&lt;/span>&lt;span class="p">:&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">template&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">env&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">get_template&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">template_name&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">return&lt;/span> &lt;span class="n">template&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">render&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="o">**&lt;/span>&lt;span class="n">kwargs&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># Launch parameters&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="n">question&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="s1">&amp;#39;Which report contains table with sales?&amp;#39;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="n">retriever_k&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="mi">40&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="n">vectorstore&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="s1">&amp;#39;./rag&amp;#39;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="n">prompt_location&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="s1">&amp;#39;./&amp;#39;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="n">hf_embedding_name&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="s1">&amp;#39;intfloat/multilingual-e5-base&amp;#39;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># Jinja2 Environment to load the prompt text and expand &lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># it with additional context later on&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="n">jinja_loader&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">FileSystemLoader&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">prompt_location&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="n">jinja_env&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">Environment&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">loader&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="n">jinja_loader&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line hl">&lt;span class="cl">&lt;span class="c1"># Same model that have been used in vectorstore creation&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line hl">&lt;span class="cl">&lt;span class="n">embedding_model&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">HuggingFaceEmbeddings&lt;/span>&lt;span class="p">(&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line hl">&lt;span class="cl"> &lt;span class="n">model_name&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="n">hf_embedding_name&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line hl">&lt;span class="cl"> &lt;span class="n">encode_kwargs&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="p">{&lt;/span>&lt;span class="s2">&amp;#34;normalize_embeddings&amp;#34;&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="kc">True&lt;/span>&lt;span class="p">}&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line hl">&lt;span class="cl">&lt;span class="p">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line hl">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line hl">&lt;span class="cl">&lt;span class="c1"># 1. Similarity search stage&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line hl">&lt;span class="cl">&lt;span class="n">db&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">FAISS&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">load_local&lt;/span>&lt;span class="p">(&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line hl">&lt;span class="cl"> &lt;span class="n">folder_path&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="n">vectorstore&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line hl">&lt;span class="cl"> &lt;span class="n">embeddings&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="n">embedding_model&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line hl">&lt;span class="cl"> &lt;span class="n">allow_dangerous_deserialization&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="kc">True&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line hl">&lt;span class="cl">&lt;span class="p">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line hl">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line hl">&lt;span class="cl">&lt;span class="n">retriever&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">db&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">as_retriever&lt;/span>&lt;span class="p">(&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line hl">&lt;span class="cl"> &lt;span class="n">search_kwargs&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="p">{&lt;/span>&lt;span class="s2">&amp;#34;k&amp;#34;&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="n">retriever_k&lt;/span>&lt;span class="p">}&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line hl">&lt;span class="cl">&lt;span class="p">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line hl">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line hl">&lt;span class="cl">&lt;span class="n">unique_docs&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">retriever&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">invoke&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">question&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line hl">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line hl">&lt;span class="cl">&lt;span class="nb">print&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="sa">f&lt;/span>&lt;span class="s2">&amp;#34;Unique docs cnt: &lt;/span>&lt;span class="si">{&lt;/span>&lt;span class="nb">len&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">unique_docs&lt;/span>&lt;span class="p">)&lt;/span>&lt;span class="si">}&lt;/span>&lt;span class="s2">&amp;#34;&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># 2. Generation stage&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># Initializing the llm api (temperature=0 means that &lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># gpt would be less creative in the answers)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="n">llm&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">ChatOpenAI&lt;/span>&lt;span class="p">(&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">model&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="s2">&amp;#34;gpt-4o&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">openai_api_key&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="n">os&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">environ&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">get&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s1">&amp;#39;OPENAI_API_KEY&amp;#39;&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="s1">&amp;#39;&amp;#39;&lt;/span>&lt;span class="p">),&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">temperature&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="mf">0.0&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="p">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># Reading prompt&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="n">prompt&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">render_template&lt;/span>&lt;span class="p">(&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">env&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="n">jinja_env&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">template_name&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="s1">&amp;#39;prompt.md&amp;#39;&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="p">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># Passing our k documents to the prompt&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="n">final_prompt&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">PromptTemplate&lt;/span>&lt;span class="p">(&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">input_variables&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="p">[&lt;/span>&lt;span class="s2">&amp;#34;context&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="s2">&amp;#34;question&amp;#34;&lt;/span>&lt;span class="p">],&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">template&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="n">prompt&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="p">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># LLM call&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="n">chain&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">create_stuff_documents_chain&lt;/span>&lt;span class="p">(&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">llm&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">final_prompt&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">document_variable_name&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="s2">&amp;#34;context&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="p">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="n">result&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">chain&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">invoke&lt;/span>&lt;span class="p">(&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="s2">&amp;#34;question&amp;#34;&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="n">question&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="s2">&amp;#34;context&amp;#34;&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="n">unique_docs&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">}&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="p">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># 3. Result&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="nb">print&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="sa">f&lt;/span>&lt;span class="s2">&amp;#34;&lt;/span>&lt;span class="se">\n&lt;/span>&lt;span class="si">{&lt;/span>&lt;span class="n">result&lt;/span>&lt;span class="si">}&lt;/span>&lt;span class="se">\n&lt;/span>&lt;span class="s2">&amp;#34;&lt;/span>&lt;span class="p">)&lt;/span>&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;/p>
+&lt;p>Let’s break this down:&lt;/p>
+&lt;p>First, I initialized the &lt;code>HuggingFaceEmbeddings&lt;/code> class to define which embedding model I will use during the retrieval process.&lt;/p>
+&lt;p>One important detail: &lt;code>encode_kwargs={&amp;quot;normalize_embeddings&amp;quot;: True}&lt;/code>. I used this because &lt;strong>FAISS&lt;/strong> performs better on normalized vectors.&lt;/p>
+&lt;p>Then, I created the FAISS database with &lt;code>allow_dangerous_deserialization=True&lt;/code>, since Pickle files could contain malware if tampered with. But since I created the files myself, I trust them.&lt;/p>
+&lt;p>Then I invoke the retriever to use cosine similarity to find the most relevant docs.&lt;/p>
+&lt;h3 id="what-is-cosine-similarity" class="relative group">What is cosine similarity? &lt;span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100">&lt;a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#what-is-cosine-similarity" aria-label="Anchor">#&lt;/a>&lt;/span>&lt;/h3>&lt;p>Let’s say you want to make a Tinder for sentences: with cosine similarity it would be a piece of cake to find a match!&lt;/p>
+&lt;p>Let’s say you’re dog lover and would kill for coffee. You have those profiles in the database: 1,2,3. If you apply this algorithm it would say that 1 and 3 is the high match, and number 2 is completely off.&lt;/p>
+&lt;p>
+
+
+
+
+
+&lt;figure>
+ 
+ 
+
+
+
+
+
+
+
+
+ 
+ &lt;picture
+ class="mx-auto my-0 rounded-md"
+ 
+ >
+ 
+ 
+ 
+ 
+ &lt;source
+ 
+ srcset="http://localhost:1313/posts/how-to-apply-rag-and-llm-to-search-bi-reports-faster/cosine-similarity_hu_fba1f43d1841094b.webp 330w,http://localhost:1313/posts/how-to-apply-rag-and-llm-to-search-bi-reports-faster/cosine-similarity_hu_beae5c0b842815f3.webp 660w
+ 
+ ,http://localhost:1313/posts/how-to-apply-rag-and-llm-to-search-bi-reports-faster/cosine-similarity_hu_51e4a674a8d079d.webp 1024w
+ 
+ 
+ ,http://localhost:1313/posts/how-to-apply-rag-and-llm-to-search-bi-reports-faster/cosine-similarity_hu_f677532b26ba9858.webp 1320w
+ "
+ 
+ sizes="100vw"
+ type="image/webp"
+ />
+ 
+ &lt;img
+ width="2000"
+ height="885"
+ class="mx-auto my-0 rounded-md"
+ alt="cosine-similarity.png"
+ loading="lazy" decoding="async"
+ 
+ src="http://localhost:1313/posts/how-to-apply-rag-and-llm-to-search-bi-reports-faster/cosine-similarity_hu_cd0df8c84364cfe7.png" srcset="http://localhost:1313/posts/how-to-apply-rag-and-llm-to-search-bi-reports-faster/cosine-similarity_hu_8895287639c4654c.png 330w,http://localhost:1313/posts/how-to-apply-rag-and-llm-to-search-bi-reports-faster/cosine-similarity_hu_cd0df8c84364cfe7.png 660w
+ 
+ ,http://localhost:1313/posts/how-to-apply-rag-and-llm-to-search-bi-reports-faster/cosine-similarity_hu_68710da06cb3f8e2.png 1024w
+ 
+ 
+ ,http://localhost:1313/posts/how-to-apply-rag-and-llm-to-search-bi-reports-faster/cosine-similarity_hu_9df6b07eb218297.png 1320w
+ "
+ sizes="100vw"
+ 
+ />
+ &lt;/picture>
+ 
+
+&lt;figcaption class="text-center">Simple example of cosine similarity&lt;/figcaption>
+&lt;/figure>
+&lt;/p>
+&lt;blockquote>
+&lt;p>If you imagine your user question and your chunks as the coordinates of meaning in multidimensional space then you could just compare the align and direction of those vectors to find the most similar.&lt;/p>&lt;/blockquote>
+&lt;p>Now let’s talk about &lt;code>search_kwargs.k&lt;/code> parameter.&lt;/p>
+&lt;p>This parameter controls the number of documents the retriever will return after finding results cosine-similar to the user’s query.&lt;/p>
+&lt;p>Since I use in code example &lt;strong>gpt-4o&lt;/strong> the context window is &lt;strong>128k&lt;/strong> tokens (up to &lt;strong>300&lt;/strong> chunks), but in production I use &lt;strong>DeepSeek V3&lt;/strong>, where the context window is only &lt;a href="https://api-docs.deepseek.com/quick_start/pricing" target="_blank" rel="noreferrer">64 000&lt;/a> tokens, meaning that I could theoretically pass around &lt;strong>150&lt;/strong> document chunks.&lt;/p>
+&lt;p>However, keep in mind you also need room for the system prompt — the more system context you add, the fewer document chunks you can pass without hitting limits.&lt;/p>
+&lt;p>You should also remember:&lt;/p>
+&lt;ul>
+&lt;li>Higher k → more documents → better quality, but&lt;/li>
+&lt;li>Higher k → longer execution time.&lt;/li>
+&lt;/ul>
+&lt;p>So, you’ll need to find a balance. I recommend starting with k = 40 and adjusting based on your needs.&lt;/p>
+&lt;h4 id="how-to-measure-quality-of-retriever" class="relative group">How to measure quality of retriever? &lt;span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100">&lt;a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#how-to-measure-quality-of-retriever" aria-label="Anchor">#&lt;/a>&lt;/span>&lt;/h4>&lt;p>The basic goal for you before launch is to optimize the recall and precision metrics. It’s basically the share of successful searches.&lt;/p>
+&lt;p>&lt;strong>Recall = K&lt;sub>found&lt;/sub> / K&lt;sub>relevant&lt;/sub>&lt;/strong>&lt;/p>
+&lt;p>&lt;strong>Precision = K&lt;sub>found&lt;/sub> / K&lt;sub>retrieved&lt;/sub>&lt;/strong>&lt;/p>
+&lt;p>To calculate those metrics you could use simple dataset with 50 different questions and id’s of the most relevant chunks that should be found by the algorithm. Then you just run the search 50 times and compare chunks that were found and your relevant chunks.&lt;/p>
+&lt;table>
+ &lt;thead>
+ &lt;tr>
+ &lt;th>&lt;strong>Question&lt;/strong>&lt;/th>
+ &lt;th>&lt;strong>Relevant documents&lt;/strong>&lt;/th>
+ &lt;/tr>
+ &lt;/thead>
+ &lt;tbody>
+ &lt;tr>
+ &lt;td>Find me a report about sales&lt;/td>
+ &lt;td>[1000, 1001, 1002]&lt;/td>
+ &lt;/tr>
+ &lt;tr>
+ &lt;td>Paperclips profit&lt;/td>
+ &lt;td>[2004, 100]&lt;/td>
+ &lt;/tr>
+ &lt;/tbody>
+&lt;/table>
+&lt;p>Then you could make this dataset bigger and more similar to your users questions.&lt;/p>
+&lt;h3 id="generation-part" class="relative group">Generation part &lt;span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100">&lt;a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#generation-part" aria-label="Anchor">#&lt;/a>&lt;/span>&lt;/h3>&lt;p>After that, I initialized LLM and pass those docs to the context of the LLM API call.&lt;/p>
+&lt;p>As for the prompt, I created this version (you can also expand it with additional context like a business overview or domain descriptions):
+
+
+
+
+
+
+&lt;figure>
+ 
+ 
+
+
+
+
+
+
+
+
+ 
+ &lt;picture
+ class="mx-auto my-0 rounded-md"
+ 
+ >
+ 
+ 
+ 
+ 
+ &lt;source
+ 
+ srcset="http://localhost:1313/posts/how-to-apply-rag-and-llm-to-search-bi-reports-faster/main-instructions_hu_35e58d71e7e55761.webp 330w,http://localhost:1313/posts/how-to-apply-rag-and-llm-to-search-bi-reports-faster/main-instructions_hu_189c0fed7e2f017d.webp 660w
+ 
+ ,http://localhost:1313/posts/how-to-apply-rag-and-llm-to-search-bi-reports-faster/main-instructions_hu_c3eddbf6da81a500.webp 1024w
+ 
+ 
+ ,http://localhost:1313/posts/how-to-apply-rag-and-llm-to-search-bi-reports-faster/main-instructions_hu_39fc4a5d7bff92e6.webp 1320w
+ "
+ 
+ sizes="100vw"
+ type="image/webp"
+ />
+ 
+ &lt;img
+ width="2016"
+ height="950"
+ class="mx-auto my-0 rounded-md"
+ alt="main-instructions.png"
+ loading="lazy" decoding="async"
+ 
+ src="http://localhost:1313/posts/how-to-apply-rag-and-llm-to-search-bi-reports-faster/main-instructions_hu_5900821ce2943e03.png" srcset="http://localhost:1313/posts/how-to-apply-rag-and-llm-to-search-bi-reports-faster/main-instructions_hu_dd85d7754f5f6b22.png 330w,http://localhost:1313/posts/how-to-apply-rag-and-llm-to-search-bi-reports-faster/main-instructions_hu_5900821ce2943e03.png 660w
+ 
+ ,http://localhost:1313/posts/how-to-apply-rag-and-llm-to-search-bi-reports-faster/main-instructions_hu_6c4d6e1e2908c4aa.png 1024w
+ 
+ 
+ ,http://localhost:1313/posts/how-to-apply-rag-and-llm-to-search-bi-reports-faster/main-instructions_hu_6f218fc3dfe62354.png 1320w
+ "
+ sizes="100vw"
+ 
+ />
+ &lt;/picture>
+ 
+
+&lt;figcaption class="text-center">Main instructions&lt;/figcaption>
+&lt;/figure>
+
+
+
+
+
+
+
+&lt;figure>
+ 
+ 
+
+
+
+
+
+
+
+
+ 
+ &lt;picture
+ class="mx-auto my-0 rounded-md"
+ 
+ >
+ 
+ 
+ 
+ 
+ &lt;source
+ 
+ srcset="http://localhost:1313/posts/how-to-apply-rag-and-llm-to-search-bi-reports-faster/answer-template_hu_85e6dba64ab5d0a1.webp 330w,http://localhost:1313/posts/how-to-apply-rag-and-llm-to-search-bi-reports-faster/answer-template_hu_45c76c9cf80880fe.webp 660w
+ 
+ ,http://localhost:1313/posts/how-to-apply-rag-and-llm-to-search-bi-reports-faster/answer-template_hu_8e965a607a0ea0d7.webp 1024w
+ 
+ 
+ ,http://localhost:1313/posts/how-to-apply-rag-and-llm-to-search-bi-reports-faster/answer-template_hu_2054e02fb38de839.webp 1320w
+ "
+ 
+ sizes="100vw"
+ type="image/webp"
+ />
+ 
+ &lt;img
+ width="2014"
+ height="876"
+ class="mx-auto my-0 rounded-md"
+ alt="answer-template.png"
+ loading="lazy" decoding="async"
+ 
+ src="http://localhost:1313/posts/how-to-apply-rag-and-llm-to-search-bi-reports-faster/answer-template_hu_9db1396c9beac6c.png" srcset="http://localhost:1313/posts/how-to-apply-rag-and-llm-to-search-bi-reports-faster/answer-template_hu_9019a725e6332929.png 330w,http://localhost:1313/posts/how-to-apply-rag-and-llm-to-search-bi-reports-faster/answer-template_hu_9db1396c9beac6c.png 660w
+ 
+ ,http://localhost:1313/posts/how-to-apply-rag-and-llm-to-search-bi-reports-faster/answer-template_hu_90f3dabcd5b28385.png 1024w
+ 
+ 
+ ,http://localhost:1313/posts/how-to-apply-rag-and-llm-to-search-bi-reports-faster/answer-template_hu_6c0dfbcfa306486e.png 1320w
+ "
+ sizes="100vw"
+ 
+ />
+ &lt;/picture>
+ 
+
+&lt;figcaption class="text-center">Answer template&lt;/figcaption>
+&lt;/figure>
+
+
+
+
+
+
+
+&lt;figure>
+ 
+ 
+
+
+
+
+
+
+
+
+ 
+ &lt;picture
+ class="mx-auto my-0 rounded-md"
+ 
+ >
+ 
+ 
+ 
+ 
+ &lt;source
+ 
+ srcset="http://localhost:1313/posts/how-to-apply-rag-and-llm-to-search-bi-reports-faster/business-context_hu_6c176b6f78874cda.webp 330w,http://localhost:1313/posts/how-to-apply-rag-and-llm-to-search-bi-reports-faster/business-context_hu_89fac2bf3c53bc76.webp 660w
+ 
+ ,http://localhost:1313/posts/how-to-apply-rag-and-llm-to-search-bi-reports-faster/business-context_hu_beaf86373873ba2a.webp 1024w
+ 
+ 
+ ,http://localhost:1313/posts/how-to-apply-rag-and-llm-to-search-bi-reports-faster/business-context_hu_fbecc4e27f161c06.webp 1320w
+ "
+ 
+ sizes="100vw"
+ type="image/webp"
+ />
+ 
+ &lt;img
+ width="1994"
+ height="746"
+ class="mx-auto my-0 rounded-md"
+ alt="business-context.png"
+ loading="lazy" decoding="async"
+ 
+ src="http://localhost:1313/posts/how-to-apply-rag-and-llm-to-search-bi-reports-faster/business-context_hu_4414b16827adfbe9.png" srcset="http://localhost:1313/posts/how-to-apply-rag-and-llm-to-search-bi-reports-faster/business-context_hu_b8e184f85e2fe482.png 330w,http://localhost:1313/posts/how-to-apply-rag-and-llm-to-search-bi-reports-faster/business-context_hu_4414b16827adfbe9.png 660w
+ 
+ ,http://localhost:1313/posts/how-to-apply-rag-and-llm-to-search-bi-reports-faster/business-context_hu_a260058c2fdf6075.png 1024w
+ 
+ 
+ ,http://localhost:1313/posts/how-to-apply-rag-and-llm-to-search-bi-reports-faster/business-context_hu_c729a5eb5cf1f335.png 1320w
+ "
+ sizes="100vw"
+ 
+ />
+ &lt;/picture>
+ 
+
+&lt;figcaption class="text-center">Business context&lt;/figcaption>
+&lt;/figure>
+&lt;/p>
+&lt;p>You can use 
+
+ &lt;span class="icon relative inline-block align-text-bottom">
+ &lt;svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512">&lt;path fill="currentColor" d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"/>&lt;/svg>
+
+ &lt;/span>
+
+ &lt;a href="https://github.com/vitaliy-kovalev/dashboards-rag-example/blob/main/ask_me_anything.py" target="_blank" rel="noreferrer">my code example&lt;/a> and simply run it as CLI:&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="cl">python3 -m ask_me_anything -q &lt;span class="s1">&amp;#39;Find me a report about sales&amp;#39;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">...
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">🔎 Relevant dashboards:
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">- &lt;span class="o">[&lt;/span>Regional Dynamics&lt;span class="o">](&lt;/span>https://dl.ya.cloud/abc?tab&lt;span class="o">=&lt;/span>100&lt;span class="o">)&lt;/span> &lt;span class="o">(&lt;/span>&lt;span class="m">278&lt;/span> views&lt;span class="o">)&lt;/span>: 
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Contains a table with sales data, including dimensions like region, city, 
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">and product, and measures such as GMV, sales, and average check. 
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Confidence: 9/10
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h2 id="some-tips" class="relative group">Some Tips &lt;span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100">&lt;a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#some-tips" aria-label="Anchor">#&lt;/a>&lt;/span>&lt;/h2>&lt;ul>
+&lt;li>&lt;strong>Pre-filter irrelevant metadata&lt;/strong> (outdated dashboards, somewhat from sandbox folder, etc.) to improve search efficiency.&lt;/li>
+&lt;li>&lt;strong>Sort your documents&lt;/strong> based on relevance by creating a custom retriever class.&lt;/li>
+&lt;li>Consider your metadata and your user &lt;strong>language&lt;/strong> when selecting the &lt;strong>embedding&lt;/strong> model.&lt;/li>
+&lt;li>To improve the quality of the retriever you could use &lt;strong>re-phrases&lt;/strong> of the initial question and advanced algorithms (MMR and RRF) to make the &lt;strong>recall&lt;/strong> better.&lt;/li>
+&lt;li>Try to give your end users MVP on early stages: I guarantee they will surprise you with their questions :)&lt;/li>
+&lt;/ul>
+&lt;hr>
+&lt;p>Don’t hesitate to ask follow-up questions or reach out if you need advice.&lt;/p>
+&lt;p>Here is a 
+
+ &lt;span class="icon relative inline-block align-text-bottom">
+ &lt;svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512">&lt;path fill="currentColor" d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"/>&lt;/svg>
+
+ &lt;/span>
+
+ &lt;a href="https://github.com/vitaliy-kovalev/dashboards-rag-example" target="_blank" rel="noreferrer">GitHub repository&lt;/a> with all code and examples to start with.&lt;/p>
+&lt;p>&lt;strong>Happy coding! 🚀&lt;/strong>&lt;/p></content></item><item><title>Tableau Makeover Monday 2025: Week 6</title><link>http://localhost:1313/posts/makeovermonday-2025-6/</link><pubDate>Mon, 05 May 2025 00:00:00 +0000</pubDate><guid>http://localhost:1313/posts/makeovermonday-2025-6/</guid><description>GB National Grid Energy Sources</description><content>&lt;p>I’ve been exploring the weekly energy mix in Great Britain’s grid from Jan 2024 to Jan 2025, focusing on how each source’s share shifts over time. You can see some notable fluctuations in renewables, fossil fuels, other sources, and transfers throughout the year — possibly influenced by seasonal factors and changing demand.&lt;/p>
+&lt;div class='tableauPlaceholder' id='viz1754830524756' style='position: relative'>&lt;noscript>&lt;a href='#'>&lt;img alt='GB National Grid Energy Sources ' src='https:&amp;#47;&amp;#47;public.tableau.com&amp;#47;static&amp;#47;images&amp;#47;GB&amp;#47;GBNationalGridEnergySources&amp;#47;GBNationalGridEnergySources&amp;#47;1_rss.png' style='border: none' />&lt;/a>&lt;/noscript>&lt;object class='tableauViz' style='display:none;'>&lt;param name='host_url' value='https%3A%2F%2Fpublic.tableau.com%2F' /> &lt;param name='embed_code_version' value='3' /> &lt;param name='site_root' value='' />&lt;param name='name' value='GBNationalGridEnergySources&amp;#47;GBNationalGridEnergySources' />&lt;param name='tabs' value='no' />&lt;param name='toolbar' value='yes' />&lt;param name='static_image' value='https:&amp;#47;&amp;#47;public.tableau.com&amp;#47;static&amp;#47;images&amp;#47;GB&amp;#47;GBNationalGridEnergySources&amp;#47;GBNationalGridEnergySources&amp;#47;1.png' /> &lt;param name='animate_transition' value='yes' />&lt;param name='display_static_image' value='yes' />&lt;param name='display_spinner' value='yes' />&lt;param name='display_overlay' value='yes' />&lt;param name='display_count' value='yes' />&lt;param name='language' value='en-GB' />&lt;/object>&lt;/div> &lt;script type='text/javascript'> var divElement = document.getElementById('viz1754830524756'); var vizElement = divElement.getElementsByTagName('object')[0]; vizElement.style.width='600px';vizElement.style.height='627px'; var scriptElement = document.createElement('script'); scriptElement.src = 'https://public.tableau.com/javascripts/api/viz_v1.js'; vizElement.parentNode.insertBefore(scriptElement, vizElement); &lt;/script>
+&lt;p>Explore more of my Tableau Projects &lt;a href="https://public.tableau.com/app/profile/vitaliy.kovalev" target="_blank" rel="noreferrer">here&lt;/a>&lt;/p></content></item><item><title>Tableau Makeover Monday 2025: Week 5</title><link>http://localhost:1313/posts/makeovermonday-2025-5/</link><pubDate>Fri, 31 Jan 2025 00:00:00 +0000</pubDate><guid>http://localhost:1313/posts/makeovermonday-2025-5/</guid><description>World Happiness Report 2024</description><content>&lt;p>There is a lot of data about Happiness. Here is my take on it:&lt;/p>
+&lt;div class='tableauPlaceholder' id='viz1754830180990' style='position: relative'>&lt;noscript>&lt;a href='#'>&lt;img alt='World Happiness Report 2024 ' src='https:&amp;#47;&amp;#47;public.tableau.com&amp;#47;static&amp;#47;images&amp;#47;Wo&amp;#47;WorldHapinessReport_17382828143230&amp;#47;WorldHappinessReport2024&amp;#47;1_rss.png' style='border: none' />&lt;/a>&lt;/noscript>&lt;object class='tableauViz' style='display:none;'>&lt;param name='host_url' value='https%3A%2F%2Fpublic.tableau.com%2F' /> &lt;param name='embed_code_version' value='3' /> &lt;param name='site_root' value='' />&lt;param name='name' value='WorldHapinessReport_17382828143230&amp;#47;WorldHappinessReport2024' />&lt;param name='tabs' value='no' />&lt;param name='toolbar' value='yes' />&lt;param name='static_image' value='https:&amp;#47;&amp;#47;public.tableau.com&amp;#47;static&amp;#47;images&amp;#47;Wo&amp;#47;WorldHapinessReport_17382828143230&amp;#47;WorldHappinessReport2024&amp;#47;1.png' /> &lt;param name='animate_transition' value='yes' />&lt;param name='display_static_image' value='yes' />&lt;param name='display_spinner' value='yes' />&lt;param name='display_overlay' value='yes' />&lt;param name='display_count' value='yes' />&lt;param name='language' value='en-GB' />&lt;/object>&lt;/div> &lt;script type='text/javascript'> var divElement = document.getElementById('viz1754830180990'); var vizElement = divElement.getElementsByTagName('object')[0]; vizElement.style.width='1350px';vizElement.style.height='887px'; var scriptElement = document.createElement('script'); scriptElement.src = 'https://public.tableau.com/javascripts/api/viz_v1.js'; vizElement.parentNode.insertBefore(scriptElement, vizElement); &lt;/script>
+&lt;p>Explore more of my Tableau Projects &lt;a href="https://public.tableau.com/app/profile/vitaliy.kovalev" target="_blank" rel="noreferrer">here&lt;/a>&lt;/p></content></item><item><title>Tableau Makeover Monday 2025: Week 4</title><link>http://localhost:1313/posts/makeovermonday-2025-4/</link><pubDate>Mon, 20 Jan 2025 00:00:00 +0000</pubDate><guid>http://localhost:1313/posts/makeovermonday-2025-4/</guid><description>Visualisation exploring current vs. preferred work arrangements</description><content>&lt;p>Finally jumping into #MakeoverMonday exploring current vs. preferred work arrangements:&lt;/p>
+&lt;div class='tableauPlaceholder' id='viz1754829111561' style='position: relative'>&lt;noscript>&lt;a href='#'>&lt;img alt='Makeover Monday 2025 Week 3 ' src='https:&amp;#47;&amp;#47;public.tableau.com&amp;#47;static&amp;#47;images&amp;#47;Bo&amp;#47;Book1_17373883396020&amp;#47;MakeoverMonday2025Week3&amp;#47;1_rss.png' style='border: none' />&lt;/a>&lt;/noscript>&lt;object class='tableauViz' style='display:none;'>&lt;param name='host_url' value='https%3A%2F%2Fpublic.tableau.com%2F' /> &lt;param name='embed_code_version' value='3' /> &lt;param name='site_root' value='' />&lt;param name='name' value='Book1_17373883396020&amp;#47;MakeoverMonday2025Week3' />&lt;param name='tabs' value='no' />&lt;param name='toolbar' value='yes' />&lt;param name='static_image' value='https:&amp;#47;&amp;#47;public.tableau.com&amp;#47;static&amp;#47;images&amp;#47;Bo&amp;#47;Book1_17373883396020&amp;#47;MakeoverMonday2025Week3&amp;#47;1.png' /> &lt;param name='animate_transition' value='yes' />&lt;param name='display_static_image' value='yes' />&lt;param name='display_spinner' value='yes' />&lt;param name='display_overlay' value='yes' />&lt;param name='display_count' value='yes' />&lt;param name='language' value='en-US' />&lt;/object>&lt;/div> &lt;script type='text/javascript'> var divElement = document.getElementById('viz1754829111561'); var vizElement = divElement.getElementsByTagName('object')[0]; vizElement.style.width='800px';vizElement.style.height='557px'; var scriptElement = document.createElement('script'); scriptElement.src = 'https://public.tableau.com/javascripts/api/viz_v1.js'; vizElement.parentNode.insertBefore(scriptElement, vizElement); &lt;/script>
+&lt;p>The original visualization felt a bit too complex for me, so I simplified it with a slope chart + matrix approach.&lt;/p>
+&lt;p>Explore more of my Tableau Projects &lt;a href="https://public.tableau.com/app/profile/vitaliy.kovalev" target="_blank" rel="noreferrer">here&lt;/a>&lt;/p></content></item><item><title>Tableau Speedtest</title><link>http://localhost:1313/posts/tableau-speedtest/</link><pubDate>Tue, 28 May 2024 00:00:00 +0000</pubDate><guid>http://localhost:1313/posts/tableau-speedtest/</guid><description>I created a tool that could help you measure Tableau report speed</description><content>&lt;p>Sometimes, we all get upset when our workbooks are slow. Additionally, it can be quite challenging to measure the exact loading time before and after some changes.&lt;/p>
+&lt;h2 id="there-is-a-hard-way-" class="relative group">There is a hard way 😬 &lt;span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100">&lt;a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#there-is-a-hard-way-" aria-label="Anchor">#&lt;/a>&lt;/span>&lt;/h2>&lt;p>If you are using Tableau Server or Tableau Online you can use &lt;a href="https://help.tableau.com/current/online/en-us/adminview_insights.htm#explore-the-data-sources" target="_blank" rel="noreferrer">Admin Insights&lt;/a> to monitor dashboard performance, but it is only available for administrators. Tableau Server admins could also use the internal Tableau database (workgroup) and &lt;a href="https://help.tableau.com/current/server/en-us/rmt-intro.htm" target="_blank" rel="noreferrer">Resource Management Tool&lt;/a> to make report for all users, but it takes some time and skills. Also, it is only daily data refresh available for Tableau Online. If you want to measure the difference after workbook changes keep in mind that you would have this gap.&lt;/p>
+&lt;p>Alternatively, you can use built-in Performance Recording to measure the exact loading time (check up my &lt;a href="https://medium.com/@vitaliy.kovalev/how-to-make-tableau-reports-faster-using-tableau-log-viewer-and-other-tools-fedee4a948e5" target="_blank" rel="noreferrer">article&lt;/a> on how to use it).&lt;/p>
+&lt;p>But there is a problem in all those ways. They are not really user-friendly and relatively slow or expensive to get some results right away.&lt;/p>
+&lt;h2 id="easy-way-" class="relative group">Easy way 😌 &lt;span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100">&lt;a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#easy-way-" aria-label="Anchor">#&lt;/a>&lt;/span>&lt;/h2>&lt;p>Many report creators I know use browser and stopwatch for those purposes. You simply open the report and measure time to it fully opens. The problem though is that you literally measure time with a naked eye.&lt;/p>
+&lt;p>Well, not anymore! I am happy to introduce you &lt;strong>Tableau Speedtest&lt;/strong>: a simple, easy-to-use tool that helps you measure your dashboard loading speed.&lt;/p>
+&lt;a
+ class="inline-block !rounded-md bg-primary-600 px-4 py-1 !text-neutral !no-underline hover:!bg-primary-500 dark:bg-primary-800 dark:hover:!bg-primary-700"
+ href="https://tableau-speedtest.site"
+ target="_blank"
+ 
+ role="button"
+>
+ 
+🚀 Check it out!
+
+&lt;/a>
+
+&lt;p>Long story short: press &lt;kbd>Load Configs&lt;/kbd> → paste the link to your view in form → press &lt;kbd>Run&lt;/kbd>.&lt;/p>
+&lt;p>
+
+
+
+
+
+&lt;figure>
+ 
+ 
+
+
+
+
+
+
+
+
+ 
+ &lt;picture
+ class="mx-auto my-0 rounded-md"
+ 
+ >
+ 
+ 
+ 
+ 
+ &lt;source
+ 
+ srcset="http://localhost:1313/posts/tableau-speedtest/interface_hu_b70697fa5de4807d.webp 330w,http://localhost:1313/posts/tableau-speedtest/interface_hu_193f9192a4f1c5f2.webp 660w
+ 
+ ,http://localhost:1313/posts/tableau-speedtest/interface_hu_e9df923e31112cee.webp 1024w
+ 
+ 
+ ,http://localhost:1313/posts/tableau-speedtest/interface_hu_eea230fe64190c29.webp 1320w
+ "
+ 
+ sizes="100vw"
+ type="image/webp"
+ />
+ 
+ &lt;img
+ width="2704"
+ height="1718"
+ class="mx-auto my-0 rounded-md"
+ alt="interface.png"
+ loading="lazy" decoding="async"
+ 
+ src="http://localhost:1313/posts/tableau-speedtest/interface_hu_ba47e289ac043f3b.png" srcset="http://localhost:1313/posts/tableau-speedtest/interface_hu_34fca5cdeddb6b68.png 330w,http://localhost:1313/posts/tableau-speedtest/interface_hu_ba47e289ac043f3b.png 660w
+ 
+ ,http://localhost:1313/posts/tableau-speedtest/interface_hu_cb170ad38ac7b581.png 1024w
+ 
+ 
+ ,http://localhost:1313/posts/tableau-speedtest/interface_hu_ee079cec7bf695df.png 1320w
+ "
+ sizes="100vw"
+ 
+ />
+ &lt;/picture>
+ 
+
+
+&lt;/figure>
+&lt;/p>
+&lt;h2 id="main-features" class="relative group">Main features &lt;span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100">&lt;a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#main-features" aria-label="Anchor">#&lt;/a>&lt;/span>&lt;/h2>&lt;ul>
+&lt;li>Measure the exact time for every loading and the average of those test launches&lt;/li>
+&lt;li>Get the list of views used on this dashboard&lt;/li>
+&lt;li>There is no server-side: so you &lt;strong>don’t have to worry about the security&lt;/strong> and NDA, the tool will not store any of your data, is handled by your browser (you can download the data in *.xls format though)&lt;/li>
+&lt;li>Open-source (you can host it yourself) and &lt;mark>free to use&lt;/mark>&lt;/li>
+&lt;/ul>
+&lt;h2 id="how-to-use-it" class="relative group">How to use it? &lt;span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100">&lt;a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#how-to-use-it" aria-label="Anchor">#&lt;/a>&lt;/span>&lt;/h2>&lt;p>&lt;strong>Step 1:&lt;/strong> Fill in the server config and press &lt;kbd>Load Configs&lt;/kbd>
+You can pass this step and use the latest version of Tableau JS API available at Tableau Public site. Also, you can download JS API directly from your site (it could be useful if you don’t have Internet access from your Tableau Server or the network your company uses).&lt;/p>
+&lt;p>&lt;strong>Step 2:&lt;/strong> Enter the &lt;code>link to the report&lt;/code> you want to test&lt;br>
+&lt;em>To get a valid link on Tableau Public you can click on the &lt;kbd>share&lt;/kbd> button and copy the link from the pop-up window. It should be a link to a particular dashboard, not a workbook link. Also, you can set the width and height of the iframe that will contain your report.&lt;/em>&lt;/p>
+&lt;p>&lt;strong>Step 3:&lt;/strong> Click the &lt;kbd>Run&lt;/kbd> button and wait ⏲
+The tool will show how much time you spend waiting for the report loads and the report itself. Obliviously, you need to have access to the report and your Tableau Server / Online ;-) You can click the button Run Again to run a second test and so on. You will see all your test results in table and bar chart visualization. Also, the tool will calculate the average loading speed of your report. You can also download data right from the bar chart visualization (upper right corner menu → &lt;kbd>Download&lt;/kbd>).&lt;/p>
+&lt;hr>
+&lt;h2 id="how-it-works" class="relative group">How it works? &lt;span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100">&lt;a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#how-it-works" aria-label="Anchor">#&lt;/a>&lt;/span>&lt;/h2>&lt;p>It is just simple javascript code that uses &lt;a href="https://help.tableau.com/current/api/js_api/en-us/JavaScriptAPI/js_api.htm" target="_blank" rel="noreferrer">Tableau JS API&lt;/a> to load the workbook and measure time. There is no backend service, all magic happens in your browser at your side.&lt;/p>
+&lt;h2 id="can-i-contribute" class="relative group">Can I contribute? &lt;span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100">&lt;a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#can-i-contribute" aria-label="Anchor">#&lt;/a>&lt;/span>&lt;/h2>&lt;p>Of course! Any help will be appreciated! Contact me via &lt;a href="mailto:vitaliy.kovalev.36@gmail.com">email&lt;/a> or simply create a new pull request here: 
+
+ &lt;span class="icon relative inline-block align-text-bottom">
+ &lt;svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512">&lt;path fill="currentColor" d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"/>&lt;/svg>
+
+ &lt;/span>
+
+ &lt;a href="https://github.com/vitaliy-kovalev/tableau-report-speedtest" target="_blank" rel="noreferrer">https://github.com/vitaliy-kovalev/tableau-report-speedtest&lt;/a>&lt;/p>
+&lt;p>Cheers!&lt;/p></content></item><item><title>Tools overview to optimize Tableau reports</title><link>http://localhost:1313/posts/tableau-log-viewer/</link><pubDate>Thu, 21 Dec 2023 00:00:00 +0000</pubDate><guid>http://localhost:1313/posts/tableau-log-viewer/</guid><description>Complete guide of all kinds of optimisation tools in Tableau</description><content>&lt;p>Although Tableau is an easy-to-use drag-and-drop tool it can sometimes be challenging to understand why a report is so slow, particularly when dealing with a live database connection.
+The main goal of this article is to guide you through all kinds of optimisation tools and help you considerate which one to use.&lt;/p>
+&lt;h2 id="what-tools-do-you-have" class="relative group">What tools do you have? &lt;span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100">&lt;a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#what-tools-do-you-have" aria-label="Anchor">#&lt;/a>&lt;/span>&lt;/h2>&lt;p>You can use &lt;strong>Tableau Optimizer&lt;/strong> or &lt;strong>Performance Recording&lt;/strong> tools to figure it out, but sometimes these may not be the most effective solutions. Additionally, there is &lt;strong>Tableau Log Viewer&lt;/strong>, which I will introduce to you a bit later.
+The first tool (&lt;strong>Server → Run Optimizer&lt;/strong>) is great when you are trying to find some basic report design problems.&lt;/p>
+&lt;p>
+
+
+
+
+
+&lt;figure>
+ 
+ 
+
+
+
+
+
+
+
+
+ 
+ &lt;picture
+ class="mx-auto my-0 rounded-md"
+ 
+ >
+ 
+ 
+ 
+ 
+ &lt;source
+ 
+ srcset="http://localhost:1313/posts/tableau-log-viewer/optimizer-interface_hu_ddb625a44a640dba.webp 330w,http://localhost:1313/posts/tableau-log-viewer/optimizer-interface_hu_f54cfae1f18d85c5.webp 660w
+ 
+ ,http://localhost:1313/posts/tableau-log-viewer/optimizer-interface_hu_3f857c01123ffcfb.webp 1024w
+ 
+ 
+ ,http://localhost:1313/posts/tableau-log-viewer/optimizer-interface_hu_7f7be6287781ade4.webp 1320w
+ "
+ 
+ sizes="100vw"
+ type="image/webp"
+ />
+ 
+ &lt;img
+ width="1630"
+ height="878"
+ class="mx-auto my-0 rounded-md"
+ alt="optimizer-interface.png"
+ loading="lazy" decoding="async"
+ 
+ src="http://localhost:1313/posts/tableau-log-viewer/optimizer-interface_hu_b600abe4e7099ebb.png" srcset="http://localhost:1313/posts/tableau-log-viewer/optimizer-interface_hu_cf5dc63c6b723d80.png 330w,http://localhost:1313/posts/tableau-log-viewer/optimizer-interface_hu_b600abe4e7099ebb.png 660w
+ 
+ ,http://localhost:1313/posts/tableau-log-viewer/optimizer-interface_hu_ae78bc58a2b236e6.png 1024w
+ 
+ 
+ ,http://localhost:1313/posts/tableau-log-viewer/optimizer-interface_hu_b13ce152708cf2ff.png 1320w
+ "
+ sizes="100vw"
+ 
+ />
+ &lt;/picture>
+ 
+
+&lt;figcaption class="text-center">Optimizer interface&lt;/figcaption>
+&lt;/figure>
+&lt;/p>
+&lt;p>It covers 20 most common mistakes made by workbook creators: too many views on dashboard, unused fields, relative filters, etc. According to this tool one of the factors that making your workbooks slower is live connections:&lt;/p>
+&lt;blockquote>
+&lt;p>Tableau extracts are designed to be as efficient as possible for use with analytics. Using extracts is one of the easiest ways to improve performance due to the data source. Extracts also have many native features for optimization.&lt;/p>&lt;/blockquote>
+&lt;p>However, it always depends on the number of rows and columns you have: sometimes extracts is just not an option: tables with more than 1 billion rows and 200 columns are not so rare these days (hello, big data 😘).&lt;/p>
+&lt;p>Let’s assume that you don’t have any other issues with the workbook except you couldn’t use extract for some reason.&lt;/p>
+&lt;p>To find out what’s wrong with our queries you can use another tool: &lt;strong>Performance Recording&lt;/strong>&lt;/p>
+&lt;p>It demands some actions to not mess things up: &lt;strong>you should press the button &lt;em>before&lt;/em> you navigate to the dashboard&lt;/strong>. Otherwise, Tableau internal cache will affect the results. This is the main reason why you should not run it on Tableau Server (you &lt;a href="https://help.tableau.com/current/server/en-us/perf_record_create_server.htm" target="_blank" rel="noreferrer">can&lt;/a> do it though) and use your local machine instead.&lt;/p>
+&lt;div class="flex rounded-md bg-primary-100 px-4 py-3 dark:bg-primary-900">
+ &lt;span class="pe-3 text-primary-400">
+ &lt;span class="icon relative inline-block px-1 align-text-bottom">&lt;svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">&lt;path fill="currentColor" d="M506.3 417l-213.3-364c-16.33-28-57.54-28-73.98 0l-213.2 364C-10.59 444.9 9.849 480 42.74 480h426.6C502.1 480 522.6 445 506.3 417zM232 168c0-13.25 10.75-24 24-24S280 154.8 280 168v128c0 13.25-10.75 24-23.1 24S232 309.3 232 296V168zM256 416c-17.36 0-31.44-14.08-31.44-31.44c0-17.36 14.07-31.44 31.44-31.44s31.44 14.08 31.44 31.44C287.4 401.9 273.4 416 256 416z"/>&lt;/svg>
+&lt;/span>
+ &lt;/span>
+ &lt;span class="dark:text-neutral-300">You should always keep in mind that &lt;strong>internet connection speed&lt;/strong> and &lt;strong>your machine CPU and RAM current load&lt;/strong> could affect the results. Always measure dashboard at least 3–4 times to make final decisions.&lt;/span>
+&lt;/div>
+
+&lt;h2 id="how-to-run-performance-recording" class="relative group">How to run performance recording? &lt;span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100">&lt;a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#how-to-run-performance-recording" aria-label="Anchor">#&lt;/a>&lt;/span>&lt;/h2>&lt;ol>
+&lt;li>Close all unnecessary programs and clear database cache (if your database have one)&lt;/li>
+&lt;li>Open Tableau Desktop&lt;/li>
+&lt;li>Click &lt;kbd>Help&lt;/kbd> → &lt;kbd>Settings and Performance&lt;/kbd> → &lt;kbd>Run performance recording&lt;/kbd>&lt;/li>
+&lt;li>Open workbook you need to measure and navigate through all dashboards and views you want to measure&lt;/li>
+&lt;li>Click &lt;kbd>Help&lt;/kbd> → &lt;kbd>Settings and Performance&lt;/kbd> → &lt;kbd>Stop performance recording&lt;/kbd>&lt;/li>
+&lt;/ol>
+&lt;p>If you have only one dataset and one dashboard you can run performance recording after opening your workbook (steps 3–5). To clear internal Tableau cache click &lt;kbd>Data&lt;/kbd> → &lt;kbd>{Your dataset name}&lt;/kbd> → &lt;kbd>Refresh&lt;/kbd>&lt;/p>
+&lt;p>When you close Tableau it will also clear all cache workbook has on Tableau side. You can take advantage of this feature as well.&lt;/p>
+&lt;p>The performance report will be displayed shortly after you stop the recording:&lt;/p>
+&lt;p>
+
+
+
+
+
+&lt;figure>
+ 
+ 
+
+
+
+
+
+
+
+
+ 
+ &lt;picture
+ class="mx-auto my-0 rounded-md"
+ 
+ >
+ 
+ 
+ 
+ 
+ &lt;source
+ 
+ srcset="http://localhost:1313/posts/tableau-log-viewer/performance-recording_hu_41668f8bb5e40196.webp 330w,http://localhost:1313/posts/tableau-log-viewer/performance-recording_hu_4704328b18d8123f.webp 660w
+ 
+ ,http://localhost:1313/posts/tableau-log-viewer/performance-recording_hu_766102638586671f.webp 1024w
+ 
+ 
+ ,http://localhost:1313/posts/tableau-log-viewer/performance-recording_hu_28d885919fbe7666.webp 1320w
+ "
+ 
+ sizes="100vw"
+ type="image/webp"
+ />
+ 
+ &lt;img
+ width="2188"
+ height="1122"
+ class="mx-auto my-0 rounded-md"
+ alt="performance-recording.png"
+ loading="lazy" decoding="async"
+ 
+ src="http://localhost:1313/posts/tableau-log-viewer/performance-recording_hu_4addfdf1491564a5.png" srcset="http://localhost:1313/posts/tableau-log-viewer/performance-recording_hu_3296a09701433fd9.png 330w,http://localhost:1313/posts/tableau-log-viewer/performance-recording_hu_4addfdf1491564a5.png 660w
+ 
+ ,http://localhost:1313/posts/tableau-log-viewer/performance-recording_hu_7c976d070165ea3.png 1024w
+ 
+ 
+ ,http://localhost:1313/posts/tableau-log-viewer/performance-recording_hu_197158e580a1fb2c.png 1320w
+ "
+ sizes="100vw"
+ 
+ />
+ &lt;/picture>
+ 
+
+&lt;figcaption class="text-center">Performance recording report interface&lt;/figcaption>
+&lt;/figure>
+&lt;/p>
+&lt;p>If you want to focus specifically on query optimisations you should pay attention only to the &lt;strong>query execution&lt;/strong> events (green events). That’s where the queries can be found.&lt;/p>
+&lt;p>The downside of the performance recording method is that you have to re-run it after any changes are made on Tableau or the database side. This is when &lt;strong>Tableau log viewer&lt;/strong> can be truly helpful.&lt;/p>
+&lt;h2 id="how-to-install-tableau-log-viewer" class="relative group">How to install Tableau Log Viewer? &lt;span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100">&lt;a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#how-to-install-tableau-log-viewer" aria-label="Anchor">#&lt;/a>&lt;/span>&lt;/h2>&lt;p>Go to &lt;a href="https://github.com/tableau/tableau-log-viewer" target="_blank" rel="noreferrer">GitHub&lt;/a> and download the &lt;code>.dmg&lt;/code> or &lt;code>.exe&lt;/code> file from &lt;strong>Releases&lt;/strong> page:&lt;/p>
+&lt;figure>
+&lt;img src="http://localhost:1313/images/tableau-log-viewer/tlv-downloading.gif" class="mx-auto my-0 rounded-md" alt="Where can you download TLV app" loading="lazy">
+&lt;figcaption class="text-center">Where can you download TLV app&lt;/figcaption>
+&lt;/figure>
+&lt;p>You cannot simply run this tool on MacBooks with arm64 architecture (M1 / M2). To fix that open Terminal and install Rosetta 2:&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="cl">softwareupdate --install-rosetta
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>In the process of the installation you should also type &lt;code>a&lt;/code> and hit &lt;kbd>Enter&lt;/kbd>.&lt;/p>
+&lt;figure>
+&lt;img src="http://localhost:1313/images/tableau-log-viewer/rosetta-installation.gif" class="mx-auto my-0 rounded-md" alt="Rosetta installation process" loading="lazy">
+&lt;figcaption class="text-center">Rosetta installation process&lt;/figcaption>
+&lt;/figure>
+&lt;p>Then you should drag &lt;strong>TLV&lt;/strong> app to your &lt;strong>Applications&lt;/strong> folder, &lt;kbd>right-click&lt;/kbd> on that copy and click &lt;kbd>Get Info&lt;/kbd>. Check the box &lt;kbd>Open using Rosetta&lt;/kbd> and close info window. Also, you should make sure that app doesn’t have &lt;code>com.apple.quarantine&lt;/code> attribute. To ensure that run this terminal command:&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="cl">xattr -dr com.apple.quarantine /Applications/tlv.app
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>Finally, open the app itself. It should work just fine. You can keep this app in Dock and use it like a normal app.&lt;/p>
+&lt;p>Here is the whole installation process:&lt;/p>
+&lt;figure>
+&lt;img src="http://localhost:1313/images/tableau-log-viewer/tlv-installation.gif" class="mx-auto my-0 rounded-md" alt="Installation process and how to open log.txt" loading="lazy">
+&lt;figcaption class="text-center">Installation process and how to open log.txt&lt;/figcaption>
+&lt;/figure>
+&lt;h2 id="how-to-use-it" class="relative group">How to use it? &lt;span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100">&lt;a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#how-to-use-it" aria-label="Anchor">#&lt;/a>&lt;/span>&lt;/h2>&lt;p>Once you open the TLV app you should click the &lt;kbd>Open&lt;/kbd> button and choose &lt;code>log.txt&lt;/code> file from your &lt;code>~/Documents/My Tableau Repository/Logs&lt;/code> folder on macOS or &lt;code>C:\Users\&amp;lt;user&amp;gt;\Documents\My Tableau Repository\Logs\&lt;/code> on Windows.&lt;/p>
+&lt;p>Then you will need to click &lt;kbd>Live mode&lt;/kbd> button to continue to refresh info from Tableau Desktop.&lt;/p>
+&lt;p>Another option is to click &lt;kbd>Live capture&lt;/kbd> → &lt;kbd>Open log.txt&lt;/kbd>&lt;/p>
+&lt;p>After that you can make some actions in Tableau Desktop and you will see all actions that Tableau does in &lt;strong>TLV&lt;/strong> app logs.&lt;/p>
+&lt;p>I recommend you to use highlight mode available in the menu &lt;kbd>Highlight&lt;/kbd> → &lt;kbd>Highlight&lt;/kbd>&lt;/p>
+&lt;p>You can add some filters in this window:&lt;/p>
+&lt;table>
+ &lt;thead>
+ &lt;tr>
+ &lt;th>&lt;strong>Event Name&lt;/strong>&lt;/th>
+ &lt;th>&lt;strong>Description&lt;/strong>&lt;/th>
+ &lt;/tr>
+ &lt;/thead>
+ &lt;tbody>
+ &lt;tr>
+ &lt;td>&lt;code>end-protocol.query&lt;/code>&lt;/td>
+ &lt;td>SQL code and duration of single view queries&lt;/td>
+ &lt;/tr>
+ &lt;tr>
+ &lt;td>&lt;code>qp-batch-summary&lt;/code>&lt;/td>
+ &lt;td>Time needed to make a batch of requests&lt;/td>
+ &lt;/tr>
+ &lt;tr>
+ &lt;td>&lt;code>begin-visual-controller.update-sheet&lt;/code>&lt;/td>
+ &lt;td>View name&lt;/td>
+ &lt;/tr>
+ &lt;tr>
+ &lt;td>&lt;code>end-visual-controller.update-visual-model&lt;/code>&lt;/td>
+ &lt;td>Time needed to render views&lt;/td>
+ &lt;/tr>
+ &lt;/tbody>
+&lt;/table>
+&lt;p>
+
+
+
+
+
+&lt;figure>
+ 
+ 
+
+
+
+
+
+
+
+
+ 
+ &lt;picture
+ class="mx-auto my-0 rounded-md"
+ 
+ >
+ 
+ 
+ 
+ 
+ &lt;source
+ 
+ srcset="http://localhost:1313/posts/tableau-log-viewer/how-to-add-new-highlight_hu_558937ddc2d1565d.webp 330w,http://localhost:1313/posts/tableau-log-viewer/how-to-add-new-highlight_hu_cad37815acb2f06a.webp 660w
+ 
+ ,http://localhost:1313/posts/tableau-log-viewer/how-to-add-new-highlight_hu_b2e95a9046b1e46d.webp 1024w
+ 
+ 
+ ,http://localhost:1313/posts/tableau-log-viewer/how-to-add-new-highlight_hu_7e04dcd81911c7d5.webp 1320w
+ "
+ 
+ sizes="100vw"
+ type="image/webp"
+ />
+ 
+ &lt;img
+ width="1494"
+ height="872"
+ class="mx-auto my-0 rounded-md"
+ alt="how-to-add-new-highlight.png"
+ loading="lazy" decoding="async"
+ 
+ src="http://localhost:1313/posts/tableau-log-viewer/how-to-add-new-highlight_hu_726200d4c9cc9b9d.png" srcset="http://localhost:1313/posts/tableau-log-viewer/how-to-add-new-highlight_hu_357d266c10cfa7e4.png 330w,http://localhost:1313/posts/tableau-log-viewer/how-to-add-new-highlight_hu_726200d4c9cc9b9d.png 660w
+ 
+ ,http://localhost:1313/posts/tableau-log-viewer/how-to-add-new-highlight_hu_5231fad44c77a9ff.png 1024w
+ 
+ 
+ ,http://localhost:1313/posts/tableau-log-viewer/how-to-add-new-highlight_hu_7e5ecc4257721089.png 1320w
+ "
+ sizes="100vw"
+ 
+ />
+ &lt;/picture>
+ 
+
+&lt;figcaption class="text-center">How to add new highlight&lt;/figcaption>
+&lt;/figure>
+&lt;/p>
+&lt;p>You can save those filters &lt;kbd>Highlight&lt;/kbd> → &lt;kbd>Save&lt;/kbd> and use them on the next use &lt;kbd>Highlight&lt;/kbd> → &lt;kbd>Load Filters&lt;/kbd>&lt;/p>
+&lt;h2 id="how-to-measure-time-properly" class="relative group">How to measure time properly? &lt;span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100">&lt;a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#how-to-measure-time-properly" aria-label="Anchor">#&lt;/a>&lt;/span>&lt;/h2>&lt;p>You can use technique to eliminate Tableau internal cache similar to what you used when launching &lt;strong>Performance Recording&lt;/strong>. Also, you can click &lt;kbd>Data&lt;/kbd> → &lt;kbd>{Datasource name}&lt;/kbd> → &lt;kbd>Refresh&lt;/kbd> to clear the cache for a specific datasource. When you navigate to the dashboard or view &lt;strong>TLV&lt;/strong> app will refresh the logs.&lt;/p>
+&lt;p>I also recommend measuring views twice:&lt;/p>
+&lt;ul>
+&lt;li>Click on each view and then clear the cache&lt;/li>
+&lt;li>Click on the dashboard with all views combined&lt;/li>
+&lt;/ul>
+&lt;p>The behaviour of the views can vary depend on certain performance optimisation features of the Tableau, like &lt;em>query fusion&lt;/em> (combining multiple individual queries into a single combined query) and &lt;em>join culling&lt;/em> (simplifying queries by removing unnecessary joins).&lt;/p>
+&lt;h2 id="how-to-read-it" class="relative group">How to read it? &lt;span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100">&lt;a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#how-to-read-it" aria-label="Anchor">#&lt;/a>&lt;/span>&lt;/h2>&lt;p>Let’s assume you have this dashboard with 7 visualisations and 1 date filter:&lt;/p>
+&lt;p>
+
+
+
+
+
+&lt;figure>
+ 
+ 
+
+
+
+
+
+
+
+
+ 
+ &lt;picture
+ class="mx-auto my-0 rounded-md"
+ 
+ >
+ 
+ 
+ 
+ 
+ &lt;source
+ 
+ srcset="http://localhost:1313/posts/tableau-log-viewer/simple-dashboard_hu_9f15f4c6f44d5763.webp 330w,http://localhost:1313/posts/tableau-log-viewer/simple-dashboard_hu_6228b6c0ea17deb6.webp 660w
+ 
+ ,http://localhost:1313/posts/tableau-log-viewer/simple-dashboard_hu_f1e56afd15b68937.webp 1024w
+ 
+ 
+ ,http://localhost:1313/posts/tableau-log-viewer/simple-dashboard_hu_aaf25435208df01.webp 1320w
+ "
+ 
+ sizes="100vw"
+ type="image/webp"
+ />
+ 
+ &lt;img
+ width="2400"
+ height="1796"
+ class="mx-auto my-0 rounded-md"
+ alt="simple-dashboard.png"
+ loading="lazy" decoding="async"
+ 
+ src="http://localhost:1313/posts/tableau-log-viewer/simple-dashboard_hu_129234f494bb2763.png" srcset="http://localhost:1313/posts/tableau-log-viewer/simple-dashboard_hu_c6297642c38427d1.png 330w,http://localhost:1313/posts/tableau-log-viewer/simple-dashboard_hu_129234f494bb2763.png 660w
+ 
+ ,http://localhost:1313/posts/tableau-log-viewer/simple-dashboard_hu_c5826be65f7d459c.png 1024w
+ 
+ 
+ ,http://localhost:1313/posts/tableau-log-viewer/simple-dashboard_hu_55406cc61404618e.png 1320w
+ "
+ sizes="100vw"
+ 
+ />
+ &lt;/picture>
+ 
+
+&lt;figcaption class="text-center">Simple dashboard&lt;/figcaption>
+&lt;/figure>
+&lt;/p>
+&lt;p>That is what you get if you record how dashboard loads when you open it:&lt;/p>
+&lt;p>
+
+
+
+
+
+&lt;figure>
+ 
+ 
+
+
+
+
+
+
+
+
+ 
+ &lt;picture
+ class="mx-auto my-0 rounded-md"
+ 
+ >
+ 
+ 
+ 
+ 
+ &lt;source
+ 
+ srcset="http://localhost:1313/posts/tableau-log-viewer/events_hu_d97dda73e77fe7be.webp 330w,http://localhost:1313/posts/tableau-log-viewer/events_hu_67a1a43a1f12661e.webp 660w
+ 
+ ,http://localhost:1313/posts/tableau-log-viewer/events_hu_c9acb7db7d8afd78.webp 1024w
+ 
+ 
+ ,http://localhost:1313/posts/tableau-log-viewer/events_hu_8ee6e2a8be70f378.webp 1320w
+ "
+ 
+ sizes="100vw"
+ type="image/webp"
+ />
+ 
+ &lt;img
+ width="2262"
+ height="840"
+ class="mx-auto my-0 rounded-md"
+ alt="events.png"
+ loading="lazy" decoding="async"
+ 
+ src="http://localhost:1313/posts/tableau-log-viewer/events_hu_4d6916cf3d34f41e.png" srcset="http://localhost:1313/posts/tableau-log-viewer/events_hu_506a8e168093e2fb.png 330w,http://localhost:1313/posts/tableau-log-viewer/events_hu_4d6916cf3d34f41e.png 660w
+ 
+ ,http://localhost:1313/posts/tableau-log-viewer/events_hu_741b7a440f2333d5.png 1024w
+ 
+ 
+ ,http://localhost:1313/posts/tableau-log-viewer/events_hu_37beff0aee7d45d6.png 1320w
+ "
+ sizes="100vw"
+ 
+ />
+ &lt;/picture>
+ 
+
+&lt;figcaption class="text-center">That’s how Tableau dashboard loads&lt;/figcaption>
+&lt;/figure>
+&lt;/p>
+&lt;p>As you can see, there is quite a bit going on! Some queries will run in parallel, limited by your machine’s CPU usage and the number of connections the database can handle simultaneously. Keep in mind that the load time will be approximate.&lt;/p>
+&lt;p>Furthermore, Tableau handles maps differently from other views: to load them, Tableau creates a temporary extract and stores it in memory to accelerate loading time.&lt;/p>
+&lt;p>You can also run all views one by one:&lt;/p>
+&lt;p>
+
+
+
+
+
+&lt;figure>
+ 
+ 
+
+
+
+
+
+
+
+
+ 
+ &lt;picture
+ class="mx-auto my-0 rounded-md"
+ 
+ >
+ 
+ 
+ 
+ 
+ &lt;source
+ 
+ srcset="http://localhost:1313/posts/tableau-log-viewer/events-by-viz_hu_dd14ccf50f554406.webp 330w,http://localhost:1313/posts/tableau-log-viewer/events-by-viz_hu_7b1b6930c1c1772f.webp 660w
+ 
+ ,http://localhost:1313/posts/tableau-log-viewer/events-by-viz_hu_f37aaf8c6f3815ab.webp 1024w
+ 
+ 
+ ,http://localhost:1313/posts/tableau-log-viewer/events-by-viz_hu_2e4aeb32c6d83748.webp 1320w
+ "
+ 
+ sizes="100vw"
+ type="image/webp"
+ />
+ 
+ &lt;img
+ width="2286"
+ height="970"
+ class="mx-auto my-0 rounded-md"
+ alt="events-by-viz.png"
+ loading="lazy" decoding="async"
+ 
+ src="http://localhost:1313/posts/tableau-log-viewer/events-by-viz_hu_28950032dea2f150.png" srcset="http://localhost:1313/posts/tableau-log-viewer/events-by-viz_hu_75bb64450bf5ff76.png 330w,http://localhost:1313/posts/tableau-log-viewer/events-by-viz_hu_28950032dea2f150.png 660w
+ 
+ ,http://localhost:1313/posts/tableau-log-viewer/events-by-viz_hu_2d1fea72fca7a2c0.png 1024w
+ 
+ 
+ ,http://localhost:1313/posts/tableau-log-viewer/events-by-viz_hu_cfd47c3011738c75.png 1320w
+ "
+ sizes="100vw"
+ 
+ />
+ &lt;/picture>
+ 
+
+
+&lt;/figure>
+&lt;/p>
+&lt;p>Now all views have &lt;code>qp-batch-summary&lt;/code> event with a relatively more accurate load time than &lt;code>end-prococol.query&lt;/code> event provides. Additionally, it’s much easier to allocate query to the view. In first case you had to read the query itself to determine it.&lt;/p>
+&lt;p>Now you can make some changes and view how it affects on performance. Also, you can measure events multiple times without any additional waiting time.&lt;/p>
+&lt;h2 id="ok-there-is-a-bunch-of-queries-but-the-code-is-not-readable-" class="relative group">Ok, there is a bunch of queries but the code is not readable :( &lt;span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100">&lt;a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#ok-there-is-a-bunch-of-queries-but-the-code-is-not-readable-" aria-label="Anchor">#&lt;/a>&lt;/span>&lt;/h2>&lt;p>Things like this is common for SQL-code generated by Tableau:&lt;/p>
+&lt;p>
+
+
+
+
+
+&lt;figure>
+ 
+ 
+
+
+
+
+
+
+
+
+ 
+ &lt;picture
+ class="mx-auto my-0 rounded-md"
+ 
+ >
+ 
+ 
+ 
+ 
+ &lt;source
+ 
+ srcset="http://localhost:1313/posts/tableau-log-viewer/query_hu_70b66df6cbea4760.webp 330w,http://localhost:1313/posts/tableau-log-viewer/query_hu_f4c9a0347a4e1fc6.webp 660w
+ 
+ ,http://localhost:1313/posts/tableau-log-viewer/query_hu_bd9d210d2b237e9e.webp 1024w
+ 
+ 
+ 
+ ,http://localhost:1313/posts/tableau-log-viewer/query_hu_a91fbdb7bfd784ce.webp 1096w
+ 
+ "
+ 
+ sizes="100vw"
+ type="image/webp"
+ />
+ 
+ &lt;img
+ width="1096"
+ height="1027"
+ class="mx-auto my-0 rounded-md"
+ alt="query.png"
+ loading="lazy" decoding="async"
+ 
+ src="http://localhost:1313/posts/tableau-log-viewer/query_hu_25e49cca43fc28a8.png" srcset="http://localhost:1313/posts/tableau-log-viewer/query_hu_6803f740e3c4fe72.png 330w,http://localhost:1313/posts/tableau-log-viewer/query_hu_25e49cca43fc28a8.png 660w
+ 
+ ,http://localhost:1313/posts/tableau-log-viewer/query_hu_390a7daccef3b319.png 1024w
+ 
+ 
+ ,http://localhost:1313/posts/tableau-log-viewer/query.png 1096w
+ "
+ sizes="100vw"
+ 
+ />
+ &lt;/picture>
+ 
+
+&lt;figcaption class="text-center">(0_o)&lt;/figcaption>
+&lt;/figure>
+&lt;/p>
+&lt;p>There’s another amazing tool &lt;a href="https://tony-yanjun.shinyapps.io/Tableau_zen_parser/" target="_blank" rel="noreferrer">Tableau Zen Parser&lt;/a> made by Tony Liu that can parse all your workbook calculations and their ID’s based on your &lt;code>*.twb&lt;/code> file.&lt;/p>
+&lt;figure>
+&lt;img src="http://localhost:1313/images/tableau-log-viewer/zen-parser.gif" class="mx-auto my-0 rounded-md" alt="How to use Tableau Zen Parser" loading="lazy">
+&lt;figcaption class="text-center">How to use Tableau Zen Parser&lt;/figcaption>
+&lt;/figure>
+&lt;p>So if you have a lot of calculations and views based on them break your workspace to 3 pieces: &lt;strong>Tableau&lt;/strong>, &lt;strong>TLV&lt;/strong> and &lt;strong>Zen Parser Results&lt;/strong>:&lt;/p>
+&lt;p>
+
+
+
+
+
+&lt;figure>
+ 
+ 
+
+
+
+
+
+
+
+
+ 
+ &lt;picture
+ class="mx-auto my-0 rounded-md"
+ 
+ >
+ 
+ 
+ 
+ 
+ &lt;source
+ 
+ srcset="http://localhost:1313/posts/tableau-log-viewer/workspace_hu_8255f78c3c87dd83.webp 330w,http://localhost:1313/posts/tableau-log-viewer/workspace_hu_88781bc4e6dfc959.webp 660w
+ 
+ ,http://localhost:1313/posts/tableau-log-viewer/workspace_hu_7b81c8f9301a8052.webp 1024w
+ 
+ 
+ ,http://localhost:1313/posts/tableau-log-viewer/workspace_hu_f80ffefc1289e7e2.webp 1320w
+ "
+ 
+ sizes="100vw"
+ type="image/webp"
+ />
+ 
+ &lt;img
+ width="3456"
+ height="2160"
+ class="mx-auto my-0 rounded-md"
+ alt="workspace.png"
+ loading="lazy" decoding="async"
+ 
+ src="http://localhost:1313/posts/tableau-log-viewer/workspace_hu_6151bec1b54239d3.png" srcset="http://localhost:1313/posts/tableau-log-viewer/workspace_hu_74910d00a9350d95.png 330w,http://localhost:1313/posts/tableau-log-viewer/workspace_hu_6151bec1b54239d3.png 660w
+ 
+ ,http://localhost:1313/posts/tableau-log-viewer/workspace_hu_57f1be5a6df76d5a.png 1024w
+ 
+ 
+ ,http://localhost:1313/posts/tableau-log-viewer/workspace_hu_3c29ced7de9f13c.png 1320w
+ "
+ sizes="100vw"
+ 
+ />
+ &lt;/picture>
+ 
+
+&lt;figcaption class="text-center">Workspace with Tableau, TLV and Zen Parser&lt;/figcaption>
+&lt;/figure>
+&lt;/p>
+&lt;p>Now you can understand queries a lot easier using Calculated fields table as a dictionary.&lt;/p>
+&lt;h2 id="ps-tableau-log-viewer-works-also-on-tableau-server" class="relative group">P.S. Tableau Log Viewer works also on Tableau Server! &lt;span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100">&lt;a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#ps-tableau-log-viewer-works-also-on-tableau-server" aria-label="Anchor">#&lt;/a>&lt;/span>&lt;/h2>&lt;p>You can log in to the machine running your Tableau Server and view server logs using &lt;strong>TLV&lt;/strong>. These logs can help you debug issues with your integrations or Tableau components. You can find the actual locations of these server logs &lt;a href="https://help.tableau.com/current/server-linux/en-us/logs_loc.htm" target="_blank" rel="noreferrer">here&lt;/a>.&lt;/p>
+&lt;p>Hope those tips and information were helpful. Please feel free to ask any additional questions in the comments section.&lt;/p>
+&lt;p>Happy debugging!&lt;/p></content></item></channel></rss>
