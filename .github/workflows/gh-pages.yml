@@ -5,26 +5,51 @@ on:
     branches:
       - main
 
+permissions:
+  contents: write  # needed for pushing to gh-pages
+
 jobs:
   build-deploy:
     runs-on: ubuntu-latest
     concurrency:
       group: ${{ github.workflow }}-${{ github.ref }}
+
+    env:
+      HUGO_ENV: production
+
     steps:
       - name: Checkout
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
         with:
-          submodules: true
           fetch-depth: 0
 
-      - name: Setup Hugo
+      - name: Setup Hugo (extended 0.148.2)
         uses: peaceiris/actions-hugo@v2
         with:
-          hugo-version: "latest"
+          hugo-version: '0.148.2'
           extended: true
 
+      # Cache Hugo/Go module downloads for Hugo Modules
+      - name: Cache Hugo/Go modules
+        uses: actions/cache@v4
+        with:
+          path: |
+            ~/.cache/hugo
+            ~/go/pkg/mod
+            ./resources/_gen
+          key: ${{ runner.os }}-hugo-${{ hashFiles('**/go.sum') }}
+          restore-keys: |
+            ${{ runner.os }}-hugo-
+
+      # Make sure modules are tidy and fetched (for Hugo Modules)
+      - name: Hugo mod tidy
+        run: hugo mod tidy
+
+      - name: Hugo mod get
+        run: hugo mod get ./...
+
       - name: Build
-        run: hugo --minify
+        run: hugo --gc --minify --cleanDestinationDir
 
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v3
@@ -33,3 +58,4 @@ jobs:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_branch: gh-pages
           publish_dir: ./public
+          cname: vitaliykovalev.com
