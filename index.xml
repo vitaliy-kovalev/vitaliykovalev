@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>vitaliykovalev.com</title><link>http://localhost:1313/</link><description>Recent content on vitaliykovalev.com</description><generator>Hugo</generator><language>en</language><copyright>© Vitaliy Kovalev, 2025</copyright><lastBuildDate>Thu, 12 Jun 2025 00:00:00 +0000</lastBuildDate><atom:link href="http://localhost:1313/index.xml" rel="self" type="application/rss+xml"/><item><title>How to apply RAG and LLM to search BI reports faster</title><link>http://localhost:1313/posts/how-to-apply-rag-and-llm-to-search-bi-reports-faster/</link><pubDate>Thu, 12 Jun 2025 00:00:00 +0000</pubDate><guid>http://localhost:1313/posts/how-to-apply-rag-and-llm-to-search-bi-reports-faster/</guid><description>A tool that takes report searching for business users to another level</description><content>&lt;div class="flex rounded-md bg-primary-100 px-4 py-3 dark:bg-primary-900">
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>vitaliykovalev.com</title><link>https://vitaliykovalev.com/</link><description>Recent content on vitaliykovalev.com</description><generator>Hugo</generator><language>en</language><copyright>© Vitaliy Kovalev, 2025</copyright><lastBuildDate>Thu, 12 Jun 2025 00:00:00 +0000</lastBuildDate><atom:link href="https://vitaliykovalev.com/index.xml" rel="self" type="application/rss+xml"/><item><title>How to apply RAG and LLM to search BI reports faster</title><link>https://vitaliykovalev.com/posts/how-to-apply-rag-and-llm-to-search-bi-reports-faster/</link><pubDate>Thu, 12 Jun 2025 00:00:00 +0000</pubDate><guid>https://vitaliykovalev.com/posts/how-to-apply-rag-and-llm-to-search-bi-reports-faster/</guid><description>A tool that takes report searching for business users to another level</description><content>&lt;div class="flex rounded-md bg-primary-100 px-4 py-3 dark:bg-primary-900">
  &lt;span class="pe-3 text-primary-400">
  &lt;span class="icon relative inline-block px-1 align-text-bottom">&lt;svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">&lt;path fill="currentColor" d="M506.3 417l-213.3-364c-16.33-28-57.54-28-73.98 0l-213.2 364C-10.59 444.9 9.849 480 42.74 480h426.6C502.1 480 522.6 445 506.3 417zM232 168c0-13.25 10.75-24 24-24S280 154.8 280 168v128c0 13.25-10.75 24-23.1 24S232 309.3 232 296V168zM256 416c-17.36 0-31.44-14.08-31.44-31.44c0-17.36 14.07-31.44 31.44-31.44s31.44 14.08 31.44 31.44C287.4 401.9 273.4 416 256 416z"/>&lt;/svg>
 &lt;/span>
@@ -57,13 +57,13 @@
  
  &lt;source
  
- srcset="http://localhost:1313/posts/how-to-apply-rag-and-llm-to-search-bi-reports-faster/basic-rag_hu_50c0c24299cef224.webp 330w,http://localhost:1313/posts/how-to-apply-rag-and-llm-to-search-bi-reports-faster/basic-rag_hu_c16c5db33021678c.webp 660w
+ srcset="https://vitaliykovalev.com/posts/how-to-apply-rag-and-llm-to-search-bi-reports-faster/basic-rag_hu_50c0c24299cef224.webp 330w,https://vitaliykovalev.com/posts/how-to-apply-rag-and-llm-to-search-bi-reports-faster/basic-rag_hu_c16c5db33021678c.webp 660w
  
- ,http://localhost:1313/posts/how-to-apply-rag-and-llm-to-search-bi-reports-faster/basic-rag_hu_d356f50df754c762.webp 1024w
+ ,https://vitaliykovalev.com/posts/how-to-apply-rag-and-llm-to-search-bi-reports-faster/basic-rag_hu_d356f50df754c762.webp 1024w
  
  
  
- ,http://localhost:1313/posts/how-to-apply-rag-and-llm-to-search-bi-reports-faster/basic-rag_hu_1fd39e2f14c8f66c.webp 1090w
+ ,https://vitaliykovalev.com/posts/how-to-apply-rag-and-llm-to-search-bi-reports-faster/basic-rag_hu_1fd39e2f14c8f66c.webp 1090w
  
  "
  
@@ -78,12 +78,12 @@
  alt="basic-rag.png"
  loading="lazy" decoding="async"
  
- src="http://localhost:1313/posts/how-to-apply-rag-and-llm-to-search-bi-reports-faster/basic-rag_hu_7cc6b831a9f7abd9.png" srcset="http://localhost:1313/posts/how-to-apply-rag-and-llm-to-search-bi-reports-faster/basic-rag_hu_bd88a78a3611199a.png 330w,http://localhost:1313/posts/how-to-apply-rag-and-llm-to-search-bi-reports-faster/basic-rag_hu_7cc6b831a9f7abd9.png 660w
+ src="https://vitaliykovalev.com/posts/how-to-apply-rag-and-llm-to-search-bi-reports-faster/basic-rag_hu_7cc6b831a9f7abd9.png" srcset="https://vitaliykovalev.com/posts/how-to-apply-rag-and-llm-to-search-bi-reports-faster/basic-rag_hu_bd88a78a3611199a.png 330w,https://vitaliykovalev.com/posts/how-to-apply-rag-and-llm-to-search-bi-reports-faster/basic-rag_hu_7cc6b831a9f7abd9.png 660w
  
- ,http://localhost:1313/posts/how-to-apply-rag-and-llm-to-search-bi-reports-faster/basic-rag_hu_485bb1050686e48f.png 1024w
+ ,https://vitaliykovalev.com/posts/how-to-apply-rag-and-llm-to-search-bi-reports-faster/basic-rag_hu_485bb1050686e48f.png 1024w
  
  
- ,http://localhost:1313/posts/how-to-apply-rag-and-llm-to-search-bi-reports-faster/basic-rag.png 1090w
+ ,https://vitaliykovalev.com/posts/how-to-apply-rag-and-llm-to-search-bi-reports-faster/basic-rag.png 1090w
  "
  sizes="100vw"
  
@@ -131,13 +131,13 @@
  
  &lt;source
  
- srcset="http://localhost:1313/posts/how-to-apply-rag-and-llm-to-search-bi-reports-faster/doc-template_hu_8477e5b7c2689504.webp 330w,http://localhost:1313/posts/how-to-apply-rag-and-llm-to-search-bi-reports-faster/doc-template_hu_8f90a430cf941efb.webp 660w
+ srcset="https://vitaliykovalev.com/posts/how-to-apply-rag-and-llm-to-search-bi-reports-faster/doc-template_hu_8477e5b7c2689504.webp 330w,https://vitaliykovalev.com/posts/how-to-apply-rag-and-llm-to-search-bi-reports-faster/doc-template_hu_8f90a430cf941efb.webp 660w
  
- ,http://localhost:1313/posts/how-to-apply-rag-and-llm-to-search-bi-reports-faster/doc-template_hu_9e53ace0d9f01a6a.webp 1024w
+ ,https://vitaliykovalev.com/posts/how-to-apply-rag-and-llm-to-search-bi-reports-faster/doc-template_hu_9e53ace0d9f01a6a.webp 1024w
  
  
  
- ,http://localhost:1313/posts/how-to-apply-rag-and-llm-to-search-bi-reports-faster/doc-template_hu_dd2ca2c474636f85.webp 1090w
+ ,https://vitaliykovalev.com/posts/how-to-apply-rag-and-llm-to-search-bi-reports-faster/doc-template_hu_dd2ca2c474636f85.webp 1090w
  
  "
  
@@ -152,12 +152,12 @@
  alt="doc-template.png"
  loading="lazy" decoding="async"
  
- src="http://localhost:1313/posts/how-to-apply-rag-and-llm-to-search-bi-reports-faster/doc-template_hu_226f4cba03cc3a35.png" srcset="http://localhost:1313/posts/how-to-apply-rag-and-llm-to-search-bi-reports-faster/doc-template_hu_3edb05d2986d7735.png 330w,http://localhost:1313/posts/how-to-apply-rag-and-llm-to-search-bi-reports-faster/doc-template_hu_226f4cba03cc3a35.png 660w
+ src="https://vitaliykovalev.com/posts/how-to-apply-rag-and-llm-to-search-bi-reports-faster/doc-template_hu_226f4cba03cc3a35.png" srcset="https://vitaliykovalev.com/posts/how-to-apply-rag-and-llm-to-search-bi-reports-faster/doc-template_hu_3edb05d2986d7735.png 330w,https://vitaliykovalev.com/posts/how-to-apply-rag-and-llm-to-search-bi-reports-faster/doc-template_hu_226f4cba03cc3a35.png 660w
  
- ,http://localhost:1313/posts/how-to-apply-rag-and-llm-to-search-bi-reports-faster/doc-template_hu_5f7cd431de8c834d.png 1024w
+ ,https://vitaliykovalev.com/posts/how-to-apply-rag-and-llm-to-search-bi-reports-faster/doc-template_hu_5f7cd431de8c834d.png 1024w
  
  
- ,http://localhost:1313/posts/how-to-apply-rag-and-llm-to-search-bi-reports-faster/doc-template.png 1090w
+ ,https://vitaliykovalev.com/posts/how-to-apply-rag-and-llm-to-search-bi-reports-faster/doc-template.png 1090w
  "
  sizes="100vw"
  
@@ -227,15 +227,15 @@
  
  &lt;source
  
- srcset="http://localhost:1313/posts/how-to-apply-rag-and-llm-to-search-bi-reports-faster/bot-answer_hu_b9eb1fc47569a1e3.webp 330w,http://localhost:1313/posts/how-to-apply-rag-and-llm-to-search-bi-reports-faster/bot-answer_hu_c54963c923fdd894.webp 660w
+ srcset="https://vitaliykovalev.com/posts/how-to-apply-rag-and-llm-to-search-bi-reports-faster/bot-answer_hu_b9eb1fc47569a1e3.webp 330w,https://vitaliykovalev.com/posts/how-to-apply-rag-and-llm-to-search-bi-reports-faster/bot-answer_hu_c54963c923fdd894.webp 660w
  
  
- ,http://localhost:1313/posts/how-to-apply-rag-and-llm-to-search-bi-reports-faster/bot-answer_hu_e104db772e629b02.webp 990w
+ ,https://vitaliykovalev.com/posts/how-to-apply-rag-and-llm-to-search-bi-reports-faster/bot-answer_hu_e104db772e629b02.webp 990w
  
  
  
  
- ,http://localhost:1313/posts/how-to-apply-rag-and-llm-to-search-bi-reports-faster/bot-answer_hu_e104db772e629b02.webp 990w
+ ,https://vitaliykovalev.com/posts/how-to-apply-rag-and-llm-to-search-bi-reports-faster/bot-answer_hu_e104db772e629b02.webp 990w
  
  "
  
@@ -250,12 +250,12 @@
  alt="bot-answer.png"
  loading="lazy" decoding="async"
  
- src="http://localhost:1313/posts/how-to-apply-rag-and-llm-to-search-bi-reports-faster/bot-answer_hu_ff79dffb4cc7de24.png" srcset="http://localhost:1313/posts/how-to-apply-rag-and-llm-to-search-bi-reports-faster/bot-answer_hu_428726215e182157.png 330w,http://localhost:1313/posts/how-to-apply-rag-and-llm-to-search-bi-reports-faster/bot-answer_hu_ff79dffb4cc7de24.png 660w
+ src="https://vitaliykovalev.com/posts/how-to-apply-rag-and-llm-to-search-bi-reports-faster/bot-answer_hu_ff79dffb4cc7de24.png" srcset="https://vitaliykovalev.com/posts/how-to-apply-rag-and-llm-to-search-bi-reports-faster/bot-answer_hu_428726215e182157.png 330w,https://vitaliykovalev.com/posts/how-to-apply-rag-and-llm-to-search-bi-reports-faster/bot-answer_hu_ff79dffb4cc7de24.png 660w
  
- ,http://localhost:1313/posts/how-to-apply-rag-and-llm-to-search-bi-reports-faster/bot-answer.png 990w
+ ,https://vitaliykovalev.com/posts/how-to-apply-rag-and-llm-to-search-bi-reports-faster/bot-answer.png 990w
  
  
- ,http://localhost:1313/posts/how-to-apply-rag-and-llm-to-search-bi-reports-faster/bot-answer.png 990w
+ ,https://vitaliykovalev.com/posts/how-to-apply-rag-and-llm-to-search-bi-reports-faster/bot-answer.png 990w
  "
  sizes="100vw"
  
@@ -560,12 +560,12 @@ To build an MVP for search functionality, the first step is to create a &lt;stro
  
  &lt;source
  
- srcset="http://localhost:1313/posts/how-to-apply-rag-and-llm-to-search-bi-reports-faster/chunking_hu_6cbc0cd788726d89.webp 330w,http://localhost:1313/posts/how-to-apply-rag-and-llm-to-search-bi-reports-faster/chunking_hu_858ef7b3f2580834.webp 660w
+ srcset="https://vitaliykovalev.com/posts/how-to-apply-rag-and-llm-to-search-bi-reports-faster/chunking_hu_6cbc0cd788726d89.webp 330w,https://vitaliykovalev.com/posts/how-to-apply-rag-and-llm-to-search-bi-reports-faster/chunking_hu_858ef7b3f2580834.webp 660w
  
- ,http://localhost:1313/posts/how-to-apply-rag-and-llm-to-search-bi-reports-faster/chunking_hu_de081fe676f126c6.webp 1024w
+ ,https://vitaliykovalev.com/posts/how-to-apply-rag-and-llm-to-search-bi-reports-faster/chunking_hu_de081fe676f126c6.webp 1024w
  
  
- ,http://localhost:1313/posts/how-to-apply-rag-and-llm-to-search-bi-reports-faster/chunking_hu_d42f7cdb28567892.webp 1320w
+ ,https://vitaliykovalev.com/posts/how-to-apply-rag-and-llm-to-search-bi-reports-faster/chunking_hu_d42f7cdb28567892.webp 1320w
  "
  
  sizes="100vw"
@@ -579,12 +579,12 @@ To build an MVP for search functionality, the first step is to create a &lt;stro
  alt="chunking.png"
  loading="lazy" decoding="async"
  
- src="http://localhost:1313/posts/how-to-apply-rag-and-llm-to-search-bi-reports-faster/chunking_hu_ae663c0a01a667a1.png" srcset="http://localhost:1313/posts/how-to-apply-rag-and-llm-to-search-bi-reports-faster/chunking_hu_31db45387fc4d88.png 330w,http://localhost:1313/posts/how-to-apply-rag-and-llm-to-search-bi-reports-faster/chunking_hu_ae663c0a01a667a1.png 660w
+ src="https://vitaliykovalev.com/posts/how-to-apply-rag-and-llm-to-search-bi-reports-faster/chunking_hu_ae663c0a01a667a1.png" srcset="https://vitaliykovalev.com/posts/how-to-apply-rag-and-llm-to-search-bi-reports-faster/chunking_hu_31db45387fc4d88.png 330w,https://vitaliykovalev.com/posts/how-to-apply-rag-and-llm-to-search-bi-reports-faster/chunking_hu_ae663c0a01a667a1.png 660w
  
- ,http://localhost:1313/posts/how-to-apply-rag-and-llm-to-search-bi-reports-faster/chunking_hu_edda330ee9765de8.png 1024w
+ ,https://vitaliykovalev.com/posts/how-to-apply-rag-and-llm-to-search-bi-reports-faster/chunking_hu_edda330ee9765de8.png 1024w
  
  
- ,http://localhost:1313/posts/how-to-apply-rag-and-llm-to-search-bi-reports-faster/chunking_hu_7139a3caa30c6c2b.png 1320w
+ ,https://vitaliykovalev.com/posts/how-to-apply-rag-and-llm-to-search-bi-reports-faster/chunking_hu_7139a3caa30c6c2b.png 1320w
  "
  sizes="100vw"
  
@@ -820,12 +820,12 @@ To build an MVP for search functionality, the first step is to create a &lt;stro
  
  &lt;source
  
- srcset="http://localhost:1313/posts/how-to-apply-rag-and-llm-to-search-bi-reports-faster/cosine-similarity_hu_fba1f43d1841094b.webp 330w,http://localhost:1313/posts/how-to-apply-rag-and-llm-to-search-bi-reports-faster/cosine-similarity_hu_beae5c0b842815f3.webp 660w
+ srcset="https://vitaliykovalev.com/posts/how-to-apply-rag-and-llm-to-search-bi-reports-faster/cosine-similarity_hu_fba1f43d1841094b.webp 330w,https://vitaliykovalev.com/posts/how-to-apply-rag-and-llm-to-search-bi-reports-faster/cosine-similarity_hu_beae5c0b842815f3.webp 660w
  
- ,http://localhost:1313/posts/how-to-apply-rag-and-llm-to-search-bi-reports-faster/cosine-similarity_hu_51e4a674a8d079d.webp 1024w
+ ,https://vitaliykovalev.com/posts/how-to-apply-rag-and-llm-to-search-bi-reports-faster/cosine-similarity_hu_51e4a674a8d079d.webp 1024w
  
  
- ,http://localhost:1313/posts/how-to-apply-rag-and-llm-to-search-bi-reports-faster/cosine-similarity_hu_f677532b26ba9858.webp 1320w
+ ,https://vitaliykovalev.com/posts/how-to-apply-rag-and-llm-to-search-bi-reports-faster/cosine-similarity_hu_f677532b26ba9858.webp 1320w
  "
  
  sizes="100vw"
@@ -839,12 +839,12 @@ To build an MVP for search functionality, the first step is to create a &lt;stro
  alt="cosine-similarity.png"
  loading="lazy" decoding="async"
  
- src="http://localhost:1313/posts/how-to-apply-rag-and-llm-to-search-bi-reports-faster/cosine-similarity_hu_cd0df8c84364cfe7.png" srcset="http://localhost:1313/posts/how-to-apply-rag-and-llm-to-search-bi-reports-faster/cosine-similarity_hu_8895287639c4654c.png 330w,http://localhost:1313/posts/how-to-apply-rag-and-llm-to-search-bi-reports-faster/cosine-similarity_hu_cd0df8c84364cfe7.png 660w
+ src="https://vitaliykovalev.com/posts/how-to-apply-rag-and-llm-to-search-bi-reports-faster/cosine-similarity_hu_cd0df8c84364cfe7.png" srcset="https://vitaliykovalev.com/posts/how-to-apply-rag-and-llm-to-search-bi-reports-faster/cosine-similarity_hu_8895287639c4654c.png 330w,https://vitaliykovalev.com/posts/how-to-apply-rag-and-llm-to-search-bi-reports-faster/cosine-similarity_hu_cd0df8c84364cfe7.png 660w
  
- ,http://localhost:1313/posts/how-to-apply-rag-and-llm-to-search-bi-reports-faster/cosine-similarity_hu_68710da06cb3f8e2.png 1024w
+ ,https://vitaliykovalev.com/posts/how-to-apply-rag-and-llm-to-search-bi-reports-faster/cosine-similarity_hu_68710da06cb3f8e2.png 1024w
  
  
- ,http://localhost:1313/posts/how-to-apply-rag-and-llm-to-search-bi-reports-faster/cosine-similarity_hu_9df6b07eb218297.png 1320w
+ ,https://vitaliykovalev.com/posts/how-to-apply-rag-and-llm-to-search-bi-reports-faster/cosine-similarity_hu_9df6b07eb218297.png 1320w
  "
  sizes="100vw"
  
@@ -920,12 +920,12 @@ To build an MVP for search functionality, the first step is to create a &lt;stro
  
  &lt;source
  
- srcset="http://localhost:1313/posts/how-to-apply-rag-and-llm-to-search-bi-reports-faster/main-instructions_hu_35e58d71e7e55761.webp 330w,http://localhost:1313/posts/how-to-apply-rag-and-llm-to-search-bi-reports-faster/main-instructions_hu_189c0fed7e2f017d.webp 660w
+ srcset="https://vitaliykovalev.com/posts/how-to-apply-rag-and-llm-to-search-bi-reports-faster/main-instructions_hu_35e58d71e7e55761.webp 330w,https://vitaliykovalev.com/posts/how-to-apply-rag-and-llm-to-search-bi-reports-faster/main-instructions_hu_189c0fed7e2f017d.webp 660w
  
- ,http://localhost:1313/posts/how-to-apply-rag-and-llm-to-search-bi-reports-faster/main-instructions_hu_c3eddbf6da81a500.webp 1024w
+ ,https://vitaliykovalev.com/posts/how-to-apply-rag-and-llm-to-search-bi-reports-faster/main-instructions_hu_c3eddbf6da81a500.webp 1024w
  
  
- ,http://localhost:1313/posts/how-to-apply-rag-and-llm-to-search-bi-reports-faster/main-instructions_hu_39fc4a5d7bff92e6.webp 1320w
+ ,https://vitaliykovalev.com/posts/how-to-apply-rag-and-llm-to-search-bi-reports-faster/main-instructions_hu_39fc4a5d7bff92e6.webp 1320w
  "
  
  sizes="100vw"
@@ -939,12 +939,12 @@ To build an MVP for search functionality, the first step is to create a &lt;stro
  alt="main-instructions.png"
  loading="lazy" decoding="async"
  
- src="http://localhost:1313/posts/how-to-apply-rag-and-llm-to-search-bi-reports-faster/main-instructions_hu_5900821ce2943e03.png" srcset="http://localhost:1313/posts/how-to-apply-rag-and-llm-to-search-bi-reports-faster/main-instructions_hu_dd85d7754f5f6b22.png 330w,http://localhost:1313/posts/how-to-apply-rag-and-llm-to-search-bi-reports-faster/main-instructions_hu_5900821ce2943e03.png 660w
+ src="https://vitaliykovalev.com/posts/how-to-apply-rag-and-llm-to-search-bi-reports-faster/main-instructions_hu_5900821ce2943e03.png" srcset="https://vitaliykovalev.com/posts/how-to-apply-rag-and-llm-to-search-bi-reports-faster/main-instructions_hu_dd85d7754f5f6b22.png 330w,https://vitaliykovalev.com/posts/how-to-apply-rag-and-llm-to-search-bi-reports-faster/main-instructions_hu_5900821ce2943e03.png 660w
  
- ,http://localhost:1313/posts/how-to-apply-rag-and-llm-to-search-bi-reports-faster/main-instructions_hu_6c4d6e1e2908c4aa.png 1024w
+ ,https://vitaliykovalev.com/posts/how-to-apply-rag-and-llm-to-search-bi-reports-faster/main-instructions_hu_6c4d6e1e2908c4aa.png 1024w
  
  
- ,http://localhost:1313/posts/how-to-apply-rag-and-llm-to-search-bi-reports-faster/main-instructions_hu_6f218fc3dfe62354.png 1320w
+ ,https://vitaliykovalev.com/posts/how-to-apply-rag-and-llm-to-search-bi-reports-faster/main-instructions_hu_6f218fc3dfe62354.png 1320w
  "
  sizes="100vw"
  
@@ -983,12 +983,12 @@ To build an MVP for search functionality, the first step is to create a &lt;stro
  
  &lt;source
  
- srcset="http://localhost:1313/posts/how-to-apply-rag-and-llm-to-search-bi-reports-faster/answer-template_hu_85e6dba64ab5d0a1.webp 330w,http://localhost:1313/posts/how-to-apply-rag-and-llm-to-search-bi-reports-faster/answer-template_hu_45c76c9cf80880fe.webp 660w
+ srcset="https://vitaliykovalev.com/posts/how-to-apply-rag-and-llm-to-search-bi-reports-faster/answer-template_hu_85e6dba64ab5d0a1.webp 330w,https://vitaliykovalev.com/posts/how-to-apply-rag-and-llm-to-search-bi-reports-faster/answer-template_hu_45c76c9cf80880fe.webp 660w
  
- ,http://localhost:1313/posts/how-to-apply-rag-and-llm-to-search-bi-reports-faster/answer-template_hu_8e965a607a0ea0d7.webp 1024w
+ ,https://vitaliykovalev.com/posts/how-to-apply-rag-and-llm-to-search-bi-reports-faster/answer-template_hu_8e965a607a0ea0d7.webp 1024w
  
  
- ,http://localhost:1313/posts/how-to-apply-rag-and-llm-to-search-bi-reports-faster/answer-template_hu_2054e02fb38de839.webp 1320w
+ ,https://vitaliykovalev.com/posts/how-to-apply-rag-and-llm-to-search-bi-reports-faster/answer-template_hu_2054e02fb38de839.webp 1320w
  "
  
  sizes="100vw"
@@ -1002,12 +1002,12 @@ To build an MVP for search functionality, the first step is to create a &lt;stro
  alt="answer-template.png"
  loading="lazy" decoding="async"
  
- src="http://localhost:1313/posts/how-to-apply-rag-and-llm-to-search-bi-reports-faster/answer-template_hu_9db1396c9beac6c.png" srcset="http://localhost:1313/posts/how-to-apply-rag-and-llm-to-search-bi-reports-faster/answer-template_hu_9019a725e6332929.png 330w,http://localhost:1313/posts/how-to-apply-rag-and-llm-to-search-bi-reports-faster/answer-template_hu_9db1396c9beac6c.png 660w
+ src="https://vitaliykovalev.com/posts/how-to-apply-rag-and-llm-to-search-bi-reports-faster/answer-template_hu_9db1396c9beac6c.png" srcset="https://vitaliykovalev.com/posts/how-to-apply-rag-and-llm-to-search-bi-reports-faster/answer-template_hu_9019a725e6332929.png 330w,https://vitaliykovalev.com/posts/how-to-apply-rag-and-llm-to-search-bi-reports-faster/answer-template_hu_9db1396c9beac6c.png 660w
  
- ,http://localhost:1313/posts/how-to-apply-rag-and-llm-to-search-bi-reports-faster/answer-template_hu_90f3dabcd5b28385.png 1024w
+ ,https://vitaliykovalev.com/posts/how-to-apply-rag-and-llm-to-search-bi-reports-faster/answer-template_hu_90f3dabcd5b28385.png 1024w
  
  
- ,http://localhost:1313/posts/how-to-apply-rag-and-llm-to-search-bi-reports-faster/answer-template_hu_6c0dfbcfa306486e.png 1320w
+ ,https://vitaliykovalev.com/posts/how-to-apply-rag-and-llm-to-search-bi-reports-faster/answer-template_hu_6c0dfbcfa306486e.png 1320w
  "
  sizes="100vw"
  
@@ -1046,12 +1046,12 @@ To build an MVP for search functionality, the first step is to create a &lt;stro
  
  &lt;source
  
- srcset="http://localhost:1313/posts/how-to-apply-rag-and-llm-to-search-bi-reports-faster/business-context_hu_6c176b6f78874cda.webp 330w,http://localhost:1313/posts/how-to-apply-rag-and-llm-to-search-bi-reports-faster/business-context_hu_89fac2bf3c53bc76.webp 660w
+ srcset="https://vitaliykovalev.com/posts/how-to-apply-rag-and-llm-to-search-bi-reports-faster/business-context_hu_6c176b6f78874cda.webp 330w,https://vitaliykovalev.com/posts/how-to-apply-rag-and-llm-to-search-bi-reports-faster/business-context_hu_89fac2bf3c53bc76.webp 660w
  
- ,http://localhost:1313/posts/how-to-apply-rag-and-llm-to-search-bi-reports-faster/business-context_hu_beaf86373873ba2a.webp 1024w
+ ,https://vitaliykovalev.com/posts/how-to-apply-rag-and-llm-to-search-bi-reports-faster/business-context_hu_beaf86373873ba2a.webp 1024w
  
  
- ,http://localhost:1313/posts/how-to-apply-rag-and-llm-to-search-bi-reports-faster/business-context_hu_fbecc4e27f161c06.webp 1320w
+ ,https://vitaliykovalev.com/posts/how-to-apply-rag-and-llm-to-search-bi-reports-faster/business-context_hu_fbecc4e27f161c06.webp 1320w
  "
  
  sizes="100vw"
@@ -1065,12 +1065,12 @@ To build an MVP for search functionality, the first step is to create a &lt;stro
  alt="business-context.png"
  loading="lazy" decoding="async"
  
- src="http://localhost:1313/posts/how-to-apply-rag-and-llm-to-search-bi-reports-faster/business-context_hu_4414b16827adfbe9.png" srcset="http://localhost:1313/posts/how-to-apply-rag-and-llm-to-search-bi-reports-faster/business-context_hu_b8e184f85e2fe482.png 330w,http://localhost:1313/posts/how-to-apply-rag-and-llm-to-search-bi-reports-faster/business-context_hu_4414b16827adfbe9.png 660w
+ src="https://vitaliykovalev.com/posts/how-to-apply-rag-and-llm-to-search-bi-reports-faster/business-context_hu_4414b16827adfbe9.png" srcset="https://vitaliykovalev.com/posts/how-to-apply-rag-and-llm-to-search-bi-reports-faster/business-context_hu_b8e184f85e2fe482.png 330w,https://vitaliykovalev.com/posts/how-to-apply-rag-and-llm-to-search-bi-reports-faster/business-context_hu_4414b16827adfbe9.png 660w
  
- ,http://localhost:1313/posts/how-to-apply-rag-and-llm-to-search-bi-reports-faster/business-context_hu_a260058c2fdf6075.png 1024w
+ ,https://vitaliykovalev.com/posts/how-to-apply-rag-and-llm-to-search-bi-reports-faster/business-context_hu_a260058c2fdf6075.png 1024w
  
  
- ,http://localhost:1313/posts/how-to-apply-rag-and-llm-to-search-bi-reports-faster/business-context_hu_c729a5eb5cf1f335.png 1320w
+ ,https://vitaliykovalev.com/posts/how-to-apply-rag-and-llm-to-search-bi-reports-faster/business-context_hu_c729a5eb5cf1f335.png 1320w
  "
  sizes="100vw"
  
@@ -1114,14 +1114,14 @@ To build an MVP for search functionality, the first step is to create a &lt;stro
  &lt;/span>
 
  &lt;a href="https://github.com/vitaliy-kovalev/dashboards-rag-example" target="_blank" rel="noreferrer">GitHub repository&lt;/a> with all code and examples to start with.&lt;/p>
-&lt;p>&lt;strong>Happy coding! 🚀&lt;/strong>&lt;/p></content></item><item><title>Tableau Makeover Monday 2025: Week 6</title><link>http://localhost:1313/posts/makeovermonday-2025-6/</link><pubDate>Mon, 05 May 2025 00:00:00 +0000</pubDate><guid>http://localhost:1313/posts/makeovermonday-2025-6/</guid><description>GB National Grid Energy Sources</description><content>&lt;p>I’ve been exploring the weekly energy mix in Great Britain’s grid from Jan 2024 to Jan 2025, focusing on how each source’s share shifts over time. You can see some notable fluctuations in renewables, fossil fuels, other sources, and transfers throughout the year — possibly influenced by seasonal factors and changing demand.&lt;/p>
+&lt;p>&lt;strong>Happy coding! 🚀&lt;/strong>&lt;/p></content></item><item><title>Tableau Makeover Monday 2025: Week 6</title><link>https://vitaliykovalev.com/posts/makeovermonday-2025-6/</link><pubDate>Mon, 05 May 2025 00:00:00 +0000</pubDate><guid>https://vitaliykovalev.com/posts/makeovermonday-2025-6/</guid><description>GB National Grid Energy Sources</description><content>&lt;p>I’ve been exploring the weekly energy mix in Great Britain’s grid from Jan 2024 to Jan 2025, focusing on how each source’s share shifts over time. You can see some notable fluctuations in renewables, fossil fuels, other sources, and transfers throughout the year — possibly influenced by seasonal factors and changing demand.&lt;/p>
 &lt;div class='tableauPlaceholder' id='viz1754830524756' style='position: relative'>&lt;noscript>&lt;a href='#'>&lt;img alt='GB National Grid Energy Sources ' src='https:&amp;#47;&amp;#47;public.tableau.com&amp;#47;static&amp;#47;images&amp;#47;GB&amp;#47;GBNationalGridEnergySources&amp;#47;GBNationalGridEnergySources&amp;#47;1_rss.png' style='border: none' />&lt;/a>&lt;/noscript>&lt;object class='tableauViz' style='display:none;'>&lt;param name='host_url' value='https%3A%2F%2Fpublic.tableau.com%2F' /> &lt;param name='embed_code_version' value='3' /> &lt;param name='site_root' value='' />&lt;param name='name' value='GBNationalGridEnergySources&amp;#47;GBNationalGridEnergySources' />&lt;param name='tabs' value='no' />&lt;param name='toolbar' value='yes' />&lt;param name='static_image' value='https:&amp;#47;&amp;#47;public.tableau.com&amp;#47;static&amp;#47;images&amp;#47;GB&amp;#47;GBNationalGridEnergySources&amp;#47;GBNationalGridEnergySources&amp;#47;1.png' /> &lt;param name='animate_transition' value='yes' />&lt;param name='display_static_image' value='yes' />&lt;param name='display_spinner' value='yes' />&lt;param name='display_overlay' value='yes' />&lt;param name='display_count' value='yes' />&lt;param name='language' value='en-GB' />&lt;/object>&lt;/div> &lt;script type='text/javascript'> var divElement = document.getElementById('viz1754830524756'); var vizElement = divElement.getElementsByTagName('object')[0]; vizElement.style.width='600px';vizElement.style.height='627px'; var scriptElement = document.createElement('script'); scriptElement.src = 'https://public.tableau.com/javascripts/api/viz_v1.js'; vizElement.parentNode.insertBefore(scriptElement, vizElement); &lt;/script>
-&lt;p>Explore more of my Tableau Projects &lt;a href="https://public.tableau.com/app/profile/vitaliy.kovalev" target="_blank" rel="noreferrer">here&lt;/a>&lt;/p></content></item><item><title>Tableau Makeover Monday 2025: Week 5</title><link>http://localhost:1313/posts/makeovermonday-2025-5/</link><pubDate>Fri, 31 Jan 2025 00:00:00 +0000</pubDate><guid>http://localhost:1313/posts/makeovermonday-2025-5/</guid><description>World Happiness Report 2024</description><content>&lt;p>There is a lot of data about Happiness. Here is my take on it:&lt;/p>
+&lt;p>Explore more of my Tableau Projects &lt;a href="https://public.tableau.com/app/profile/vitaliy.kovalev" target="_blank" rel="noreferrer">here&lt;/a>&lt;/p></content></item><item><title>Tableau Makeover Monday 2025: Week 5</title><link>https://vitaliykovalev.com/posts/makeovermonday-2025-5/</link><pubDate>Fri, 31 Jan 2025 00:00:00 +0000</pubDate><guid>https://vitaliykovalev.com/posts/makeovermonday-2025-5/</guid><description>World Happiness Report 2024</description><content>&lt;p>There is a lot of data about Happiness. Here is my take on it:&lt;/p>
 &lt;div class='tableauPlaceholder' id='viz1754830180990' style='position: relative'>&lt;noscript>&lt;a href='#'>&lt;img alt='World Happiness Report 2024 ' src='https:&amp;#47;&amp;#47;public.tableau.com&amp;#47;static&amp;#47;images&amp;#47;Wo&amp;#47;WorldHapinessReport_17382828143230&amp;#47;WorldHappinessReport2024&amp;#47;1_rss.png' style='border: none' />&lt;/a>&lt;/noscript>&lt;object class='tableauViz' style='display:none;'>&lt;param name='host_url' value='https%3A%2F%2Fpublic.tableau.com%2F' /> &lt;param name='embed_code_version' value='3' /> &lt;param name='site_root' value='' />&lt;param name='name' value='WorldHapinessReport_17382828143230&amp;#47;WorldHappinessReport2024' />&lt;param name='tabs' value='no' />&lt;param name='toolbar' value='yes' />&lt;param name='static_image' value='https:&amp;#47;&amp;#47;public.tableau.com&amp;#47;static&amp;#47;images&amp;#47;Wo&amp;#47;WorldHapinessReport_17382828143230&amp;#47;WorldHappinessReport2024&amp;#47;1.png' /> &lt;param name='animate_transition' value='yes' />&lt;param name='display_static_image' value='yes' />&lt;param name='display_spinner' value='yes' />&lt;param name='display_overlay' value='yes' />&lt;param name='display_count' value='yes' />&lt;param name='language' value='en-GB' />&lt;/object>&lt;/div> &lt;script type='text/javascript'> var divElement = document.getElementById('viz1754830180990'); var vizElement = divElement.getElementsByTagName('object')[0]; vizElement.style.width='1350px';vizElement.style.height='887px'; var scriptElement = document.createElement('script'); scriptElement.src = 'https://public.tableau.com/javascripts/api/viz_v1.js'; vizElement.parentNode.insertBefore(scriptElement, vizElement); &lt;/script>
-&lt;p>Explore more of my Tableau Projects &lt;a href="https://public.tableau.com/app/profile/vitaliy.kovalev" target="_blank" rel="noreferrer">here&lt;/a>&lt;/p></content></item><item><title>Tableau Makeover Monday 2025: Week 4</title><link>http://localhost:1313/posts/makeovermonday-2025-4/</link><pubDate>Mon, 20 Jan 2025 00:00:00 +0000</pubDate><guid>http://localhost:1313/posts/makeovermonday-2025-4/</guid><description>Visualisation exploring current vs. preferred work arrangements</description><content>&lt;p>Finally jumping into #MakeoverMonday exploring current vs. preferred work arrangements:&lt;/p>
+&lt;p>Explore more of my Tableau Projects &lt;a href="https://public.tableau.com/app/profile/vitaliy.kovalev" target="_blank" rel="noreferrer">here&lt;/a>&lt;/p></content></item><item><title>Tableau Makeover Monday 2025: Week 4</title><link>https://vitaliykovalev.com/posts/makeovermonday-2025-4/</link><pubDate>Mon, 20 Jan 2025 00:00:00 +0000</pubDate><guid>https://vitaliykovalev.com/posts/makeovermonday-2025-4/</guid><description>Visualisation exploring current vs. preferred work arrangements</description><content>&lt;p>Finally jumping into #MakeoverMonday exploring current vs. preferred work arrangements:&lt;/p>
 &lt;div class='tableauPlaceholder' id='viz1754829111561' style='position: relative'>&lt;noscript>&lt;a href='#'>&lt;img alt='Makeover Monday 2025 Week 3 ' src='https:&amp;#47;&amp;#47;public.tableau.com&amp;#47;static&amp;#47;images&amp;#47;Bo&amp;#47;Book1_17373883396020&amp;#47;MakeoverMonday2025Week3&amp;#47;1_rss.png' style='border: none' />&lt;/a>&lt;/noscript>&lt;object class='tableauViz' style='display:none;'>&lt;param name='host_url' value='https%3A%2F%2Fpublic.tableau.com%2F' /> &lt;param name='embed_code_version' value='3' /> &lt;param name='site_root' value='' />&lt;param name='name' value='Book1_17373883396020&amp;#47;MakeoverMonday2025Week3' />&lt;param name='tabs' value='no' />&lt;param name='toolbar' value='yes' />&lt;param name='static_image' value='https:&amp;#47;&amp;#47;public.tableau.com&amp;#47;static&amp;#47;images&amp;#47;Bo&amp;#47;Book1_17373883396020&amp;#47;MakeoverMonday2025Week3&amp;#47;1.png' /> &lt;param name='animate_transition' value='yes' />&lt;param name='display_static_image' value='yes' />&lt;param name='display_spinner' value='yes' />&lt;param name='display_overlay' value='yes' />&lt;param name='display_count' value='yes' />&lt;param name='language' value='en-US' />&lt;/object>&lt;/div> &lt;script type='text/javascript'> var divElement = document.getElementById('viz1754829111561'); var vizElement = divElement.getElementsByTagName('object')[0]; vizElement.style.width='800px';vizElement.style.height='557px'; var scriptElement = document.createElement('script'); scriptElement.src = 'https://public.tableau.com/javascripts/api/viz_v1.js'; vizElement.parentNode.insertBefore(scriptElement, vizElement); &lt;/script>
 &lt;p>The original visualization felt a bit too complex for me, so I simplified it with a slope chart + matrix approach.&lt;/p>
-&lt;p>Explore more of my Tableau Projects &lt;a href="https://public.tableau.com/app/profile/vitaliy.kovalev" target="_blank" rel="noreferrer">here&lt;/a>&lt;/p></content></item><item><title>Tableau Speedtest</title><link>http://localhost:1313/posts/tableau-speedtest/</link><pubDate>Tue, 28 May 2024 00:00:00 +0000</pubDate><guid>http://localhost:1313/posts/tableau-speedtest/</guid><description>I created a tool that could help you measure Tableau report speed</description><content>&lt;p>Sometimes, we all get upset when our workbooks are slow. Additionally, it can be quite challenging to measure the exact loading time before and after some changes.&lt;/p>
+&lt;p>Explore more of my Tableau Projects &lt;a href="https://public.tableau.com/app/profile/vitaliy.kovalev" target="_blank" rel="noreferrer">here&lt;/a>&lt;/p></content></item><item><title>Tableau Speedtest</title><link>https://vitaliykovalev.com/posts/tableau-speedtest/</link><pubDate>Tue, 28 May 2024 00:00:00 +0000</pubDate><guid>https://vitaliykovalev.com/posts/tableau-speedtest/</guid><description>I created a tool that could help you measure Tableau report speed</description><content>&lt;p>Sometimes, we all get upset when our workbooks are slow. Additionally, it can be quite challenging to measure the exact loading time before and after some changes.&lt;/p>
 &lt;h2 id="there-is-a-hard-way-" class="relative group">There is a hard way 😬 &lt;span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100">&lt;a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#there-is-a-hard-way-" aria-label="Anchor">#&lt;/a>&lt;/span>&lt;/h2>&lt;p>If you are using Tableau Server or Tableau Online you can use &lt;a href="https://help.tableau.com/current/online/en-us/adminview_insights.htm#explore-the-data-sources" target="_blank" rel="noreferrer">Admin Insights&lt;/a> to monitor dashboard performance, but it is only available for administrators. Tableau Server admins could also use the internal Tableau database (workgroup) and &lt;a href="https://help.tableau.com/current/server/en-us/rmt-intro.htm" target="_blank" rel="noreferrer">Resource Management Tool&lt;/a> to make report for all users, but it takes some time and skills. Also, it is only daily data refresh available for Tableau Online. If you want to measure the difference after workbook changes keep in mind that you would have this gap.&lt;/p>
 &lt;p>Alternatively, you can use built-in Performance Recording to measure the exact loading time (check up my &lt;a href="https://medium.com/@vitaliy.kovalev/how-to-make-tableau-reports-faster-using-tableau-log-viewer-and-other-tools-fedee4a948e5" target="_blank" rel="noreferrer">article&lt;/a> on how to use it).&lt;/p>
 &lt;p>But there is a problem in all those ways. They are not really user-friendly and relatively slow or expensive to get some results right away.&lt;/p>
@@ -1168,12 +1168,12 @@ To build an MVP for search functionality, the first step is to create a &lt;stro
  
  &lt;source
  
- srcset="http://localhost:1313/posts/tableau-speedtest/interface_hu_b70697fa5de4807d.webp 330w,http://localhost:1313/posts/tableau-speedtest/interface_hu_193f9192a4f1c5f2.webp 660w
+ srcset="https://vitaliykovalev.com/posts/tableau-speedtest/interface_hu_b70697fa5de4807d.webp 330w,https://vitaliykovalev.com/posts/tableau-speedtest/interface_hu_193f9192a4f1c5f2.webp 660w
  
- ,http://localhost:1313/posts/tableau-speedtest/interface_hu_e9df923e31112cee.webp 1024w
+ ,https://vitaliykovalev.com/posts/tableau-speedtest/interface_hu_e9df923e31112cee.webp 1024w
  
  
- ,http://localhost:1313/posts/tableau-speedtest/interface_hu_eea230fe64190c29.webp 1320w
+ ,https://vitaliykovalev.com/posts/tableau-speedtest/interface_hu_eea230fe64190c29.webp 1320w
  "
  
  sizes="100vw"
@@ -1187,12 +1187,12 @@ To build an MVP for search functionality, the first step is to create a &lt;stro
  alt="interface.png"
  loading="lazy" decoding="async"
  
- src="http://localhost:1313/posts/tableau-speedtest/interface_hu_ba47e289ac043f3b.png" srcset="http://localhost:1313/posts/tableau-speedtest/interface_hu_34fca5cdeddb6b68.png 330w,http://localhost:1313/posts/tableau-speedtest/interface_hu_ba47e289ac043f3b.png 660w
+ src="https://vitaliykovalev.com/posts/tableau-speedtest/interface_hu_ba47e289ac043f3b.png" srcset="https://vitaliykovalev.com/posts/tableau-speedtest/interface_hu_34fca5cdeddb6b68.png 330w,https://vitaliykovalev.com/posts/tableau-speedtest/interface_hu_ba47e289ac043f3b.png 660w
  
- ,http://localhost:1313/posts/tableau-speedtest/interface_hu_cb170ad38ac7b581.png 1024w
+ ,https://vitaliykovalev.com/posts/tableau-speedtest/interface_hu_cb170ad38ac7b581.png 1024w
  
  
- ,http://localhost:1313/posts/tableau-speedtest/interface_hu_ee079cec7bf695df.png 1320w
+ ,https://vitaliykovalev.com/posts/tableau-speedtest/interface_hu_ee079cec7bf695df.png 1320w
  "
  sizes="100vw"
  
@@ -1225,7 +1225,7 @@ The tool will show how much time you spend waiting for the report loads and the 
  &lt;/span>
 
  &lt;a href="https://github.com/vitaliy-kovalev/tableau-report-speedtest" target="_blank" rel="noreferrer">https://github.com/vitaliy-kovalev/tableau-report-speedtest&lt;/a>&lt;/p>
-&lt;p>Cheers!&lt;/p></content></item><item><title>Tools overview to optimize Tableau reports</title><link>http://localhost:1313/posts/tableau-log-viewer/</link><pubDate>Thu, 21 Dec 2023 00:00:00 +0000</pubDate><guid>http://localhost:1313/posts/tableau-log-viewer/</guid><description>Complete guide of all kinds of optimisation tools in Tableau</description><content>&lt;p>Although Tableau is an easy-to-use drag-and-drop tool it can sometimes be challenging to understand why a report is so slow, particularly when dealing with a live database connection.
+&lt;p>Cheers!&lt;/p></content></item><item><title>Tools overview to optimize Tableau reports</title><link>https://vitaliykovalev.com/posts/tableau-log-viewer/</link><pubDate>Thu, 21 Dec 2023 00:00:00 +0000</pubDate><guid>https://vitaliykovalev.com/posts/tableau-log-viewer/</guid><description>Complete guide of all kinds of optimisation tools in Tableau</description><content>&lt;p>Although Tableau is an easy-to-use drag-and-drop tool it can sometimes be challenging to understand why a report is so slow, particularly when dealing with a live database connection.
 The main goal of this article is to guide you through all kinds of optimisation tools and help you considerate which one to use.&lt;/p>
 &lt;h2 id="what-tools-do-you-have" class="relative group">What tools do you have? &lt;span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100">&lt;a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#what-tools-do-you-have" aria-label="Anchor">#&lt;/a>&lt;/span>&lt;/h2>&lt;p>You can use &lt;strong>Tableau Optimizer&lt;/strong> or &lt;strong>Performance Recording&lt;/strong> tools to figure it out, but sometimes these may not be the most effective solutions. Additionally, there is &lt;strong>Tableau Log Viewer&lt;/strong>, which I will introduce to you a bit later.
 The first tool (&lt;strong>Server → Run Optimizer&lt;/strong>) is great when you are trying to find some basic report design problems.&lt;/p>
@@ -1257,12 +1257,12 @@ The first tool (&lt;strong>Server → Run Optimizer&lt;/strong>) is great when y
  
  &lt;source
  
- srcset="http://localhost:1313/posts/tableau-log-viewer/optimizer-interface_hu_ddb625a44a640dba.webp 330w,http://localhost:1313/posts/tableau-log-viewer/optimizer-interface_hu_f54cfae1f18d85c5.webp 660w
+ srcset="https://vitaliykovalev.com/posts/tableau-log-viewer/optimizer-interface_hu_ddb625a44a640dba.webp 330w,https://vitaliykovalev.com/posts/tableau-log-viewer/optimizer-interface_hu_f54cfae1f18d85c5.webp 660w
  
- ,http://localhost:1313/posts/tableau-log-viewer/optimizer-interface_hu_3f857c01123ffcfb.webp 1024w
+ ,https://vitaliykovalev.com/posts/tableau-log-viewer/optimizer-interface_hu_3f857c01123ffcfb.webp 1024w
  
  
- ,http://localhost:1313/posts/tableau-log-viewer/optimizer-interface_hu_7f7be6287781ade4.webp 1320w
+ ,https://vitaliykovalev.com/posts/tableau-log-viewer/optimizer-interface_hu_7f7be6287781ade4.webp 1320w
  "
  
  sizes="100vw"
@@ -1276,12 +1276,12 @@ The first tool (&lt;strong>Server → Run Optimizer&lt;/strong>) is great when y
  alt="optimizer-interface.png"
  loading="lazy" decoding="async"
  
- src="http://localhost:1313/posts/tableau-log-viewer/optimizer-interface_hu_b600abe4e7099ebb.png" srcset="http://localhost:1313/posts/tableau-log-viewer/optimizer-interface_hu_cf5dc63c6b723d80.png 330w,http://localhost:1313/posts/tableau-log-viewer/optimizer-interface_hu_b600abe4e7099ebb.png 660w
+ src="https://vitaliykovalev.com/posts/tableau-log-viewer/optimizer-interface_hu_b600abe4e7099ebb.png" srcset="https://vitaliykovalev.com/posts/tableau-log-viewer/optimizer-interface_hu_cf5dc63c6b723d80.png 330w,https://vitaliykovalev.com/posts/tableau-log-viewer/optimizer-interface_hu_b600abe4e7099ebb.png 660w
  
- ,http://localhost:1313/posts/tableau-log-viewer/optimizer-interface_hu_ae78bc58a2b236e6.png 1024w
+ ,https://vitaliykovalev.com/posts/tableau-log-viewer/optimizer-interface_hu_ae78bc58a2b236e6.png 1024w
  
  
- ,http://localhost:1313/posts/tableau-log-viewer/optimizer-interface_hu_b13ce152708cf2ff.png 1320w
+ ,https://vitaliykovalev.com/posts/tableau-log-viewer/optimizer-interface_hu_b13ce152708cf2ff.png 1320w
  "
  sizes="100vw"
  
@@ -1345,12 +1345,12 @@ The first tool (&lt;strong>Server → Run Optimizer&lt;/strong>) is great when y
  
  &lt;source
  
- srcset="http://localhost:1313/posts/tableau-log-viewer/performance-recording_hu_41668f8bb5e40196.webp 330w,http://localhost:1313/posts/tableau-log-viewer/performance-recording_hu_4704328b18d8123f.webp 660w
+ srcset="https://vitaliykovalev.com/posts/tableau-log-viewer/performance-recording_hu_41668f8bb5e40196.webp 330w,https://vitaliykovalev.com/posts/tableau-log-viewer/performance-recording_hu_4704328b18d8123f.webp 660w
  
- ,http://localhost:1313/posts/tableau-log-viewer/performance-recording_hu_766102638586671f.webp 1024w
+ ,https://vitaliykovalev.com/posts/tableau-log-viewer/performance-recording_hu_766102638586671f.webp 1024w
  
  
- ,http://localhost:1313/posts/tableau-log-viewer/performance-recording_hu_28d885919fbe7666.webp 1320w
+ ,https://vitaliykovalev.com/posts/tableau-log-viewer/performance-recording_hu_28d885919fbe7666.webp 1320w
  "
  
  sizes="100vw"
@@ -1364,12 +1364,12 @@ The first tool (&lt;strong>Server → Run Optimizer&lt;/strong>) is great when y
  alt="performance-recording.png"
  loading="lazy" decoding="async"
  
- src="http://localhost:1313/posts/tableau-log-viewer/performance-recording_hu_4addfdf1491564a5.png" srcset="http://localhost:1313/posts/tableau-log-viewer/performance-recording_hu_3296a09701433fd9.png 330w,http://localhost:1313/posts/tableau-log-viewer/performance-recording_hu_4addfdf1491564a5.png 660w
+ src="https://vitaliykovalev.com/posts/tableau-log-viewer/performance-recording_hu_4addfdf1491564a5.png" srcset="https://vitaliykovalev.com/posts/tableau-log-viewer/performance-recording_hu_3296a09701433fd9.png 330w,https://vitaliykovalev.com/posts/tableau-log-viewer/performance-recording_hu_4addfdf1491564a5.png 660w
  
- ,http://localhost:1313/posts/tableau-log-viewer/performance-recording_hu_7c976d070165ea3.png 1024w
+ ,https://vitaliykovalev.com/posts/tableau-log-viewer/performance-recording_hu_7c976d070165ea3.png 1024w
  
  
- ,http://localhost:1313/posts/tableau-log-viewer/performance-recording_hu_197158e580a1fb2c.png 1320w
+ ,https://vitaliykovalev.com/posts/tableau-log-viewer/performance-recording_hu_197158e580a1fb2c.png 1320w
  "
  sizes="100vw"
  
@@ -1384,14 +1384,14 @@ The first tool (&lt;strong>Server → Run Optimizer&lt;/strong>) is great when y
 &lt;p>The downside of the performance recording method is that you have to re-run it after any changes are made on Tableau or the database side. This is when &lt;strong>Tableau log viewer&lt;/strong> can be truly helpful.&lt;/p>
 &lt;h2 id="how-to-install-tableau-log-viewer" class="relative group">How to install Tableau Log Viewer? &lt;span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100">&lt;a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#how-to-install-tableau-log-viewer" aria-label="Anchor">#&lt;/a>&lt;/span>&lt;/h2>&lt;p>Go to &lt;a href="https://github.com/tableau/tableau-log-viewer" target="_blank" rel="noreferrer">GitHub&lt;/a> and download the &lt;code>.dmg&lt;/code> or &lt;code>.exe&lt;/code> file from &lt;strong>Releases&lt;/strong> page:&lt;/p>
 &lt;figure>
-&lt;img src="http://localhost:1313/images/tableau-log-viewer/tlv-downloading.gif" class="mx-auto my-0 rounded-md" alt="Where can you download TLV app" loading="lazy">
+&lt;img src="https://vitaliykovalev.com/images/tableau-log-viewer/tlv-downloading.gif" class="mx-auto my-0 rounded-md" alt="Where can you download TLV app" loading="lazy">
 &lt;figcaption class="text-center">Where can you download TLV app&lt;/figcaption>
 &lt;/figure>
 &lt;p>You cannot simply run this tool on MacBooks with arm64 architecture (M1 / M2). To fix that open Terminal and install Rosetta 2:&lt;/p>
 &lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="cl">softwareupdate --install-rosetta
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>In the process of the installation you should also type &lt;code>a&lt;/code> and hit &lt;kbd>Enter&lt;/kbd>.&lt;/p>
 &lt;figure>
-&lt;img src="http://localhost:1313/images/tableau-log-viewer/rosetta-installation.gif" class="mx-auto my-0 rounded-md" alt="Rosetta installation process" loading="lazy">
+&lt;img src="https://vitaliykovalev.com/images/tableau-log-viewer/rosetta-installation.gif" class="mx-auto my-0 rounded-md" alt="Rosetta installation process" loading="lazy">
 &lt;figcaption class="text-center">Rosetta installation process&lt;/figcaption>
 &lt;/figure>
 &lt;p>Then you should drag &lt;strong>TLV&lt;/strong> app to your &lt;strong>Applications&lt;/strong> folder, &lt;kbd>right-click&lt;/kbd> on that copy and click &lt;kbd>Get Info&lt;/kbd>. Check the box &lt;kbd>Open using Rosetta&lt;/kbd> and close info window. Also, you should make sure that app doesn’t have &lt;code>com.apple.quarantine&lt;/code> attribute. To ensure that run this terminal command:&lt;/p>
@@ -1399,7 +1399,7 @@ The first tool (&lt;strong>Server → Run Optimizer&lt;/strong>) is great when y
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>Finally, open the app itself. It should work just fine. You can keep this app in Dock and use it like a normal app.&lt;/p>
 &lt;p>Here is the whole installation process:&lt;/p>
 &lt;figure>
-&lt;img src="http://localhost:1313/images/tableau-log-viewer/tlv-installation.gif" class="mx-auto my-0 rounded-md" alt="Installation process and how to open log.txt" loading="lazy">
+&lt;img src="https://vitaliykovalev.com/images/tableau-log-viewer/tlv-installation.gif" class="mx-auto my-0 rounded-md" alt="Installation process and how to open log.txt" loading="lazy">
 &lt;figcaption class="text-center">Installation process and how to open log.txt&lt;/figcaption>
 &lt;/figure>
 &lt;h2 id="how-to-use-it" class="relative group">How to use it? &lt;span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100">&lt;a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#how-to-use-it" aria-label="Anchor">#&lt;/a>&lt;/span>&lt;/h2>&lt;p>Once you open the TLV app you should click the &lt;kbd>Open&lt;/kbd> button and choose &lt;code>log.txt&lt;/code> file from your &lt;code>~/Documents/My Tableau Repository/Logs&lt;/code> folder on macOS or &lt;code>C:\Users\&amp;lt;user&amp;gt;\Documents\My Tableau Repository\Logs\&lt;/code> on Windows.&lt;/p>
@@ -1462,12 +1462,12 @@ The first tool (&lt;strong>Server → Run Optimizer&lt;/strong>) is great when y
  
  &lt;source
  
- srcset="http://localhost:1313/posts/tableau-log-viewer/how-to-add-new-highlight_hu_558937ddc2d1565d.webp 330w,http://localhost:1313/posts/tableau-log-viewer/how-to-add-new-highlight_hu_cad37815acb2f06a.webp 660w
+ srcset="https://vitaliykovalev.com/posts/tableau-log-viewer/how-to-add-new-highlight_hu_558937ddc2d1565d.webp 330w,https://vitaliykovalev.com/posts/tableau-log-viewer/how-to-add-new-highlight_hu_cad37815acb2f06a.webp 660w
  
- ,http://localhost:1313/posts/tableau-log-viewer/how-to-add-new-highlight_hu_b2e95a9046b1e46d.webp 1024w
+ ,https://vitaliykovalev.com/posts/tableau-log-viewer/how-to-add-new-highlight_hu_b2e95a9046b1e46d.webp 1024w
  
  
- ,http://localhost:1313/posts/tableau-log-viewer/how-to-add-new-highlight_hu_7e04dcd81911c7d5.webp 1320w
+ ,https://vitaliykovalev.com/posts/tableau-log-viewer/how-to-add-new-highlight_hu_7e04dcd81911c7d5.webp 1320w
  "
  
  sizes="100vw"
@@ -1481,12 +1481,12 @@ The first tool (&lt;strong>Server → Run Optimizer&lt;/strong>) is great when y
  alt="how-to-add-new-highlight.png"
  loading="lazy" decoding="async"
  
- src="http://localhost:1313/posts/tableau-log-viewer/how-to-add-new-highlight_hu_726200d4c9cc9b9d.png" srcset="http://localhost:1313/posts/tableau-log-viewer/how-to-add-new-highlight_hu_357d266c10cfa7e4.png 330w,http://localhost:1313/posts/tableau-log-viewer/how-to-add-new-highlight_hu_726200d4c9cc9b9d.png 660w
+ src="https://vitaliykovalev.com/posts/tableau-log-viewer/how-to-add-new-highlight_hu_726200d4c9cc9b9d.png" srcset="https://vitaliykovalev.com/posts/tableau-log-viewer/how-to-add-new-highlight_hu_357d266c10cfa7e4.png 330w,https://vitaliykovalev.com/posts/tableau-log-viewer/how-to-add-new-highlight_hu_726200d4c9cc9b9d.png 660w
  
- ,http://localhost:1313/posts/tableau-log-viewer/how-to-add-new-highlight_hu_5231fad44c77a9ff.png 1024w
+ ,https://vitaliykovalev.com/posts/tableau-log-viewer/how-to-add-new-highlight_hu_5231fad44c77a9ff.png 1024w
  
  
- ,http://localhost:1313/posts/tableau-log-viewer/how-to-add-new-highlight_hu_7e5ecc4257721089.png 1320w
+ ,https://vitaliykovalev.com/posts/tableau-log-viewer/how-to-add-new-highlight_hu_7e5ecc4257721089.png 1320w
  "
  sizes="100vw"
  
@@ -1534,12 +1534,12 @@ The first tool (&lt;strong>Server → Run Optimizer&lt;/strong>) is great when y
  
  &lt;source
  
- srcset="http://localhost:1313/posts/tableau-log-viewer/simple-dashboard_hu_9f15f4c6f44d5763.webp 330w,http://localhost:1313/posts/tableau-log-viewer/simple-dashboard_hu_6228b6c0ea17deb6.webp 660w
+ srcset="https://vitaliykovalev.com/posts/tableau-log-viewer/simple-dashboard_hu_9f15f4c6f44d5763.webp 330w,https://vitaliykovalev.com/posts/tableau-log-viewer/simple-dashboard_hu_6228b6c0ea17deb6.webp 660w
  
- ,http://localhost:1313/posts/tableau-log-viewer/simple-dashboard_hu_f1e56afd15b68937.webp 1024w
+ ,https://vitaliykovalev.com/posts/tableau-log-viewer/simple-dashboard_hu_f1e56afd15b68937.webp 1024w
  
  
- ,http://localhost:1313/posts/tableau-log-viewer/simple-dashboard_hu_aaf25435208df01.webp 1320w
+ ,https://vitaliykovalev.com/posts/tableau-log-viewer/simple-dashboard_hu_aaf25435208df01.webp 1320w
  "
  
  sizes="100vw"
@@ -1553,12 +1553,12 @@ The first tool (&lt;strong>Server → Run Optimizer&lt;/strong>) is great when y
  alt="simple-dashboard.png"
  loading="lazy" decoding="async"
  
- src="http://localhost:1313/posts/tableau-log-viewer/simple-dashboard_hu_129234f494bb2763.png" srcset="http://localhost:1313/posts/tableau-log-viewer/simple-dashboard_hu_c6297642c38427d1.png 330w,http://localhost:1313/posts/tableau-log-viewer/simple-dashboard_hu_129234f494bb2763.png 660w
+ src="https://vitaliykovalev.com/posts/tableau-log-viewer/simple-dashboard_hu_129234f494bb2763.png" srcset="https://vitaliykovalev.com/posts/tableau-log-viewer/simple-dashboard_hu_c6297642c38427d1.png 330w,https://vitaliykovalev.com/posts/tableau-log-viewer/simple-dashboard_hu_129234f494bb2763.png 660w
  
- ,http://localhost:1313/posts/tableau-log-viewer/simple-dashboard_hu_c5826be65f7d459c.png 1024w
+ ,https://vitaliykovalev.com/posts/tableau-log-viewer/simple-dashboard_hu_c5826be65f7d459c.png 1024w
  
  
- ,http://localhost:1313/posts/tableau-log-viewer/simple-dashboard_hu_55406cc61404618e.png 1320w
+ ,https://vitaliykovalev.com/posts/tableau-log-viewer/simple-dashboard_hu_55406cc61404618e.png 1320w
  "
  sizes="100vw"
  
@@ -1598,12 +1598,12 @@ The first tool (&lt;strong>Server → Run Optimizer&lt;/strong>) is great when y
  
  &lt;source
  
- srcset="http://localhost:1313/posts/tableau-log-viewer/events_hu_d97dda73e77fe7be.webp 330w,http://localhost:1313/posts/tableau-log-viewer/events_hu_67a1a43a1f12661e.webp 660w
+ srcset="https://vitaliykovalev.com/posts/tableau-log-viewer/events_hu_d97dda73e77fe7be.webp 330w,https://vitaliykovalev.com/posts/tableau-log-viewer/events_hu_67a1a43a1f12661e.webp 660w
  
- ,http://localhost:1313/posts/tableau-log-viewer/events_hu_c9acb7db7d8afd78.webp 1024w
+ ,https://vitaliykovalev.com/posts/tableau-log-viewer/events_hu_c9acb7db7d8afd78.webp 1024w
  
  
- ,http://localhost:1313/posts/tableau-log-viewer/events_hu_8ee6e2a8be70f378.webp 1320w
+ ,https://vitaliykovalev.com/posts/tableau-log-viewer/events_hu_8ee6e2a8be70f378.webp 1320w
  "
  
  sizes="100vw"
@@ -1617,12 +1617,12 @@ The first tool (&lt;strong>Server → Run Optimizer&lt;/strong>) is great when y
  alt="events.png"
  loading="lazy" decoding="async"
  
- src="http://localhost:1313/posts/tableau-log-viewer/events_hu_4d6916cf3d34f41e.png" srcset="http://localhost:1313/posts/tableau-log-viewer/events_hu_506a8e168093e2fb.png 330w,http://localhost:1313/posts/tableau-log-viewer/events_hu_4d6916cf3d34f41e.png 660w
+ src="https://vitaliykovalev.com/posts/tableau-log-viewer/events_hu_4d6916cf3d34f41e.png" srcset="https://vitaliykovalev.com/posts/tableau-log-viewer/events_hu_506a8e168093e2fb.png 330w,https://vitaliykovalev.com/posts/tableau-log-viewer/events_hu_4d6916cf3d34f41e.png 660w
  
- ,http://localhost:1313/posts/tableau-log-viewer/events_hu_741b7a440f2333d5.png 1024w
+ ,https://vitaliykovalev.com/posts/tableau-log-viewer/events_hu_741b7a440f2333d5.png 1024w
  
  
- ,http://localhost:1313/posts/tableau-log-viewer/events_hu_37beff0aee7d45d6.png 1320w
+ ,https://vitaliykovalev.com/posts/tableau-log-viewer/events_hu_37beff0aee7d45d6.png 1320w
  "
  sizes="100vw"
  
@@ -1664,12 +1664,12 @@ The first tool (&lt;strong>Server → Run Optimizer&lt;/strong>) is great when y
  
  &lt;source
  
- srcset="http://localhost:1313/posts/tableau-log-viewer/events-by-viz_hu_dd14ccf50f554406.webp 330w,http://localhost:1313/posts/tableau-log-viewer/events-by-viz_hu_7b1b6930c1c1772f.webp 660w
+ srcset="https://vitaliykovalev.com/posts/tableau-log-viewer/events-by-viz_hu_dd14ccf50f554406.webp 330w,https://vitaliykovalev.com/posts/tableau-log-viewer/events-by-viz_hu_7b1b6930c1c1772f.webp 660w
  
- ,http://localhost:1313/posts/tableau-log-viewer/events-by-viz_hu_f37aaf8c6f3815ab.webp 1024w
+ ,https://vitaliykovalev.com/posts/tableau-log-viewer/events-by-viz_hu_f37aaf8c6f3815ab.webp 1024w
  
  
- ,http://localhost:1313/posts/tableau-log-viewer/events-by-viz_hu_2e4aeb32c6d83748.webp 1320w
+ ,https://vitaliykovalev.com/posts/tableau-log-viewer/events-by-viz_hu_2e4aeb32c6d83748.webp 1320w
  "
  
  sizes="100vw"
@@ -1683,12 +1683,12 @@ The first tool (&lt;strong>Server → Run Optimizer&lt;/strong>) is great when y
  alt="events-by-viz.png"
  loading="lazy" decoding="async"
  
- src="http://localhost:1313/posts/tableau-log-viewer/events-by-viz_hu_28950032dea2f150.png" srcset="http://localhost:1313/posts/tableau-log-viewer/events-by-viz_hu_75bb64450bf5ff76.png 330w,http://localhost:1313/posts/tableau-log-viewer/events-by-viz_hu_28950032dea2f150.png 660w
+ src="https://vitaliykovalev.com/posts/tableau-log-viewer/events-by-viz_hu_28950032dea2f150.png" srcset="https://vitaliykovalev.com/posts/tableau-log-viewer/events-by-viz_hu_75bb64450bf5ff76.png 330w,https://vitaliykovalev.com/posts/tableau-log-viewer/events-by-viz_hu_28950032dea2f150.png 660w
  
- ,http://localhost:1313/posts/tableau-log-viewer/events-by-viz_hu_2d1fea72fca7a2c0.png 1024w
+ ,https://vitaliykovalev.com/posts/tableau-log-viewer/events-by-viz_hu_2d1fea72fca7a2c0.png 1024w
  
  
- ,http://localhost:1313/posts/tableau-log-viewer/events-by-viz_hu_cfd47c3011738c75.png 1320w
+ ,https://vitaliykovalev.com/posts/tableau-log-viewer/events-by-viz_hu_cfd47c3011738c75.png 1320w
  "
  sizes="100vw"
  
@@ -1730,13 +1730,13 @@ The first tool (&lt;strong>Server → Run Optimizer&lt;/strong>) is great when y
  
  &lt;source
  
- srcset="http://localhost:1313/posts/tableau-log-viewer/query_hu_70b66df6cbea4760.webp 330w,http://localhost:1313/posts/tableau-log-viewer/query_hu_f4c9a0347a4e1fc6.webp 660w
+ srcset="https://vitaliykovalev.com/posts/tableau-log-viewer/query_hu_70b66df6cbea4760.webp 330w,https://vitaliykovalev.com/posts/tableau-log-viewer/query_hu_f4c9a0347a4e1fc6.webp 660w
  
- ,http://localhost:1313/posts/tableau-log-viewer/query_hu_bd9d210d2b237e9e.webp 1024w
+ ,https://vitaliykovalev.com/posts/tableau-log-viewer/query_hu_bd9d210d2b237e9e.webp 1024w
  
  
  
- ,http://localhost:1313/posts/tableau-log-viewer/query_hu_a91fbdb7bfd784ce.webp 1096w
+ ,https://vitaliykovalev.com/posts/tableau-log-viewer/query_hu_a91fbdb7bfd784ce.webp 1096w
  
  "
  
@@ -1751,12 +1751,12 @@ The first tool (&lt;strong>Server → Run Optimizer&lt;/strong>) is great when y
  alt="query.png"
  loading="lazy" decoding="async"
  
- src="http://localhost:1313/posts/tableau-log-viewer/query_hu_25e49cca43fc28a8.png" srcset="http://localhost:1313/posts/tableau-log-viewer/query_hu_6803f740e3c4fe72.png 330w,http://localhost:1313/posts/tableau-log-viewer/query_hu_25e49cca43fc28a8.png 660w
+ src="https://vitaliykovalev.com/posts/tableau-log-viewer/query_hu_25e49cca43fc28a8.png" srcset="https://vitaliykovalev.com/posts/tableau-log-viewer/query_hu_6803f740e3c4fe72.png 330w,https://vitaliykovalev.com/posts/tableau-log-viewer/query_hu_25e49cca43fc28a8.png 660w
  
- ,http://localhost:1313/posts/tableau-log-viewer/query_hu_390a7daccef3b319.png 1024w
+ ,https://vitaliykovalev.com/posts/tableau-log-viewer/query_hu_390a7daccef3b319.png 1024w
  
  
- ,http://localhost:1313/posts/tableau-log-viewer/query.png 1096w
+ ,https://vitaliykovalev.com/posts/tableau-log-viewer/query.png 1096w
  "
  sizes="100vw"
  
@@ -1769,7 +1769,7 @@ The first tool (&lt;strong>Server → Run Optimizer&lt;/strong>) is great when y
 &lt;/p>
 &lt;p>There’s another amazing tool &lt;a href="https://tony-yanjun.shinyapps.io/Tableau_zen_parser/" target="_blank" rel="noreferrer">Tableau Zen Parser&lt;/a> made by Tony Liu that can parse all your workbook calculations and their ID’s based on your &lt;code>*.twb&lt;/code> file.&lt;/p>
 &lt;figure>
-&lt;img src="http://localhost:1313/images/tableau-log-viewer/zen-parser.gif" class="mx-auto my-0 rounded-md" alt="How to use Tableau Zen Parser" loading="lazy">
+&lt;img src="https://vitaliykovalev.com/images/tableau-log-viewer/zen-parser.gif" class="mx-auto my-0 rounded-md" alt="How to use Tableau Zen Parser" loading="lazy">
 &lt;figcaption class="text-center">How to use Tableau Zen Parser&lt;/figcaption>
 &lt;/figure>
 &lt;p>So if you have a lot of calculations and views based on them break your workspace to 3 pieces: &lt;strong>Tableau&lt;/strong>, &lt;strong>TLV&lt;/strong> and &lt;strong>Zen Parser Results&lt;/strong>:&lt;/p>
@@ -1801,12 +1801,12 @@ The first tool (&lt;strong>Server → Run Optimizer&lt;/strong>) is great when y
  
  &lt;source
  
- srcset="http://localhost:1313/posts/tableau-log-viewer/workspace_hu_8255f78c3c87dd83.webp 330w,http://localhost:1313/posts/tableau-log-viewer/workspace_hu_88781bc4e6dfc959.webp 660w
+ srcset="https://vitaliykovalev.com/posts/tableau-log-viewer/workspace_hu_8255f78c3c87dd83.webp 330w,https://vitaliykovalev.com/posts/tableau-log-viewer/workspace_hu_88781bc4e6dfc959.webp 660w
  
- ,http://localhost:1313/posts/tableau-log-viewer/workspace_hu_7b81c8f9301a8052.webp 1024w
+ ,https://vitaliykovalev.com/posts/tableau-log-viewer/workspace_hu_7b81c8f9301a8052.webp 1024w
  
  
- ,http://localhost:1313/posts/tableau-log-viewer/workspace_hu_f80ffefc1289e7e2.webp 1320w
+ ,https://vitaliykovalev.com/posts/tableau-log-viewer/workspace_hu_f80ffefc1289e7e2.webp 1320w
  "
  
  sizes="100vw"
@@ -1820,12 +1820,12 @@ The first tool (&lt;strong>Server → Run Optimizer&lt;/strong>) is great when y
  alt="workspace.png"
  loading="lazy" decoding="async"
  
- src="http://localhost:1313/posts/tableau-log-viewer/workspace_hu_6151bec1b54239d3.png" srcset="http://localhost:1313/posts/tableau-log-viewer/workspace_hu_74910d00a9350d95.png 330w,http://localhost:1313/posts/tableau-log-viewer/workspace_hu_6151bec1b54239d3.png 660w
+ src="https://vitaliykovalev.com/posts/tableau-log-viewer/workspace_hu_6151bec1b54239d3.png" srcset="https://vitaliykovalev.com/posts/tableau-log-viewer/workspace_hu_74910d00a9350d95.png 330w,https://vitaliykovalev.com/posts/tableau-log-viewer/workspace_hu_6151bec1b54239d3.png 660w
  
- ,http://localhost:1313/posts/tableau-log-viewer/workspace_hu_57f1be5a6df76d5a.png 1024w
+ ,https://vitaliykovalev.com/posts/tableau-log-viewer/workspace_hu_57f1be5a6df76d5a.png 1024w
  
  
- ,http://localhost:1313/posts/tableau-log-viewer/workspace_hu_3c29ced7de9f13c.png 1320w
+ ,https://vitaliykovalev.com/posts/tableau-log-viewer/workspace_hu_3c29ced7de9f13c.png 1320w
  "
  sizes="100vw"
  
