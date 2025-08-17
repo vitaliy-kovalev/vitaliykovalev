@@ -2,14 +2,15 @@
 title: "How to apply RAG and LLM to search BI reports faster"
 date: 2025-06-12
 draft: false
-description: "In this article, I will share a simple yet powerful tool that takes business users report searches to another level."
 showTableOfContents: true
-summary: "In this article, I will share a simple yet powerful tool that takes business users report searches to another level."
+summary: "A tool that takes report searching for business users to another level"
 
 tags: 
-  - TECH
   - LLM
   - RAG
+  - BI
+  - Automation
+  - Blog
 ---
 {{< alert >}}
 Disclaimer: Models and their limits evolve, but the core approach in this article should remain relevant. Always double-check the current model landscape before implementing.

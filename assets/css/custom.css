@@ -1,0 +1,7 @@
+/* Remove decorative quote marks around blockquotes in Congo */
+.prose :where(blockquote p:first-of-type):not(:where([class~="not-prose"] *))::before {
+  content: unset !important;
+}
+.prose :where(blockquote p:last-of-type):not(:where([class~="not-prose"] *))::after {
+  content: unset !important;
+}

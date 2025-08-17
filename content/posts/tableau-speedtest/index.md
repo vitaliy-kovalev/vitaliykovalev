@@ -1,13 +1,14 @@
 ---
 title: "Tableau Speedtest"
-date: 2025-06-12
+date: 2024-05-28
 draft: false
-description: "Tool that could help you measure Tableau report speed"
-summary: "Tool that could help you measure Tableau report speed"
+summary: "I created a tool that could help you measure Tableau report speed"
 
 tags: 
-  - TECH
+  - Project
   - BI
+  - Tools
+  - Optimization
 ---
 Sometimes, we all get upset when our workbooks are slow. Additionally, it can be quite challenging to measure the exact loading time before and after some changes.
 

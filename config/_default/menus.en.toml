@@ -19,15 +19,16 @@
   pageRef = "posts"
   weight = 2
 
-[[main]]
-  name = "CV"
-  pageRef = "cv"
-  weight = 3
+#[[main]]
+#  name = "CV"
+#  pageRef = "cv"
+#  weight = 3
 
-[[main]]
-  name = "Tableau Public ↗"
-  weight = 4
-  url = "https://public.tableau.com/app/profile/vitaliy.kovalev"
+#[[main]]
+#  name = "Tableau Public ↗"
+#  weight = 4
+#  url = "https://public.tableau.com/app/profile/vitaliy.kovalev"
+
 #  [main.params]
 #    icon = "globe"
 #    showName = true
@@ -42,14 +43,14 @@
     showName = false
     target = "_blank"
 
-[[main]]
-  name = "GitHub"
-  weight = 5
-  url = "https://github.com/vitaliy-kovalev"
-  [main.params]
-    icon = "github"
-    showName = false
-    target = "_blank"
+#[[main]]
+#  name = "GitHub"
+#  weight = 5
+#  url = "https://github.com/vitaliy-kovalev"
+#  [main.params]
+#    icon = "github"
+#    showName = false
+#    target = "_blank"
 
 [[main]]
   name = "Email"
@@ -86,15 +87,15 @@
   pageRef = "posts"
   weight = 30
 
-[[footer]]
-  name = "CV"
-  pageRef = "cv"
-  weight = 40
+#[[footer]]
+#  name = "CV"
+#  pageRef = "cv"
+#  weight = 40
 
-[[footer]]
-  name = "Tableau Public ↗"
-  url = "https://public.tableau.com/app/profile/vitaliy.kovalev"
-  weight = 50
+#[[footer]]
+#  name = "Tableau Public ↗"
+#  url = "https://public.tableau.com/app/profile/vitaliy.kovalev"
+#  weight = 50
 
 [[footer]]
   name = "RSS"

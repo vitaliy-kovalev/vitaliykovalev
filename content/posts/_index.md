@@ -8,8 +8,8 @@ cascade:
 ---
 
 {{< lead >}}
-Here is my thoughts on various topics from visualisation techniques to management stuff. There are some tags to help you navigate.
+Here is my thoughts on various topics from visualisation techniques to management stuff. There are some [tags](/tags) to help you navigate.
 {{< /lead >}}
-{{< alert "linkedin" >}}
-Don't forget to [follow me](https://linkedin.com/in/vitaliy-kovalev/) on LinkedIn to get notifications about my new posts!
+{{< alert "rss" >}}
+Don't forget to subscribe on [RSS](/posts/index.xml) or [follow me on LinkedIn](https://linkedin.com/in/vitaliy-kovalev/) to get notifications about my new posts!
 {{< /alert >}}
