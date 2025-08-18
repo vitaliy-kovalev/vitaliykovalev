@@ -1116,7 +1116,287 @@ To build an MVP for search functionality, the first step is to create a &lt;stro
  &lt;a href="https://github.com/vitaliy-kovalev/dashboards-rag-example" target="_blank" rel="noreferrer">GitHub repository&lt;/a> with all code and examples to start with.&lt;/p>
 &lt;p>&lt;strong>Happy coding! 🚀&lt;/strong>&lt;/p></content></item><item><title>Tableau Makeover Monday 2025: Week 6</title><link>https://vitaliykovalev.com/posts/makeovermonday-2025-6/</link><pubDate>Mon, 05 May 2025 00:00:00 +0000</pubDate><guid>https://vitaliykovalev.com/posts/makeovermonday-2025-6/</guid><description>GB National Grid Energy Sources</description><content>&lt;p>I’ve been exploring the weekly energy mix in Great Britain’s grid from Jan 2024 to Jan 2025, focusing on how each source’s share shifts over time. You can see some notable fluctuations in renewables, fossil fuels, other sources, and transfers throughout the year — possibly influenced by seasonal factors and changing demand.&lt;/p>
 &lt;div class='tableauPlaceholder' id='viz1754830524756' style='position: relative'>&lt;noscript>&lt;a href='#'>&lt;img alt='GB National Grid Energy Sources ' src='https:&amp;#47;&amp;#47;public.tableau.com&amp;#47;static&amp;#47;images&amp;#47;GB&amp;#47;GBNationalGridEnergySources&amp;#47;GBNationalGridEnergySources&amp;#47;1_rss.png' style='border: none' />&lt;/a>&lt;/noscript>&lt;object class='tableauViz' style='display:none;'>&lt;param name='host_url' value='https%3A%2F%2Fpublic.tableau.com%2F' /> &lt;param name='embed_code_version' value='3' /> &lt;param name='site_root' value='' />&lt;param name='name' value='GBNationalGridEnergySources&amp;#47;GBNationalGridEnergySources' />&lt;param name='tabs' value='no' />&lt;param name='toolbar' value='yes' />&lt;param name='static_image' value='https:&amp;#47;&amp;#47;public.tableau.com&amp;#47;static&amp;#47;images&amp;#47;GB&amp;#47;GBNationalGridEnergySources&amp;#47;GBNationalGridEnergySources&amp;#47;1.png' /> &lt;param name='animate_transition' value='yes' />&lt;param name='display_static_image' value='yes' />&lt;param name='display_spinner' value='yes' />&lt;param name='display_overlay' value='yes' />&lt;param name='display_count' value='yes' />&lt;param name='language' value='en-GB' />&lt;/object>&lt;/div> &lt;script type='text/javascript'> var divElement = document.getElementById('viz1754830524756'); var vizElement = divElement.getElementsByTagName('object')[0]; vizElement.style.width='600px';vizElement.style.height='627px'; var scriptElement = document.createElement('script'); scriptElement.src = 'https://public.tableau.com/javascripts/api/viz_v1.js'; vizElement.parentNode.insertBefore(scriptElement, vizElement); &lt;/script>
-&lt;p>Explore more of my Tableau Projects &lt;a href="https://public.tableau.com/app/profile/vitaliy.kovalev" target="_blank" rel="noreferrer">here&lt;/a>&lt;/p></content></item><item><title>Tableau Makeover Monday 2025: Week 5</title><link>https://vitaliykovalev.com/posts/makeovermonday-2025-5/</link><pubDate>Fri, 31 Jan 2025 00:00:00 +0000</pubDate><guid>https://vitaliykovalev.com/posts/makeovermonday-2025-5/</guid><description>World Happiness Report 2024</description><content>&lt;p>There is a lot of data about Happiness. Here is my take on it:&lt;/p>
+&lt;p>Explore more of my Tableau Projects &lt;a href="https://public.tableau.com/app/profile/vitaliy.kovalev" target="_blank" rel="noreferrer">here&lt;/a>&lt;/p></content></item><item><title>Embedding technique in Tableau</title><link>https://vitaliykovalev.com/posts/tableau-embedding/</link><pubDate>Wed, 02 Apr 2025 00:00:00 +0000</pubDate><guid>https://vitaliykovalev.com/posts/tableau-embedding/</guid><description>Great way to multiply visuals without needing to recreate them</description><content>&lt;p>&lt;a href="https://nastengraph.substack.com/" target="_blank" rel="noreferrer">Anastasiya Kuznetsova&lt;/a> mentioned my old &lt;a href="https://youtu.be/Z6AYX4a9uR4?t=2717" target="_blank" rel="noreferrer">TUG presentation&lt;/a> (in Russian) where I shared a technique that provides a great way to multiply visuals without needing to recreate them.&lt;/p>
+&lt;blockquote>
+&lt;p>&lt;strong>TL;DR:&lt;/strong> Embedding lets you reuse visuals across dashboards. It not only speeds up delivery but also improves load times, as embedded elements load at the same time.&lt;/p>&lt;/blockquote>
+&lt;ul>
+&lt;li>&lt;a href="https://public.tableau.com/app/profile/nastengraph/viz/Spotify_17434979348690/ExampleMainDashboard2" target="_blank" rel="noreferrer">🔗 Anastasiya’s example&lt;/a>&lt;/li>
+&lt;li>&lt;a href="https://public.tableau.com/views/EmbeddingExamples/Ex1RepeatableBlockwEmbedding" target="_blank" rel="noreferrer">🔗 My old example&lt;/a> with comparison to default technique&lt;/li>
+&lt;/ul>
+&lt;p>
+
+
+
+
+
+&lt;figure>
+ 
+ 
+
+
+
+
+
+
+
+
+ 
+ &lt;picture
+ class="mx-auto my-0 rounded-md"
+ 
+ >
+ 
+ 
+ 
+ 
+ &lt;source
+ 
+ srcset="https://vitaliykovalev.com/posts/tableau-embedding/thumb_hu_1ea1cd8c9470c9d4.webp 330w,https://vitaliykovalev.com/posts/tableau-embedding/thumb_hu_c16e607b00c16536.webp 660w
+ 
+ ,https://vitaliykovalev.com/posts/tableau-embedding/thumb_hu_256c462a67c876ea.webp 1024w
+ 
+ 
+ ,https://vitaliykovalev.com/posts/tableau-embedding/thumb_hu_b1a894e96d5180a2.webp 1320w
+ "
+ 
+ sizes="100vw"
+ type="image/webp"
+ />
+ 
+ &lt;img
+ width="1400"
+ height="862"
+ class="mx-auto my-0 rounded-md"
+ alt="thumb.png"
+ loading="lazy" decoding="async"
+ 
+ src="https://vitaliykovalev.com/posts/tableau-embedding/thumb_hu_be488f8a9615c785.png" srcset="https://vitaliykovalev.com/posts/tableau-embedding/thumb_hu_76c1fafb6cc0f4f6.png 330w,https://vitaliykovalev.com/posts/tableau-embedding/thumb_hu_be488f8a9615c785.png 660w
+ 
+ ,https://vitaliykovalev.com/posts/tableau-embedding/thumb_hu_235b19b17a2e881b.png 1024w
+ 
+ 
+ ,https://vitaliykovalev.com/posts/tableau-embedding/thumb_hu_dec1bc8da30b98d5.png 1320w
+ "
+ sizes="100vw"
+ 
+ />
+ &lt;/picture>
+ 
+
+&lt;figcaption class="text-center">Each of those visuals are the same view but with different parameters&lt;/figcaption>
+&lt;/figure>
+&lt;/p>
+&lt;h2 id="how-to-do-it" class="relative group">How to do it? &lt;span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100">&lt;a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#how-to-do-it" aria-label="Anchor">#&lt;/a>&lt;/span>&lt;/h2>&lt;p>There are basically two ways to embed something in Tableau:&lt;/p>
+&lt;ul>
+&lt;li>&lt;a href="https://help.tableau.com/current/pro/desktop/en-us/embed.htm" target="_blank" rel="noreferrer">Basic&lt;/a>&lt;/li>
+&lt;li>&lt;a href="https://help.tableau.com/current/api/embedding_api/en-us/index.html" target="_blank" rel="noreferrer">JS API&lt;/a> | &lt;a href="https://github.com/tableau/js-api-samples" target="_blank" rel="noreferrer">Samples&lt;/a>&lt;/li>
+&lt;/ul>
+&lt;p>The JS API is for someone who wants to embed Tableau views and dashboards into another product, like a web page or application.&lt;/p>
+&lt;p>&lt;strong>Here, I will use the first method, assuming that we are able to embed one dashboard into another dashboard.&lt;/strong>&lt;/p>
+&lt;p>First, let’s create a view or a dashboard that we plan to embed. It could be any type of visualisation. I created a &lt;a href="https://public.tableau.com/views/ForEmbedding/Block" target="_blank" rel="noreferrer">KPI card&lt;/a> with some additional context for my users and added a parameter to switch between regions:&lt;/p>
+&lt;p>
+
+
+
+
+
+&lt;figure>
+ 
+ 
+
+
+
+
+
+
+
+
+ 
+ &lt;picture
+ class="mx-auto my-0 rounded-md"
+ 
+ >
+ 
+ 
+ 
+ 
+ &lt;source
+ 
+ 
+ srcset="https://vitaliykovalev.com/posts/tableau-embedding/kpi-card_hu_4c06755bc087ec59.webp"
+ 
+ 
+ sizes="100vw"
+ type="image/webp"
+ />
+ 
+ &lt;img
+ width="433"
+ height="135"
+ class="mx-auto my-0 rounded-md"
+ alt="kpi-card.png"
+ loading="lazy" decoding="async"
+ 
+ src="https://vitaliykovalev.com/posts/tableau-embedding/kpi-card.png"
+ 
+ />
+ &lt;/picture>
+ 
+
+&lt;figcaption class="text-center">There is 3 visualisations, but 1 worksheet&lt;/figcaption>
+&lt;/figure>
+&lt;/p>
+&lt;p>Then I created a proper link and used it in the Web Page objects on the &lt;a href="https://public.tableau.com/views/EmbeddingExamples/Ex1RepeatableBlockwEmbedding" target="_blank" rel="noreferrer">dashboard&lt;/a>.&lt;/p>
+&lt;p>
+
+
+
+
+
+&lt;figure>
+ 
+ 
+
+
+
+
+
+
+
+
+ 
+ &lt;picture
+ class="mx-auto my-0 rounded-md"
+ 
+ >
+ 
+ 
+ 
+ 
+ &lt;source
+ 
+ srcset="https://vitaliykovalev.com/posts/tableau-embedding/dash_hu_b9b6cb7b415a7b26.webp 330w,https://vitaliykovalev.com/posts/tableau-embedding/dash_hu_33e92de86cd9e7f1.webp 660w
+ 
+ 
+ ,https://vitaliykovalev.com/posts/tableau-embedding/dash_hu_79ea585cab24a696.webp 939w
+ 
+ 
+ 
+ 
+ ,https://vitaliykovalev.com/posts/tableau-embedding/dash_hu_79ea585cab24a696.webp 939w
+ 
+ "
+ 
+ sizes="100vw"
+ type="image/webp"
+ />
+ 
+ &lt;img
+ width="939"
+ height="777"
+ class="mx-auto my-0 rounded-md"
+ alt="dash.png"
+ loading="lazy" decoding="async"
+ 
+ src="https://vitaliykovalev.com/posts/tableau-embedding/dash_hu_4eea3d877cd669cd.png" srcset="https://vitaliykovalev.com/posts/tableau-embedding/dash_hu_df95e2ee7b2ad1aa.png 330w,https://vitaliykovalev.com/posts/tableau-embedding/dash_hu_4eea3d877cd669cd.png 660w
+ 
+ ,https://vitaliykovalev.com/posts/tableau-embedding/dash.png 939w
+ 
+ 
+ ,https://vitaliykovalev.com/posts/tableau-embedding/dash.png 939w
+ "
+ sizes="100vw"
+ 
+ />
+ &lt;/picture>
+ 
+
+&lt;figcaption class="text-center">There are 5 Web Objects on the left, but only one visualisation is being reused&lt;/figcaption>
+&lt;/figure>
+&lt;/p>
+&lt;h2 id="details" class="relative group">Details &lt;span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100">&lt;a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#details" aria-label="Anchor">#&lt;/a>&lt;/span>&lt;/h2>&lt;p>Let’s break it down using this example:
+&lt;code>https://your.tableau.server.com/#/views/ForEmbedding/Block?filter=some_value&amp;amp;multi_filter=value,value&amp;amp;all_values_in_filter=&amp;amp;:embed=yes&amp;amp;:toolbar=no&amp;amp;:showShareOptions=false&amp;amp;:showVizHome=no&lt;/code>&lt;/p>
+&lt;p>There is some rules on how to create this link:&lt;/p>
+&lt;ul>
+&lt;li>Main link should lead to your worksheet on your Tableau Server / Online: &lt;code>https://your.tableau.server.com/#/views/&amp;lt;workbook&amp;gt;/&amp;lt;sheet&amp;gt;&lt;/code> or &lt;code>https://your.tableau.server.com/#/site/&amp;lt;sitename&amp;gt;/views/&amp;lt;workbook&amp;gt;/&amp;lt;sheet&amp;gt;&lt;/code> for multi-site environment.&lt;/li>
+&lt;li>Tableau Public also compatible but link is slightly different, for example &lt;code>https://public.tableau.com/views/&amp;lt;workbook&amp;gt;/&amp;lt;sheet&amp;gt;&lt;/code>&lt;/li>
+&lt;li>Link should follow &lt;a href="https://datatracker.ietf.org/doc/html/rfc3986#section-2.1" target="_blank" rel="noreferrer">url-encode rules&lt;/a>: query should begin with a question mark (&lt;code>?&lt;/code>), separate the parameters using ampersands (&lt;code>&amp;amp;&lt;/code>), separate multiple values per parameter using commas (&lt;code>,&lt;/code>). Also, there is some reserved characters (&lt;code>,:/?#[]@!$&amp;amp;()*+,;='&lt;/code>). You can pass parameters aliases using &lt;code>parameter=&amp;lt;parameter_name~na&amp;gt;&lt;/code>.&lt;/li>
+&lt;li>To link parameters with each other you can use (&lt;code>~s0&lt;/code>), for example &lt;code>Region~s0=Central,West&amp;amp;Category~s0=Furniture,Technology&lt;/code> will be recognised as &lt;code>&amp;quot;filter sales of Furniture category in Central region and Technology category in the West region&amp;quot;&lt;/code>.&lt;/li>
+&lt;/ul>
+&lt;p>
+
+
+
+
+
+&lt;figure>
+ 
+ 
+
+
+
+
+
+
+
+
+ 
+ &lt;picture
+ class="mx-auto my-0 rounded-md"
+ 
+ >
+ 
+ 
+ 
+ 
+ &lt;source
+ 
+ srcset="https://vitaliykovalev.com/posts/tableau-embedding/link-explained_hu_99393ae3f63d0b87.webp 330w,https://vitaliykovalev.com/posts/tableau-embedding/link-explained_hu_6c23280f0bd9e1d0.webp 660w
+ 
+ ,https://vitaliykovalev.com/posts/tableau-embedding/link-explained_hu_f7dd427ed04b6964.webp 1024w
+ 
+ 
+ ,https://vitaliykovalev.com/posts/tableau-embedding/link-explained_hu_322f300aea73496.webp 1320w
+ "
+ 
+ sizes="100vw"
+ type="image/webp"
+ />
+ 
+ &lt;img
+ width="1824"
+ height="724"
+ class="mx-auto my-0 rounded-md"
+ alt="link-explained.png"
+ loading="lazy" decoding="async"
+ 
+ src="https://vitaliykovalev.com/posts/tableau-embedding/link-explained_hu_4da70716ccd7ab0e.png" srcset="https://vitaliykovalev.com/posts/tableau-embedding/link-explained_hu_2a4dfb09c311737a.png 330w,https://vitaliykovalev.com/posts/tableau-embedding/link-explained_hu_4da70716ccd7ab0e.png 660w
+ 
+ ,https://vitaliykovalev.com/posts/tableau-embedding/link-explained_hu_d5b850aff76e7227.png 1024w
+ 
+ 
+ ,https://vitaliykovalev.com/posts/tableau-embedding/link-explained_hu_3f428a3533036628.png 1320w
+ "
+ sizes="100vw"
+ 
+ />
+ &lt;/picture>
+ 
+
+&lt;figcaption class="text-center">Visual guide&lt;/figcaption>
+&lt;/figure>
+&lt;/p>
+&lt;p>You can find the list of all available tech parameters &lt;a href="https://help.tableau.com/current/pro/desktop/en-us/embed_list.htm" target="_blank" rel="noreferrer">here&lt;/a>.&lt;/p>
+&lt;p>There is some disadvantages of this technique:&lt;/p>
+&lt;ul>
+&lt;li>&lt;strong>It does not work well with Tableau Public&lt;/strong> — the toolbar stays visible and there’s no way to remove it&lt;/li>
+&lt;li>&lt;strong>Continuous filters are painful&lt;/strong> — you can only pass values as a list, but you can create custom calculations to handle filtering&lt;/li>
+&lt;li>&lt;strong>Safari has a quirk&lt;/strong> — adding &lt;code>16px&lt;/code> to the width fixes the scroll issue&lt;/li>
+&lt;li>&lt;strong>You need to encode spaces and other special characters&lt;/strong> in filter values (any online URL encoder can handle it)&lt;/li>
+&lt;li>Filters aren’t supported inside Stories&lt;/li>
+&lt;/ul>
+&lt;p>Overall, it’s a great feature, so feel free to use it if it fits your needs. Hope that helps you create better solutions for your customers.&lt;/p>
+&lt;p>Cheers!&lt;/p></content></item><item><title>Tableau Makeover Monday 2025: Week 5</title><link>https://vitaliykovalev.com/posts/makeovermonday-2025-5/</link><pubDate>Fri, 31 Jan 2025 00:00:00 +0000</pubDate><guid>https://vitaliykovalev.com/posts/makeovermonday-2025-5/</guid><description>World Happiness Report 2024</description><content>&lt;p>There is a lot of data about Happiness. Here is my take on it:&lt;/p>
 &lt;div class='tableauPlaceholder' id='viz1754830180990' style='position: relative'>&lt;noscript>&lt;a href='#'>&lt;img alt='World Happiness Report 2024 ' src='https:&amp;#47;&amp;#47;public.tableau.com&amp;#47;static&amp;#47;images&amp;#47;Wo&amp;#47;WorldHapinessReport_17382828143230&amp;#47;WorldHappinessReport2024&amp;#47;1_rss.png' style='border: none' />&lt;/a>&lt;/noscript>&lt;object class='tableauViz' style='display:none;'>&lt;param name='host_url' value='https%3A%2F%2Fpublic.tableau.com%2F' /> &lt;param name='embed_code_version' value='3' /> &lt;param name='site_root' value='' />&lt;param name='name' value='WorldHapinessReport_17382828143230&amp;#47;WorldHappinessReport2024' />&lt;param name='tabs' value='no' />&lt;param name='toolbar' value='yes' />&lt;param name='static_image' value='https:&amp;#47;&amp;#47;public.tableau.com&amp;#47;static&amp;#47;images&amp;#47;Wo&amp;#47;WorldHapinessReport_17382828143230&amp;#47;WorldHappinessReport2024&amp;#47;1.png' /> &lt;param name='animate_transition' value='yes' />&lt;param name='display_static_image' value='yes' />&lt;param name='display_spinner' value='yes' />&lt;param name='display_overlay' value='yes' />&lt;param name='display_count' value='yes' />&lt;param name='language' value='en-GB' />&lt;/object>&lt;/div> &lt;script type='text/javascript'> var divElement = document.getElementById('viz1754830180990'); var vizElement = divElement.getElementsByTagName('object')[0]; vizElement.style.width='1350px';vizElement.style.height='887px'; var scriptElement = document.createElement('script'); scriptElement.src = 'https://public.tableau.com/javascripts/api/viz_v1.js'; vizElement.parentNode.insertBefore(scriptElement, vizElement); &lt;/script>
 &lt;p>Explore more of my Tableau Projects &lt;a href="https://public.tableau.com/app/profile/vitaliy.kovalev" target="_blank" rel="noreferrer">here&lt;/a>&lt;/p></content></item><item><title>Tableau Makeover Monday 2025: Week 4</title><link>https://vitaliykovalev.com/posts/makeovermonday-2025-4/</link><pubDate>Mon, 20 Jan 2025 00:00:00 +0000</pubDate><guid>https://vitaliykovalev.com/posts/makeovermonday-2025-4/</guid><description>Visualisation exploring current vs. preferred work arrangements</description><content>&lt;p>Finally jumping into #MakeoverMonday exploring current vs. preferred work arrangements:&lt;/p>
 &lt;div class='tableauPlaceholder' id='viz1754829111561' style='position: relative'>&lt;noscript>&lt;a href='#'>&lt;img alt='Makeover Monday 2025 Week 3 ' src='https:&amp;#47;&amp;#47;public.tableau.com&amp;#47;static&amp;#47;images&amp;#47;Bo&amp;#47;Book1_17373883396020&amp;#47;MakeoverMonday2025Week3&amp;#47;1_rss.png' style='border: none' />&lt;/a>&lt;/noscript>&lt;object class='tableauViz' style='display:none;'>&lt;param name='host_url' value='https%3A%2F%2Fpublic.tableau.com%2F' /> &lt;param name='embed_code_version' value='3' /> &lt;param name='site_root' value='' />&lt;param name='name' value='Book1_17373883396020&amp;#47;MakeoverMonday2025Week3' />&lt;param name='tabs' value='no' />&lt;param name='toolbar' value='yes' />&lt;param name='static_image' value='https:&amp;#47;&amp;#47;public.tableau.com&amp;#47;static&amp;#47;images&amp;#47;Bo&amp;#47;Book1_17373883396020&amp;#47;MakeoverMonday2025Week3&amp;#47;1.png' /> &lt;param name='animate_transition' value='yes' />&lt;param name='display_static_image' value='yes' />&lt;param name='display_spinner' value='yes' />&lt;param name='display_overlay' value='yes' />&lt;param name='display_count' value='yes' />&lt;param name='language' value='en-US' />&lt;/object>&lt;/div> &lt;script type='text/javascript'> var divElement = document.getElementById('viz1754829111561'); var vizElement = divElement.getElementsByTagName('object')[0]; vizElement.style.width='800px';vizElement.style.height='557px'; var scriptElement = document.createElement('script'); scriptElement.src = 'https://public.tableau.com/javascripts/api/viz_v1.js'; vizElement.parentNode.insertBefore(scriptElement, vizElement); &lt;/script>
