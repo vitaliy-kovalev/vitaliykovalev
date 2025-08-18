@@ -34,5 +34,3 @@ summaryLength = 0
 [services]
   [services.x]
     disableInlineCSS = true
-  [services.googleAnalytics]
-    id = 'G-RPENZEW1EW'
