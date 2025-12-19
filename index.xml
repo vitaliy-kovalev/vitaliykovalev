@@ -1,14 +1,65 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>vitaliykovalev.com</title><link>https://vitaliykovalev.com/</link><description>Recent content on vitaliykovalev.com</description><generator>Hugo</generator><language>en</language><copyright>© Vitaliy Kovalev, 2025</copyright><lastBuildDate>Fri, 19 Dec 2025 00:00:00 +0000</lastBuildDate><atom:link href="https://vitaliykovalev.com/index.xml" rel="self" type="application/rss+xml"/><item><title>Top GPT's new viz</title><link>https://vitaliykovalev.com/posts/gpt-nov-25-viz/gpt-nov-25-viz/</link><pubDate>Fri, 19 Dec 2025 00:00:00 +0000</pubDate><guid>https://vitaliykovalev.com/posts/gpt-nov-25-viz/gpt-nov-25-viz/</guid><description>Top GPT&amp;rsquo;s new viz</description><content>&lt;p>Today one of my colleagues sent me this &lt;a href="https://techcrunch.com/2025/12/05/chatgpts-user-growth-has-slowed-report-finds/" target="_blank" rel="noreferrer">TechCrunch article&lt;/a> about the monthly active usage of popular GPTs and a screenshot from it.&lt;/p>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>vitaliykovalev.com</title><link>https://vitaliykovalev.com/</link><description>Recent content on vitaliykovalev.com</description><generator>Hugo</generator><language>en</language><copyright>© Vitaliy Kovalev, 2025</copyright><lastBuildDate>Fri, 19 Dec 2025 00:00:00 +0000</lastBuildDate><atom:link href="https://vitaliykovalev.com/index.xml" rel="self" type="application/rss+xml"/><item><title>Top GPT's new viz</title><link>https://vitaliykovalev.com/posts/gpt-nov-25-viz/</link><pubDate>Fri, 19 Dec 2025 00:00:00 +0000</pubDate><guid>https://vitaliykovalev.com/posts/gpt-nov-25-viz/</guid><description>New viz based on data from Sensor Tower report</description><content>&lt;p>Today one of my colleagues sent me this &lt;a href="https://techcrunch.com/2025/12/05/chatgpts-user-growth-has-slowed-report-finds/" target="_blank" rel="noreferrer">TechCrunch article&lt;/a> about the monthly active usage of popular GPTs and a screenshot from it.&lt;/p>
 &lt;p>
 
 
 
 
 
+&lt;figure>
+ 
+ 
+
+
+
+
+
+
+
 
  
+ &lt;picture
+ class="mx-auto my-0 rounded-md"
  
-&lt;figure>&lt;img src="original.png" alt="original.png" class="mx-auto my-0 rounded-md" />&lt;figcaption class="text-center">Original article visualisation. Image Credits: Sensor Tower&lt;/figcaption>
+ >
+ 
+ 
+ 
+ 
+ &lt;source
+ 
+ srcset="https://vitaliykovalev.com/posts/gpt-nov-25-viz/original_hu_475749f7caeadab6.webp 330w,https://vitaliykovalev.com/posts/gpt-nov-25-viz/original_hu_7ef9acf19cd1dd02.webp 660w
+ 
+ ,https://vitaliykovalev.com/posts/gpt-nov-25-viz/original_hu_728591ed2fee9d18.webp 1024w
+ 
+ 
+ ,https://vitaliykovalev.com/posts/gpt-nov-25-viz/original_hu_3ee865c7f8bdd73f.webp 1320w
+ "
+ 
+ sizes="100vw"
+ type="image/webp"
+ />
+ 
+ &lt;img
+ width="1358"
+ height="874"
+ class="mx-auto my-0 rounded-md"
+ alt="original.png"
+ loading="lazy" decoding="async"
+ 
+ src="https://vitaliykovalev.com/posts/gpt-nov-25-viz/original_hu_5570dd76cf04a2f8.png" srcset="https://vitaliykovalev.com/posts/gpt-nov-25-viz/original_hu_df0e7f5076d2d299.png 330w,https://vitaliykovalev.com/posts/gpt-nov-25-viz/original_hu_5570dd76cf04a2f8.png 660w
+ 
+ ,https://vitaliykovalev.com/posts/gpt-nov-25-viz/original_hu_706acb6c207ef4a4.png 1024w
+ 
+ 
+ ,https://vitaliykovalev.com/posts/gpt-nov-25-viz/original_hu_aafbd31bf17d8827.png 1320w
+ "
+ sizes="100vw"
+ 
+ />
+ &lt;/picture>
+ 
+
+&lt;figcaption class="text-center">Original article visualisation. Image Credits: Sensor Tower&lt;/figcaption>
 &lt;/figure>
 &lt;/p>
 &lt;p>I decided to make a better version to let the data shine.&lt;/p>
