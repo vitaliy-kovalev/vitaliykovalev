@@ -1,8 +1,9 @@
 ---
-date: '2025-12-19'
 title: "Top GPT's new viz"
-summary: "Top GPT's new viz"
+date: '2025-12-19'
+summary: "New viz based on data from Sensor Tower report"
 showReadingTime: false
+
 tags: 
   - BI
   - Tableau
